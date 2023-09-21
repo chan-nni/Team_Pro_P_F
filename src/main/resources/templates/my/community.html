@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Blog Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>커뮤니티</h2>
+
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Community</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Blog Section -->
+
+  <!-- ======= Blog Section ======= -->
+  <style>
+    .entries {
+      margin-top: 0; /* 기존의 margin-top 제거 */
+    }
+
+    .blog .row {
+      display: flex; /* flexbox 사용 */
+      align-items: flex-start; /* 아이템들을 시작점 기준으로 정렬 */
+    }
+
+    .col-lg-3 {
+      height: 100%; /* 높이 100% 설정 */
+    }
+
+    .sidebar {
+      height: 100%; /* 높이 100% 설정 */
+      margin-right: 30px; /* 오른쪽 마진 추가 */
+    }
+
+    .con {
+      margin-top: 0; /* 기존의 margin-top 제거 */
+      margin-bottom: 30px; /* 하단 마진 추가 */
+    }
+    a {
+      color: black;
+    }
+  </style>
+  <!--  table css-->
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      border: none;
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    .article-list.con {
+      position: relative;
+      text-align: right; /* 버튼을 오른쪽으로 이동시키기 위해 추가 */
+    }
+
+    .btn-create {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #999;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-right: 20px;
+      transition: all 0.2s ease-in-out; /* 마우스 오버 효과를 위한 CSS */
+    }
+
+    .btn-create:hover {
+      background-color: #777;
+      color: #ddd;
+    }
+    .btn-create:active {
+      background-color: #7d7d7d;
+      color: #ccc;
+    }
+
+    /*!*검색바 하단 간격*!*/
+    /*.search123.category {*/
+    /*  margin-bottom: 30px; !* 원하는 간격으로 조절 *!*/
+    /*}*/
+
+  </style>
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="sidebar">
+            <h3 class="sidebar-title">커뮤니티 게시판</h3>
+            <div class="sidebar-item categories">
+              <ul>
+                <li><a th:href="@{/community}">전체 게시판 <span>(0)</span></a></li>
+                <li><a th:href="@{/community(category='free')}">자유 게시판 <span>(0)</span></a></li>
+                <li><a th:href="@{/community(category='ready')}">취준 게시판 <span>(0)</span></a></li>
+                <li><a th:href="@{/community(category='college')}">대학 게시판 <span>(0)</span></a></li>
+              </ul>
+            </div><!-- End sidebar categories-->
+          </div><!-- End sidebar -->
+        </div><!-- End blog sidebar -->
+
+        <div class="col-lg-9 entries">
+
+          <section class="article-list table-common con">
+            <div class="table-responsive"> <!-- text-center 클래스 추가 -->
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="search123 category">
+                  <form th:action="@{/community_search}" method="get">
+                    <input type="text" name="keyword" placeholder="검색어 입력">
+                    <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
+                  </form>
+                </div>
+              </div>
+              <!-- 세션에서 m_id가 없는 경우에만 링크를 숨깁니다 -->
+              <a th:href="@{/com_add}" class="btn-create" th:if="${session.m_id != null}">글 작성하기</a>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>글쓴이</th>
+                  <th>등록일</th>
+                  <th>추천</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="community : ${communities}">
+                  <td th:text="${community.seq}"></td>
+                  <td>
+                    <a th:href="@{/com_de(id=${community.seq})}" th:text="${community.title}"></a>
+                  </td>
+                  <td th:text="${community.member.m_id}"></td>
+                  <td th:text="${community.c_date}"></td>
+                  <td th:text="${community.c_like}"></td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

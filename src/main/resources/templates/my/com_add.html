@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+  <main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Community Upload</h2>
+          <ol>
+            <li><a href="../home/index.html">Home</a></li>
+            <li>Community Upload</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+      <div class="container">
+
+        <div class="row">
+          <form action="com_add" method="post" th:object="${communityForm}" role="form">
+              <input type="hidden" th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" />
+            <div class="row">
+              <div class="col-md-1 form-group job_name">
+                <h4>게시판</h4>
+              </div>
+              <div class="col-md-10 form-group">
+                <select class="job_sel" th:field="*{category}">
+                  <option value="free">자유 게시판</option>
+                  <option value="ready">취업 게시판</option>
+                  <option value="college">대학 게시판</option>
+                </select>
+              </div>
+            </div><br>
+
+            <div class="row job_sub">
+              <div class="col-md-1 form-group job_name">
+                <h4>제목</h4>
+              </div>
+              <div class="col-md-10 form-group">
+                <input type="text" th:field="*{title}" class="form-control"  placeholder="Your Name" required>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-12">
+                <textarea class="form-control" th:field="*{content}" name="message" rows="5" placeholder="Message" required=""></textarea>
+              </div>
+            </div><hr><br>
+
+            <div class="my-3">
+<!--              <div class="loading">Loading</div>-->
+<!--              <div class="error-message"></div>-->
+            </div>
+            <div class="text-center"><button type="submit" class="btn profile-edit-btn">게시물 등록</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

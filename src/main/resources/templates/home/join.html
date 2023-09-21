@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+
+<main id="main">
+
+  <!-- ======= Contact Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Contact</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Contact</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <form action="join" method="post" role="form" th:object="${memberForm}" class="php-email-form">
+            <div class="row">
+
+              <!-- 아이디 -->
+              <div class="col-lg-12 mb-4">
+                <h5>아이디</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
+                <input type="text" th:field="*{m_id}" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+              </div>
+              <!-- 중복확인 -->
+              <!-- <div class="col-md-6">
+                <div class="col-md-6 form-group mt-12">
+                  <div class="text-center"><button type="submit">중복확인</button></div>
+                </div>
+              </div> -->
+
+              <!-- 닉네임 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>닉네임</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
+                <input type="text" th:field="*{m_name}" class="form-control" id="nickname" placeholder="닉네임 입력" required>
+              </div>
+              <!-- 중복확인 -->
+              <!-- <div class="col-md-6">
+                <div class="col-md-6 form-group mt-6">
+                  <div class="text-center"><button type="submit">중복확인</button></div>
+                </div>
+                <br>
+              </div> -->
+
+              <!-- 비밀번호 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>비밀번호</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="password" class="form-control" th:field="*{m_pwd}" placeholder="비밀번호 입력" required>
+              </div>
+              <!-- 비밀번호 확인 -->
+              <!-- <div class="form-group mt-3">
+                <input type="password" class="form-control" name="pw" id="pwcheck" placeholder="비밀번호 확인" required>
+              </div> -->
+
+              <!-- email -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>이메일</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="email" class="form-control" th:field="*{m_email}" placeholder="이메일 입력" required>
+                <br>
+              </div>
+
+              <!-- phone -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>휴대폰</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="tel" class="form-control" th:field="*{m_phone}" placeholder="핸드폰 번호 입력" required>
+              </div>
+              <div class="my-3"><input type="hidden" th:field="*{m_git}" th:value="X"></div>
+              <div class="text-center">
+                <div class="text-center mt-4">
+                  <button type="submit">회원가입</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Map Section ======= -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

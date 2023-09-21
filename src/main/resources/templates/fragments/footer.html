@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="footerFragment">
+  <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>PRO P.F</h4>
+            <p>개발자들을 위한 나만의 포트폴리오 플랫폼</p>
+          </div>
+          <div class="col-lg-6">
+            <form th:action="@{/home_main}" method="post">
+              <input type="email" name="email"><input type="submit" value="PRO P.F">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Home</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/home_main}">개인 메인페이지</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/cmain}">기업 메인페이지</a></li>
+              <div class="col-md-8"><hr class="section-divider"></div>
+              <h4>Login & Join</h4>
+              <li>
+                <i class="bx bx-chevron-right"></i>
+                <a th:href="@{/login}">개인 로그인</a>
+                <div class="separator2"></div>
+                <a th:href="@{/join}">회원가입</a>
+              </li>
+              <div class="col-md-8"><hr class="section-divider"></div>
+              <li>
+                <i class="bx bx-chevron-right"></i>
+                <a th:href="@{/c_login}">기업 로그인</a>
+                <div class="separator2"></div>
+                <a th:href="@{/c_join}">회원가입</a>
+              </li>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/employ}">공고</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/post}">포스팅</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/com}">커뮤니티</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/comch}">기업채널</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>개인 회원</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/upload}">포스팅 업로드</a></li>
+              <div class="col-md-8"><hr class="section-divider"></div>
+            </ul>
+            <h4>기업 회원</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/employ_add}">공고 등록</a></li>
+            </ul>
+          </div>
+
+          <!--<div class="col-lg-3 col-md-6 footer-info">
+            <h3>개발 환경</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa-brands fa-html5"></i></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>-->
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>개발 환경</h3>
+            <!--            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>-->
+            <div class="social-links mt-3">
+              <img width="45" height="45" src="https://img.icons8.com/color/48/intellij-idea.png" alt="intellij-idea"/>
+              <img width="45" height="45" src="https://img.icons8.com/color/48/mysql-logo.png" alt="mysql-logo"/>
+              <img width="45" height="45" src="https://img.icons8.com/color/48/java-coffee-cup-logo--v1.png" alt="java-coffee-cup-logo--v1"/>
+              <img width="45" height="45" src="https://img.icons8.com/nolan/48/html-5.png" alt="html-5"/>
+              <img width="45" height="45" src="https://img.icons8.com/nolan/64/css3.png" alt="css3"/>
+              <img width="45" height="45" src="https://img.icons8.com/nolan/64/javascript-logo.png" alt="javascript-logo"/>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>PRO P.F</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
+        <!--        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+      </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+  </footer><!-- End Footer -->
+</th:block>
+</html>

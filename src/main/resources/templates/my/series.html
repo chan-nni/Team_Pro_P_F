@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main"><!-- ======= Blog Section ======= -->
+
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>시리즈 목록</h2>
+
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Series List</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Blog Section -->
+
+  <!-- 검색바 하단 간격 CSS -->
+  <style>
+    .search123.category {
+      margin-bottom: 53px; /* 원하는 간격으로 조절 */
+    }
+    .table td {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table td:hover {
+      color: #00b3ff;
+    }
+  </style>
+  <!-- 검색바 하단 간격 CSS 끝 -->
+
+
+  <!-- ======= 게시물 목록 ======= -->
+  <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-12 entries">
+
+          <section class="article-list table-common con">
+            <div class="table-responsive">
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="search123 category">
+                  <input type="text" placeholder="검색어 입력">
+                  <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+                </div>
+              </div>
+              <table class="table text-center">
+                <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>등록일</th>
+                  <th>좋아요</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>jpa 글 등록하기</td>
+                  <td>2023-09-05</td>
+                  <td>30</td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section><!-- End 게시물 목록 -->
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

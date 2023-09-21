@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Blog_detail Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Posting</h2>
+
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li><a href="community.html">Posting</a></li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Blog Section -->
+
+  <!-- ======= Blog Single Section ======= -->
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+
+        <div >
+
+          <article class="entry entry-single" th:each="posting : ${postings}">
+
+            <div class="entry-img">
+              <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+            </div>
+
+            <h2 class="entry-title" th:text="${posting.p_title}">
+              커뮤니티 제목
+            </h2>
+
+            <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center">
+                  <a th:href="@{/profile(memberId=${posting.member.m_id})}">
+                    <i class="bi bi-person" th:text="${posting.member.m_id}"></i>
+                  </a>
+                </li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.p_date}"></i></li>
+<!--                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>12</li>-->
+<!--                <li class="d-flex align-items-center"><i class="bi bi-bookmark"></i></li>-->
+              </ul>
+            </div>
+
+            <div class="entry-content" th:utext="${posting.p_content}">
+              안녕 이게 보이면 안된단다
+            </div>
+
+<!--            <div class="entry-footer">-->
+<!--              <i class="bi bi-folder"></i>-->
+<!--              <ul class="cats">-->
+<!--                <li><a href="#">시리즈</a></li>-->
+<!--              </ul>-->
+
+<!--              <i class="bi bi-tags"></i>-->
+<!--              <ul class="tags">-->
+<!--                <li><a href="#">태그</a></li>-->
+<!--                <li><a href="#">태그</a></li>-->
+<!--                <li><a href="#">태그</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+
+
+          </article><!-- End blog entry -->
+
+
+          <div class="blog-comments">
+
+<!--            <div class="reply-form">-->
+<!--              <h4>댓글 달기</h4>-->
+<!--              <form action="">-->
+<!--                <div class="row">-->
+<!--                  <div class="col form-group">-->
+<!--                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <button type="submit" class="btn btn-primary">Post Comment</button>-->
+<!--              </form>-->
+
+<!--            </div>-->
+
+          </div><!-- End blog comments -->
+
+        </div><!-- End blog entries list -->
+
+      </div>
+
+    </div>
+  </section><!-- End Blog Single Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+
+</body>
+
+</html>

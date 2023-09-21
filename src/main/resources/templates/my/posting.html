@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Our Portfolio Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <ol>
+          <li><a href="#">최신</a></li>
+          <li><a href="#">인기</a></li>
+          <li><a href="#">전체</a></li>
+        </ol>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Posting</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Our Portfolio Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <section class="portfolio">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-3 mb-4" th:each="posting : ${postings}">
+          <div class="card">
+            <a th:href="@{/post_de(id=${posting.p_seq})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
+            <p class="card-text" th:text="${posting.p_title}">제목 1</p>
+            <div class="card-details">
+              <span class="card-id" th:text="${posting.p_date}">날짜 1</span>
+              <i class="fa fa-heart"><span class="card-likes" th:text="${posting.p_like}"> 좋아요</span></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="blog">
+    <div class="blog-pagination">
+      <ul class="justify-content-center">
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </div>
+    </div>
+  </section><!-- End Portfolio Section -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+
+</body>
+
+</html>

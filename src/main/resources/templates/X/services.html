@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Join</title>
+  id
+  m_email
+  m_git
+  m_name
+  m_phone
+  m_pwd
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="@{/test}" th:object="${memberForm}" method="post">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 id="title">회원가입</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="col">
+          <h3 id="txt_id">ID</h3>
+        </div>
+        <div class="col">
+          <input type="text" th:field="*{m_id}">
+          <input type="text" th:field="*{m_pwd}">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h3 id="txt_name">Name</h3>
+      </div>
+      <div class="col">
+        <input type="text" id="name" th:field="*{m_name}">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h3 id="txt_pho">Phone</h3>
+      </div>
+      <div class="col">
+        <input type="text" th:field="*{m_phone}">
+      </div>
+      <div class="col">
+        <input type="text" th:field="*{m_email}">
+      </div>
+      <div class="col">
+        <input type="text" th:field="*{m_git}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit" id="join">회원가입</button>
+        <button type="button" id="cancel" onclick="location.href='/'">취소</button>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

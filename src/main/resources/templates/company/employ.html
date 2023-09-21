@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/c_nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Our Services Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>공고</h2>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Employ</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Our Services Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section class="services">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+          <div style="margin-right: 30px"><h3 class="title">모집 직무</h3></div>
+          <div>
+            <select name="work" class="category">
+              <option value="all">직무 선택</option>
+              <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
+              <th:block th:each="category : ${workCategories}">
+                <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+              </th:block>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div style="margin-right: 30px"><h3 class="title">채용 형태</h3></div>
+          <select name="job" class="category">
+            <option value="all">채용 형태</option>
+            <th:block th:each="category : ${employCategories}">
+              <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+            </th:block>
+          </select>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          <div style="margin-right: 30px;text-align: center"><h3 class="title">근무 지역</h3></div>
+          <select name="land" class="category">
+            <option value="all">지역 선택</option>
+            <th:block th:each="category : ${areaTypes}">
+              <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+            </th:block>
+          </select>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          <div class="search123 category">
+            <input type="text" placeholder="검색어 입력">
+            <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+  <section class="about" data-aos="fade-up">
+    <div class="container">
+
+      <table class="ui celled  table">
+        <thead>
+        <tr>
+          <th>공고명</th>
+          <th>채용형태</th>
+          <th>기업명</th>
+          <th>근무지역</th>
+          <th>시작일</th>
+          <th>마감일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="job : ${jobs}">
+          <td th:text="${job.title}">IOS 개발자 구함둥</td>
+          <td th:text="${job.employ}">경력 </td>
+          <td th:text="${job.company.company_name}">카카오</td>
+          <td th:text="${job.area}">서울</td>
+          <td th:text="${job.start_date}"></td>
+          <td th:text="${job.end_date}">~ 4/30</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- 페이징 -->
+      <section class="blog">
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </div>
+      </section>
+
+
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

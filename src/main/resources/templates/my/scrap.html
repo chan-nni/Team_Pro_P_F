@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= About Us Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <ol>
+          <li><a href="#">공고</a></li>
+          <li><a href="#">게시물</a></li>
+        </ol>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Scrap</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+  <!-- ======= About Section ======= -->
+  <section class="about" data-aos="fade-up">
+    <div class="container">
+
+      <table class="ui celled  table">
+        <thead>
+        <tr>
+          <th>공고명</th>
+          <th>채용형태</th>
+          <th>기업명</th>
+          <th>근무지역</th>
+          <th>마감일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>IOS 개발자 구함둥</td>
+          <td>경력 </td>
+          <td>카카오</td>
+          <td>서울</td>
+          <td>~ 4/30</td>
+        </tr>
+        </tbody>
+      </table>
+      <section class="blog">
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </div>
+      </section>
+
+
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+
+
+</body>
+
+</html>

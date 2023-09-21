@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-cntent-center align-items-center">
+  <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="carousel-container">
+        <h2 class="animate__animated animate__fadeInDown">맞춤 공고보기! <!--<span>공고페이지</span>--></h2>
+        <p class="animate__animated animate__fadeInUp">지역, 직군, 채용 형태 등 본인에게 가장 최적화된 공고를 찾을 수 있습니다.</p>
+        <a href="employ" class="btn-get-started animate__animated animate__fadeInUp">자세히 보기</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="carousel-container">
+        <h2 class="animate__animated animate__fadeInDown">포스팅 보러가기!</h2>
+        <p class="animate__animated animate__fadeInUp">회원들의 포트폴리오를 게시물과 시리즈로 자세히 볼 수 있습니다.</p>
+        <a href="post" class="btn-get-started animate__animated animate__fadeInUp">자세히 보기</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="carousel-container">
+        <h2 class="animate__animated animate__fadeInDown">포트폴리오 제작하기!</h2>
+        <p class="animate__animated animate__fadeInUp">제작, 공유, 프로젝트 첨부를 통해 포트폴리오를 간편하게 관리하세요.</p>
+        <a href="upload" class="btn-get-started animate__animated animate__fadeInUp">포트폴리오 만들러가기</a>
+      </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+    </a>
+
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= Services Section ======= -->
+  <section class="services">
+    <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <h2 class="animate__animated animate__fadeInDown">최신 게시물</h2><br>
+        </div>
+        <div class="card-container col-md-3" th:each="posting : ${new_posting}">
+          <div class="card">
+            <img src="assets/img/about.jpg" alt="Image 1">
+            <p class="card-text" th:text="${posting.p_title}">내용 1</p>
+            <div class="card-details">
+              <span class="card-id" th:text="${posting.member.m_id}">아이디 1</span>
+              <span class="card-likes"><i class="fa fa-heart" th:text="${posting.p_date}"></i></span>
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </section><!-- End Services Section -->
+
+  <!-- ======= Why Us Section ======= -->
+  <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="400">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="animate__animated animate__fadeInDown">NEW! 공고</h2><br>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <table class="ui celled table">
+            <thead>
+            <tr>
+              <th>공고명</th>
+              <th>채용형태</th>
+              <th>기업명</th>
+              <th>근무지역</th>
+              <th>마감일</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>IOS 개발자 구함둥</td>
+              <td>경력 </td>
+              <td>카카오</td>
+              <td>서울</td>
+              <td>~ 4/30</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Why Us Section -->
+
+  <!-- ======= Features Section ======= -->
+<!--  <section class="features">-->
+<!--    <div class="container">-->
+
+<!--      <div class="section-title">-->
+<!--        <h2>Features</h2>-->
+<!--        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>-->
+<!--      </div>-->
+
+<!--      <div class="row" data-aos="fade-up">-->
+<!--        <div class="col-md-5">-->
+<!--          <img src="assets/img/features-1.svg" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-md-7 pt-4">-->
+<!--          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>-->
+<!--          <p class="fst-italic">-->
+<!--            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore-->
+<!--            magna aliqua.-->
+<!--          </p>-->
+<!--          <ul>-->
+<!--            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>-->
+<!--            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row" data-aos="fade-up">-->
+<!--        <div class="col-md-5 order-1 order-md-2">-->
+<!--          <img src="assets/img/features-2.svg" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-md-7 pt-5 order-2 order-md-1">-->
+<!--          <h3>Corporis temporibus maiores provident</h3>-->
+<!--          <p class="fst-italic">-->
+<!--            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore-->
+<!--            magna aliqua.-->
+<!--          </p>-->
+<!--          <p>-->
+<!--            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate-->
+<!--            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in-->
+<!--            culpa qui officia deserunt mollit anim id est laborum-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row" data-aos="fade-up">-->
+<!--        <div class="col-md-5">-->
+<!--          <img src="assets/img/features-3.svg" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-md-7 pt-5">-->
+<!--          <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>-->
+<!--          <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>-->
+<!--          <ul>-->
+<!--            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>-->
+<!--            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>-->
+<!--            <li><i class="bi bi-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row" data-aos="fade-up">-->
+<!--        <div class="col-md-5 order-1 order-md-2">-->
+<!--          <img src="assets/img/features-4.svg" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-md-7 pt-5 order-2 order-md-1">-->
+<!--          <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>-->
+<!--          <p class="fst-italic">-->
+<!--            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore-->
+<!--            magna aliqua.-->
+<!--          </p>-->
+<!--          <p>-->
+<!--            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate-->
+<!--            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in-->
+<!--            culpa qui officia deserunt mollit anim id est laborum-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </section>&lt;!&ndash; End Features Section &ndash;&gt;-->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+
+</body>
+
+</html>

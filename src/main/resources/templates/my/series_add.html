@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 시리즈 수정 폼 표시 -->
+    <script th:inline="javascript">
+        function showEditForm(seriesId) {
+            document.getElementById('editSeriesId').value = seriesId;
+            document.getElementById('editForm').style.display = 'block';
+            document.getElementById('addForm').style.display = 'none';
+        }
+    </script>
+
+    <!-- 시리즈 추가 폼 표시 -->
+    <script th:inline="javascript">
+        function showAddForm() {
+            document.getElementById('editForm').style.display = 'none';
+            document.getElementById('addForm').style.display = 'block';
+        }
+    </script>
+
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+    <!-- ======= Blog Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Series Management</h2>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Section -->
+
+    <!-- 시리즈 목록 표시 -->
+    <ul th:each="series : ${seriesList}">
+        <li>
+            <span th:text="${series.name}"></span>
+            <!-- 수정 버튼 클릭 시 시리즈 수정 폼 나타남 -->
+            <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.s_seq} + '\');'">수정</a>
+        </li>
+    </ul>
+    <!-- 시리즈 추가 버튼 클릭 시 시리즈 추가 폼 나타남 -->
+    <button type="button" onclick="showAddForm()">새로운 시리즈 추가</button>
+
+    <!-- 시리즈 수정 폼 -->
+    <div id="editForm" style="display: none;">
+        <form th:action="@{/updateSeries}" method="post">
+            <input type="hidden" th:name="seriesId" id="editSeriesId" />
+            <input type="text" th:name="seriesName" placeholder="시리즈 이름" />
+            <button type="submit">수정</button>
+        </form>
+    </div>
+
+    <!-- 시리즈 추가 폼 -->
+    <div id="addForm" style="display: none;">
+        <form th:action="@{/addSeries}" method="post">
+            <input type="text" th:name="seriesName" placeholder="새로운 시리즈 이름" />
+            <button type="submit">추가</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

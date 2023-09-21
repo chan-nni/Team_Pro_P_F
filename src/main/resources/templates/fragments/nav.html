@@ -1,0 +1,35 @@
+<header id="header" class="fixed-top d-flex align-items-center header-transparent" style="background-color: #1e4356">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <div class="logo">
+      <h1 class="text-light"><a href="/home_main"><span>Pro P.F</span></a></h1>
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a th:href="@{/employ}">공고</a></li>
+        <li><a th:href="@{/post}">포스팅</a></li>
+        <li><a th:href="@{/com}">커뮤니티</a></li>
+        <li><a th:href="@{/company_ch}">기업채널</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+    <ul>
+      <th:block th:if="${session.m_id != null}">
+        <li>
+          <div class="user-dropdown">
+            <div class="user-button">
+              <a th:href="@{/scrap}"><i class="bi bi-bookmarks-fill"></i></a>
+              <i class="bi bi-person-circle" id="dropdown-toggle"></i>
+            </div>
+            <div class="user-dropdown-content">
+              <a th:href="@{/pofo}">마이페이지</a>
+              <a
+                      href="#">로그아웃</a>
+            </div>
+          </div>
+        </li>
+      </th:block>
+    </ul>
+  </div>
+</header><!-- End Header -->

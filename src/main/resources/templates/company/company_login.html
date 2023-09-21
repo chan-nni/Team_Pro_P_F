@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+
+<main id="main">
+
+  <!-- ======= Contact Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>COMPANY JOIN</h2>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Company join</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <form action="join" method="post" role="form" class="php-email-form">
+            <div class="row">
+
+              <!-- 기업명 -->
+              <div class="col-lg-12 mb-4">
+                <h5>기업명</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
+                <input type="text" class="form-control" id="company" placeholder="기업명 입력" required>
+              </div>
+              <!-- 아이디 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>아이디</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
+                <input type="text" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+              </div>
+              <!-- 중복확인 -->
+              <!-- <div class="col-md-6">
+                <div class="col-md-6 form-group mt-12">
+                  <div class="text-center"><button type="submit">중복확인</button></div>
+                </div>
+              </div> -->
+
+              <!-- 비밀번호 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>비밀번호</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="password" class="form-control" placeholder="비밀번호 입력" required>
+              </div>
+              <!-- 비밀번호 확인 -->
+              <!-- <div class="form-group mt-3">
+                <input type="password" class="form-control" name="pw" id="pwcheck" placeholder="비밀번호 확인" required>
+              </div> -->
+
+              <!-- email -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>담당자 이메일</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="email" class="form-control" placeholder="이메일 입력" required>
+              </div>
+
+              <!-- phone -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>담당자 휴대폰</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="tel" class="form-control" placeholder="핸드폰 번호 입력" required>
+              </div>
+              <!-- 기업 연락처 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>기업 연락처</h5>
+              </div>
+              <div class="form-group mt-12">
+                <input type="tel" class="form-control" placeholder="연락처 입력" required>
+              </div>
+              <div class="my-3"></div>
+              <div class="text-center">
+                <div class="text-center mt-4">
+                  <button type="submit">회원가입</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Map Section ======= -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

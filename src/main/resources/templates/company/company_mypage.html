@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/c_nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Our Portfolio Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>My Page</h2>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>My Page</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Our Portfolio Section -->
+
+  <!--마이페이지 글작성-->
+  <div class="container">
+
+    <div class="profile">
+
+      <div class="profile-image">
+
+        <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+
+      </div>
+
+      <div class="profile-user-settings">
+        <h1 class="profile-user-name">회사명</h1>
+        <h1 class="profile-user-name" th:text="${company.company_name}">회사명</h1>
+
+      </div>
+
+      <div class="profile-stats">
+
+<!--        <ul>-->
+<!--          <h3>팔로워 :</h3>-->
+<!--        </ul>-->
+
+      </div>
+      <a th:href="@{/em_add}"> 공고등록</a>
+
+      </button>팔
+    </div>
+  </div>
+  <!-- End of profile section -->
+
+  <div class="tabs">
+    <input id="all" type="radio" name="ctab_item" checked>
+    <label class="ctab_item" for="all">소개</label>
+    <input id="programming" type="radio" name="ctab_item">
+    <label class="ctab_item" for="programming">공고</label>
+
+    <div class="tab_content" id="all_content">
+
+      기업 페이지 소개 입니다.
+
+    </div>
+
+    <div class="tab_content" id="programming_content">
+      <section class="about" data-aos="fade-up">
+        <div class="container">
+
+          <table class="ui celled  table">
+            <thead>
+            <tr>
+              <th>공고명</th>
+              <th>채용형태</th>
+              <th>기업명</th>
+              <th>근무지역</th>
+              <th>마감일</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job : ${jobs}">
+              <td th:text="${job.title}">IOS 개발자 구함둥</td>
+              <td th:text="${job.employ}">경력 </td>
+              <td th:text="${job.company.company_name}">카카오</td>
+              <td th:text="${job.area}">서울</td>
+              <td th:text="${job.start_date}"></td>
+              <td th:text="${job.end_date}">~ 4/30</td>
+              <th>
+                <div class="text-center">
+                  <button type="submit">수정</button>
+                  <button type="submit">삭제</button>
+                </div>
+              </th>
+            </tr>
+            </tbody>
+          </table>
+          <section class="blog">
+            <div class="blog-pagination">
+              <ul class="justify-content-center">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+              </ul>
+            </div>
+          </section>
+
+
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+</body>
+
+</html>

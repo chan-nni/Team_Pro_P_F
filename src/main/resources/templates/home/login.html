@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Contact Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>LOGIN</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>login</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 mx-auto">
+          <form action="login" method="post" role="form" th:object="${memberForm}" class="php-email-form">
+            <div class="row">
+              <!-- 아이디 -->
+              <div class="col-lg-12 mb-4">
+                <h5>아이디</h5>
+              </div>
+              <div class="col-md-12 form-group mt-12">
+                <input type="text" th:field="*{m_id}" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+              </div>
+
+              <!-- 비밀번호 -->
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>비밀번호</h5>
+              </div>
+              <div class="col-md-12 form-group mt-12">
+                <input type="password" th:field="*{m_pwd}" class="form-control" id="pwd" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+              </div>
+
+              <!-- 로그인 버튼 -->
+              <div class="col-lg-12 text-center mt-4">
+                <button type="submit">로그인</button>
+                <a th:href="@{/join}" class="signup-button">회원가입</a>
+              </div>
+
+              <!-- 기업 로그인 및 회원가입 버튼 -->
+              <div class="col-lg-12 text-right mt-4">
+                <br>
+                <div class="button-container">
+                  <a th:href="@{/c_login}" class="custom-link">기업 로그인</a>
+                  <div class="separator"></div>
+                  <a th:href="@{/c_join}" class="custom-link">기업 회원가입</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Contact Section -->
+
+
+  <!-- ======= Map Section ======= -->
+
+
+</main><!-- End #main -->
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

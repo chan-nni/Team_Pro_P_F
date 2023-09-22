@@ -15,7 +15,8 @@
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
     <ul>
-      <th:block th:if="${session.m_id != null}">
+      <!-- 기업/개인 회원 둘 중 하나라도 id로 로그인 한 경우 보임 -->
+      <th:block th:if="${session.m_id != null || session.cy_id != null}">
         <li>
           <div class="user-dropdown">
             <div class="user-button">
@@ -30,6 +31,12 @@
           </div>
         </li>
       </th:block>
+
+      <!-- id가 없을경우 로그인 버튼 보임 -->
+      <th:block th:if="${session.m_id == null && session.cy_id == null}">
+        <a href="/"><i class="bi bi-door-open"></i></a>
+      </th:block>
+
     </ul>
   </div>
 </header><!-- End Header -->

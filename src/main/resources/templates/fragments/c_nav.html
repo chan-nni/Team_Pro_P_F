@@ -15,15 +15,14 @@
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
     <ul>
-      <th:block th:if="${session.m_id != null}">
+      <th:block th:if="${session.m_id != null || session.cy_id != null}">
         <li><a href="scrap"><i class="bi bi-bookmarks-fill"></i></a>
         <a href="c_pofo"><i class="bi bi-person-circle"></i></a>
-        <a href="logout"><i class="bi bi-box-arrow-right"></i></a></li>
       </th:block>
 
         <!-- 로그인 버튼 css 수정 바람 -->
-        <th:block th:if="${session.m_id == null}">
-            <a href="/"><i class="bi bi-door-open"></i></a>
+      <th:block th:if="${session.m_id == null && session.cy_id == null}">
+        <a href="/"><i class="bi bi-door-open"></i></a>
         </th:block>
     </ul>
   </div>

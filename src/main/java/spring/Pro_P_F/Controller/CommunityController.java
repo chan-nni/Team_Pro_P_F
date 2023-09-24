@@ -15,6 +15,7 @@ import spring.Pro_P_F.service.MemberService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -61,6 +62,8 @@ public class CommunityController {
     @GetMapping("/com")
     public String list(Model model) {
         List<Community> communities = communityService.findAllComm();
+        // 최신 등록 게시물 부터 보임
+        Collections.reverse(communities);
         model.addAttribute("communities", communities);
 
         return "my/community";
@@ -91,7 +94,7 @@ public class CommunityController {
         return "my/community";
     }
 
-    // 커뮤니티 게시물 검색
+    // 커뮤니티 게시물 검색(제목, 내용으로 검색)
     @GetMapping("/community_search")
     public String searchCommunity(@RequestParam(name = "keyword") String keyword, Model model) {
         System.out.println("검색어: " + keyword);

@@ -160,8 +160,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="community : ${communities}">
-                  <td th:text="${community.seq}"></td>
+                <tr th:each="community, status : ${communities}">
+                  <td th:text="${status.index + 1}">1</td>
                   <td>
                     <a th:href="@{/com_de(id=${community.seq})}" th:text="${community.title}"></a>
                   </td>

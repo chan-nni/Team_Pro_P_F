@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import spring.Pro_P_F.domain.Community;
 import spring.Pro_P_F.domain.Company;
 import spring.Pro_P_F.domain.Job;
 import spring.Pro_P_F.service.CompanyMemService;
@@ -47,6 +49,14 @@ public class CompanyController {
     @GetMapping("/company_ch")
     public String company_ch(Model model) {
         return "company/company_channel";
+    }
+
+    @GetMapping("/employ_search")
+    public String searchCommunity(@RequestParam(name = "keyword") String keyword, Model model) {
+        System.out.println("검색어: " + keyword);
+        List<Job> jobs = jobService.searchJobsByKeyword(keyword);
+        model.addAttribute("jobs", jobs);
+        return "company/employ";
     }
 
 

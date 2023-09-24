@@ -17,16 +17,16 @@
     <ul>
       <!-- 기업/개인 회원 둘 중 하나라도 id로 로그인 한 경우 보임 -->
       <th:block th:if="${session.m_id != null || session.cy_id != null}">
-        <li>
+
           <div class="user-dropdown">
             <div class="user-button">
               <a th:href="@{/scrap}"><i class="bi bi-bookmarks-fill"></i></a>
               <i class="bi bi-person-circle" id="dropdown-toggle"></i>
             </div>
             <div class="user-dropdown-content">
-              <a th:href="@{/pofo}">마이페이지</a>
-              <a
-                      href="#">로그아웃</a>
+              <a th:if="${session.m_id != null}" th:href="@{/pofo}">마이페이지</a>
+              <a th:if="${session.cy_id != null}" th:href="@{/c_pofo}">마이페이지</a>
+              <a href="logout">로그아웃</a>
             </div>
           </div>
         </li>

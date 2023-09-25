@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.Pro_P_F.domain.Community;
-import spring.Pro_P_F.domain.Company;
-import spring.Pro_P_F.domain.Job;
+import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.repository.CompanyMemRepository;
 import spring.Pro_P_F.repository.JobRepository;
 
@@ -52,6 +50,34 @@ public class JobService {
         logger.debug("Found {} jobs matching the keyword.", result.size());
 
         return result;
+    }
+
+    public List<Job> getJobsByWork(WorkType work) {
+        return jobRepository.findByWork(work);
+    }
+
+    public List<Job> getJobsByEmploy(EmployType employ) {
+        return jobRepository.findByEmploy(employ);
+    }
+
+    public List<Job> getJobsByArea(AreaType area) {
+        return jobRepository.findByArea(area);
+    }
+
+    public List<Job> getJobsByWorkAndEmployAndArea(WorkType work, EmployType employ, AreaType area) {
+        return jobRepository.findByWorkAndEmployAndArea(work, employ, area);
+    }
+
+    public List<Job> getJobsByWorkAndEmploy(WorkType work, EmployType employ) {
+        return jobRepository.findByWorkAndEmploy(work, employ);
+    }
+
+    public List<Job> getJobsByWorkAndArea(WorkType work, AreaType area) {
+        return jobRepository.findByWorkAndArea(work, area);
+    }
+
+    public List<Job> getJobsByEmployAndArea(EmployType employ, AreaType area) {
+        return jobRepository.findByEmployAndArea(employ, area);
     }
 
 }

@@ -117,11 +117,11 @@
     <div class="tab_content" id="programming_content">
       <section class="services">
         <div class="Scard-container">
-          <div class="card">
+          <div class="card" th:each="series1 : ${series}">
             <img src="assets/img/about.jpg" alt="Image 1">
-            <p class="card-text">제목 1</p>
+            <p class="card-text" th:text="${series1.name}">제목 1</p>
             <div class="card-details">
-              <span class="card-id">아이디 1</span>
+              <span class="card-id" th:text="${series1.member.mid}">아이디 1</span>
               <span class="card-likes"><i class="fa fa-heart"></i> 10</span>
             </div>
           </div>

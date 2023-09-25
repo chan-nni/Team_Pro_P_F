@@ -16,7 +16,7 @@ public class Community {
     private Long seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "mid")
     private Member member;
 
     @Column(name = "c_category")

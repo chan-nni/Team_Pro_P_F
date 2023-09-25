@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Member {
 
     @Id
-    private String m_id;
+    private String mid;
 
     private String m_pwd;
 
@@ -23,5 +23,4 @@ public class Member {
     private String m_email;
 
     private String m_git;
-
 }

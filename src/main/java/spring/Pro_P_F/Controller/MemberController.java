@@ -38,7 +38,7 @@ public class MemberController {
     public String memberForm(MemberForm form) {
         Member member = new Member();
 
-        member.setM_id(form.getM_id());
+        member.setMid(form.getMid());
         member.setM_pwd(form.getM_pwd());
         member.setM_name(form.getM_name());
         member.setM_phone(form.getM_phone());
@@ -59,7 +59,7 @@ public class MemberController {
     // login 성공/실패
     @PostMapping("/login")
     public String loginId(MemberForm form, HttpSession session, Model model) {
-        String mId = form.getM_id();
+        String mId = form.getMid();
         String mPwd = form.getM_pwd();
 
         // 입력된 아이디로 회원을 조회합니다.

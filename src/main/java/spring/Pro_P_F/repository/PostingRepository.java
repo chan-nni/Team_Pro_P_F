@@ -31,7 +31,7 @@ public class PostingRepository {
     }
 
     public List<Posting> findBym_id(String mId) {
-        return em.createQuery("SELECT p FROM Posting p WHERE p.member.m_id = :mId", Posting.class)
+        return em.createQuery("SELECT p FROM Posting p WHERE p.member.mid = :mId", Posting.class)
                 .setParameter("mId", mId)
                 .getResultList();
     }

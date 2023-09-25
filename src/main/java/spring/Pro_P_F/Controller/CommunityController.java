@@ -100,18 +100,9 @@ public class CommunityController {
         System.out.println("검색어: " + keyword);
         List<Community> communities = communityService.searchCommunitiesByKeyword(keyword);
         model.addAttribute("communities", communities);
+        model.addAttribute("keyword", keyword);
         return "my/community";
     }
-
-
-
-//    @GetMapping("/post_de")
-//    public String showPostDetails(@RequestParam("id") Long postId, Model model) {
-//        List<Posting> postings = postingService.findByid(postId);
-//        model.addAttribute("postings", postings);
-//        return "my/posting_detail";
-//    }
-
 
 
 }

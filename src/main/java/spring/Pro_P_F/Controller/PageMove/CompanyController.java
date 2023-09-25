@@ -48,17 +48,11 @@ public class CompanyController {
 
     @GetMapping("/company_ch")
     public String company_ch(Model model) {
+        List<Company> companies = companyMemService.findAllComm();
+
+        model.addAttribute("companies", companies);
+
         return "company/company_channel";
     }
-
-
-//    @GetMapping("/employ_search")
-//    public String searchCommunity(@RequestParam(name = "keyword") String keyword, Model model) {
-//        System.out.println("검색어: " + keyword);
-//        List<Job> jobs = jobService.searchJobsByKeyword(keyword);
-//        model.addAttribute("jobs", jobs);
-//        return "company/employ";
-//    }
-
 
 }

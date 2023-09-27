@@ -2,7 +2,10 @@
   <div class="container d-flex justify-content-between align-items-center">
 
     <div class="logo">
-      <h1 class="text-light"><a href="/home_main"><span>Pro P.F</span></a></h1>
+      <h1 class="text-light">
+        <a th:if="${session.m_id != null}" th:href="@{/main}">Pro P.F</a>
+        <a th:if="${session.cy_id != null}" th:href="@{/c_main}">Pro P.F</a>
+      </h1>
     </div>
 
     <nav id="navbar" class="navbar">

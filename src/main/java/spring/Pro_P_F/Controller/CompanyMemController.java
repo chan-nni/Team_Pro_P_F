@@ -78,7 +78,7 @@ public class CompanyMemController {
     }
 
 
-    // 메인 페이지 이동
+    // 기업 메인 페이지 이동
     @GetMapping("/c_main")
     public String mainHome(HttpSession session, Model model) {
         String cyId = (String) session.getAttribute("cy_id");

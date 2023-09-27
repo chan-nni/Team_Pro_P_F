@@ -23,11 +23,13 @@ public class CompanyController {
     @Autowired
     private CompanyMemService companyMemService;
 
+    // 공고 상세페이지
     @GetMapping("/em_de")
     public String Employ_detail(Model model) {
         return "company/employ_detail";
     }
 
+    // 기업 마이페이지
     @GetMapping("/c_pofo")
     public String company(Model model, HttpSession session) {
         String cyId = (String) session.getAttribute("cy_id");
@@ -46,6 +48,7 @@ public class CompanyController {
         return "company/company_mypage";
     }
 
+    // 기업 채널 페이지
     @GetMapping("/company_ch")
     public String company_ch(Model model) {
         List<Company> companies = companyMemService.findAllComm();

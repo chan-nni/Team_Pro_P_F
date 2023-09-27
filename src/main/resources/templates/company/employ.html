@@ -24,55 +24,50 @@
     </div>
   </section><!-- End Our Services Section -->
 
-  <!-- ======= Services Section ======= -->
   <section class="services">
     <div class="container">
-
-      <form th:action="@{/category_search}" method="get">
       <div class="row">
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-          <div style="margin-right: 30px"><h3 class="title">모집 직무</h3></div>
-          <div>
-            <select name="work" class="category">
-              <option value="">직무 선택</option>
-              <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
-              <th:block th:each="category : ${workCategories}">
-                <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${work == category}"></option>
-              </th:block>
-            </select>
-
+        <div class="col-md-12" data-aos="fade-up">
+          <div class="service-box">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="work">모집 직무</label>
+                <select name="work" id="work" class="category">
+                  <option value="all">직무 선택</option>
+                  <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
+                  <th:block th:each="category : ${workCategories}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                  </th:block>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="job">채용 형태</label>
+                <select name="job" id="job" class="category">
+                  <option value="all">채용 형태</option>
+                  <th:block th:each="category : ${employCategories}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                  </th:block>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="land">근무 지역</label>
+                <select name="land" id="land" class="category">
+                  <option value="all">지역 선택</option>
+                  <th:block th:each="category : ${areaTypes}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                  </th:block>
+                </select>
+              </div>
+              <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="search123 category">
+                  <input type="text" placeholder="검색어 입력">
+                  <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div style="margin-right: 30px"><h3 class="title">채용 형태</h3></div>
-          <select name="employ" class="category">
-            <option value="">채용 형태</option>
-            <th:block th:each="category : ${employCategories}">
-              <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${employ == category}"></option>
-            </th:block>
-          </select>
-        </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-          <div style="margin-right: 30px;text-align: center"><h3 class="title">근무 지역</h3></div>
-          <select name="area" class="category">
-            <option value="">지역 선택</option>
-            <th:block th:each="category : ${areaTypes}">
-              <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${area == category}"></option>
-            </th:block>
-          </select>
-        </div>
-
-        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-          <div class="search123 category">
-              <input type="text" name="keyword" placeholder="검색어 입력">
-              <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
-          </div>
-        </div>
-
       </div>
-      </form>
     </div>
   </section><!-- End Services Section -->
   <section class="about" data-aos="fade-up">

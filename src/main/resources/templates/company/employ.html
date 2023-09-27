@@ -29,42 +29,43 @@
       <div class="row">
         <div class="col-md-12" data-aos="fade-up">
           <div class="service-box">
+            <form th:action="@{/category_search}" method="get">
             <div class="row">
               <div class="col-md-3">
                 <label for="work">모집 직무</label>
                 <select name="work" id="work" class="category">
-                  <option value="all">직무 선택</option>
+                  <option value="">직무 선택</option>
                   <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
                   <th:block th:each="category : ${workCategories}">
-                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${work == category}"></option>
                   </th:block>
                 </select>
               </div>
               <div class="col-md-3">
                 <label for="job">채용 형태</label>
                 <select name="job" id="job" class="category">
-                  <option value="all">채용 형태</option>
+                  <option value="">채용 형태</option>
                   <th:block th:each="category : ${employCategories}">
-                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${employ == category}"></option>
                   </th:block>
                 </select>
               </div>
               <div class="col-md-3">
                 <label for="land">근무 지역</label>
-                <select name="land" id="land" class="category">
-                  <option value="all">지역 선택</option>
+                <select name="area" id="land" class="category">
+                  <option value="">지역 선택</option>
                   <th:block th:each="category : ${areaTypes}">
-                    <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${area == category}"></option>
                   </th:block>
                 </select>
               </div>
               <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
                 <div class="search123 category">
                   <input type="text" placeholder="검색어 입력">
-                  <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+                  <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
                 </div>
               </div>
-            </div>
+            </div></form>
           </div>
         </div>
       </div>
@@ -116,7 +117,7 @@
 
 <!--<script>-->
 <!--  // 각 카테고리 선택 시 자동으로 검색 요청을 보냅니다.-->
-<!--  document.querySelectorAll('.category').forEach(function(select) {-->
+<!--  document.querySelector('.category').forEach(function(select) {-->
 <!--    select.addEventListener('change', function() {-->
 <!--      var workValue = document.querySelector('select[name="work"]').value;-->
 <!--      var employValue = document.querySelector('select[name="job"]').value;-->

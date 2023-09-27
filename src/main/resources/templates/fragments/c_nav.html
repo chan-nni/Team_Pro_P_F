@@ -16,15 +16,19 @@
     </nav><!-- .navbar -->
     <ul>
       <th:block th:if="${session.m_id != null}">
-        <li><a href="scrap"><i class="bi bi-bookmarks-fill"></i></a>
-        <a href="c_pofo"><i class="bi bi-person-circle"></i></a>
-        <a href="logout"><i class="bi bi-box-arrow-right"></i></a></li>
+        <li>
+          <div class="user-dropdown">
+            <div class="user-button">
+              <a th:href="@{/scrap}"><i class="bi bi-bookmarks-fill"></i></a>
+              <i class="bi bi-person-circle" id="dropdown-toggle"></i>
+            </div>
+            <div class="user-dropdown-content">
+              <a th:href="@{/pofo}">마이페이지</a>
+              <a href="#">로그아웃</a>
+            </div>
+          </div>
+        </li>
       </th:block>
-
-        <!-- 로그인 버튼 css 수정 바람 -->
-        <th:block th:if="${session.m_id == null}">
-            <a href="/"><i class="bi bi-door-open"></i></a>
-        </th:block>
     </ul>
   </div>
 </header><!-- End Header -->

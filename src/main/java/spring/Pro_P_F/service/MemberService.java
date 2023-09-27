@@ -19,7 +19,7 @@ public class MemberService {
     public String join(Member member) {
         memberRepository.join(member);
 
-        return member.getM_id();
+        return member.getMid();
     }
 
     public Member findOne(String memberId) {

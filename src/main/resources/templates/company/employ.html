@@ -5,7 +5,7 @@
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
-<div th:include="fragments/c_nav.html"></div>
+<div th:include="fragments/nav.html"></div>
 
 <main id="main">
 
@@ -28,15 +28,16 @@
   <section class="services">
     <div class="container">
 
+      <form th:action="@{/category_search}" method="get">
       <div class="row">
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
           <div style="margin-right: 30px"><h3 class="title">모집 직무</h3></div>
           <div>
             <select name="work" class="category">
-              <option value="all">직무 선택</option>
+              <option value="">직무 선택</option>
               <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
               <th:block th:each="category : ${workCategories}">
-                <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+                <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${work == category}"></option>
               </th:block>
             </select>
 
@@ -45,38 +46,37 @@
 
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
           <div style="margin-right: 30px"><h3 class="title">채용 형태</h3></div>
-          <select name="job" class="category">
-            <option value="all">채용 형태</option>
+          <select name="employ" class="category">
+            <option value="">채용 형태</option>
             <th:block th:each="category : ${employCategories}">
-              <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+              <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${employ == category}"></option>
             </th:block>
           </select>
         </div>
 
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
           <div style="margin-right: 30px;text-align: center"><h3 class="title">근무 지역</h3></div>
-          <select name="land" class="category">
-            <option value="all">지역 선택</option>
+          <select name="area" class="category">
+            <option value="">지역 선택</option>
             <th:block th:each="category : ${areaTypes}">
-              <option th:value="${category}" th:text="${category.getDisplayName()}"></option>
+              <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${area == category}"></option>
             </th:block>
           </select>
         </div>
 
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
           <div class="search123 category">
-            <input type="text" placeholder="검색어 입력">
-            <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+              <input type="text" name="keyword" placeholder="검색어 입력">
+              <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
           </div>
         </div>
 
       </div>
-
+      </form>
     </div>
   </section><!-- End Services Section -->
   <section class="about" data-aos="fade-up">
     <div class="container">
-
       <table class="ui celled  table">
         <thead>
         <tr>
@@ -91,9 +91,9 @@
         <tbody>
         <tr th:each="job : ${jobs}">
           <td th:text="${job.title}">IOS 개발자 구함둥</td>
-          <td th:text="${job.employ}">경력 </td>
+          <td th:text="${job.employ.getDisplayName()}">경력 </td>
           <td th:text="${job.company.company_name}">카카오</td>
-          <td th:text="${job.area}">서울</td>
+          <td th:text="${job.area.getDisplayName()}">서울</td>
           <td th:text="${job.start_date}"></td>
           <td th:text="${job.end_date}">~ 4/30</td>
         </tr>
@@ -119,6 +119,21 @@
 <!-- ======= Footer ======= -->
 <div th:replace="fragments/footer :: footerFragment"></div>
 
+<!--<script>-->
+<!--  // 각 카테고리 선택 시 자동으로 검색 요청을 보냅니다.-->
+<!--  document.querySelectorAll('.category').forEach(function(select) {-->
+<!--    select.addEventListener('change', function() {-->
+<!--      var workValue = document.querySelector('select[name="work"]').value;-->
+<!--      var employValue = document.querySelector('select[name="job"]').value;-->
+<!--      var areaValue = document.querySelector('select[name="land"]').value;-->
+
+<!--      // 선택한 값들을 URL에 추가하여 검색 요청을 보냅니다.-->
+<!--      var searchUrl = '/category_search?work=' + workValue + '&employ=' + employValue + '&area=' + areaValue;-->
+<!--      window.location.href = searchUrl;-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
 </body>
 
 </html>
+

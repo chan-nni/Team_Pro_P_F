@@ -15,7 +15,7 @@ public class Posting {
     private Long p_seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "mid")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)

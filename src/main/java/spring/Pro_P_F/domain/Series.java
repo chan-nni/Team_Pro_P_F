@@ -16,7 +16,7 @@ public class Series {
     private Long s_seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "mid")
     private Member member;
 
     @Column(name = "s_name")
@@ -24,5 +24,7 @@ public class Series {
 
     @LastModifiedDate
     private LocalDate s_date;
+
+
 
 }

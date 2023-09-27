@@ -60,4 +60,9 @@ public class SeriesService {
     public Series findByName(String s_name) {
         return seriesRepository.findByName(s_name);
     }
+
+    public List<Series> findByMId(String mId) {
+        return seriesRepository.findByMember_Mid(mId);
+    }
+
 }

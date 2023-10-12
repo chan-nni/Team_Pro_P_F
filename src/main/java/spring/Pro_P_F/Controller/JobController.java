@@ -47,7 +47,7 @@ public class JobController {
             Job job = new Job();
 
             job.setTitle(job1.getTitle());
-            job.setStart_date(job1.getStart_date());
+            job.setStartdate(job1.getStartdate());
             job.setEnd_date(job1.getEnd_date());
             job.setPerson(job1.getPerson());
             job.setArea(job1.getArea());

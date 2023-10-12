@@ -17,6 +17,10 @@ public class JobService {
 
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
 
+    // 4개만 출력
+    public List<Job> getTop4() {
+        return jobRepository.findTop4ByOrderByStartdateDesc();
+    }
 
     @Autowired
     public JobService(JobRepository jobRepository, CompanyMemRepository companyMemRepository) {

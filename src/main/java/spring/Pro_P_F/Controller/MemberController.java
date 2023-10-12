@@ -10,8 +10,10 @@ import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.Controller.Form.MemberForm;
 import spring.Pro_P_F.Controller.Form.PostForm;
 import spring.Pro_P_F.domain.Community;
+import spring.Pro_P_F.domain.Job;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
+import spring.Pro_P_F.service.JobService;
 import spring.Pro_P_F.service.MemberService;
 import spring.Pro_P_F.service.PostingService;
 
@@ -27,6 +29,9 @@ public class MemberController {
 
     @Autowired
     private PostingService postingService;
+
+    @Autowired
+    private JobService jobService;
 
     @GetMapping("/join")
     public String join(Model model) {
@@ -91,6 +96,9 @@ public class MemberController {
 
         List<Posting> new_posting = postingService.new_posting();
         model.addAttribute("new_posting", new_posting);
+
+        List<Job> jobListings = jobService.getTop4();
+        model.addAttribute("jobs", jobListings);
 
         return "home/index";
     }

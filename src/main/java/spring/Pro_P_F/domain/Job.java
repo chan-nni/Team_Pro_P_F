@@ -19,7 +19,7 @@ public class Job {
     private String title;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate start_date;
+    private LocalDate startdate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate end_date;

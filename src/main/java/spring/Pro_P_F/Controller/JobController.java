@@ -93,6 +93,7 @@ public class JobController {
         return "company/employ";
     }
 
+    // 공고 검색기능
     @GetMapping("/category_search")
     public String search(
             @RequestParam(value = "work", required = false) WorkType work,
@@ -100,6 +101,8 @@ public class JobController {
             @RequestParam(value = "area", required = false) AreaType area,
             @RequestParam(value = "keyword", required = false) String keyword,
             Model model) {
+
+        System.out.println("검색어: " + keyword);
 
         // 열거형(enum) 값을 가져와서 모델에 추가
         WorkType[] workCategories = WorkType.values();
@@ -143,9 +146,14 @@ public class JobController {
             filteredJobs = jobService.findAllComm();
         }
 
+        if(keyword != null){
+            filteredJobs = jobService.searchJobsByKeyword(keyword);
+        }
+
         model.addAttribute("work", work);
         model.addAttribute("employ", employ);
         model.addAttribute("area", area);
+        model.addAttribute("keyword", keyword);
 
 
         model.addAttribute("jobs", filteredJobs);

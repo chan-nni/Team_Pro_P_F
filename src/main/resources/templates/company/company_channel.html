@@ -26,18 +26,19 @@
     </section><!-- End Blog Section -->
         <div class="box-container" style="margin-top: 50px;">
             <div class="box" th:each="company: ${companies}">
-                <div class="company-image">
-                    <!-- 이미지 추가 -->
-                    <img src="/assets/img/blog/blog-recent-4.jpg" alt="기업 이미지">
-                </div>
-                <h2 th:text="${company.company_name}">기업1</h2>
-                <div class="plus-button-container">
-                    <div class="plus-button">
-                        <i class="bi bi-plus"></i>
+                <a th:href="@{/com_profile(id=${company.cyId})}">
+                    <div class="company-image">
+                        <!-- 이미지 추가 -->
+                        <img src="/assets/img/blog/blog-recent-4.jpg" alt="기업 이미지">
                     </div>
-                </div>
+                    <h2 th:text="${company.company_name}">기업1</h2>
+                    <div class="plus-button-container">
+                        <div class="plus-button">
+                            <i class="bi bi-plus"></i>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <!-- 더 많은 기업채널 박스 추가 -->
 
         </div>
         <div class="blog">

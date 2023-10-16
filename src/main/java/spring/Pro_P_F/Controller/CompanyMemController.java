@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import spring.Pro_P_F.Controller.Form.CompanyForm;
 import spring.Pro_P_F.domain.Company;
+import spring.Pro_P_F.domain.Job;
 import spring.Pro_P_F.domain.Posting;
 import spring.Pro_P_F.service.CompanyMemService;
+import spring.Pro_P_F.service.JobService;
 import spring.Pro_P_F.service.PostingService;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +26,9 @@ public class CompanyMemController {
 
     @Autowired
     private PostingService postingService;
+
+    @Autowired
+    private JobService jobService;
 
     @GetMapping("/c_join")
     public String join(Model model) {
@@ -91,6 +98,17 @@ public class CompanyMemController {
         return "home/company_index";
     }
 
+    // 클릭한 기업채널 기업 회원 마이페이지 로드
+    @GetMapping("/com_profile")
+    public String companyProfile(@RequestParam("id") String cyId, Model model) {
+        Company company = companyMemService.findMemByCyId(cyId);
+        model.addAttribute("company", company);
+
+        List<Job> jobs = jobService.findByCompany(company);
+        model.addAttribute("jobs", jobs);
+
+        return "company/company_mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
+    }
 
 }
 

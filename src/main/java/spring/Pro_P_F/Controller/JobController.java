@@ -13,6 +13,7 @@ import spring.Pro_P_F.service.JobService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -103,6 +104,9 @@ public class JobController {
             Model model) {
 
         System.out.println("검색어: " + keyword);
+        System.out.println("지역: " + area);
+        System.out.println("형탸: " + employ);
+        System.out.println("일: " + work);
 
         // 열거형(enum) 값을 가져와서 모델에 추가
         WorkType[] workCategories = WorkType.values();
@@ -112,7 +116,7 @@ public class JobController {
         AreaType[] areaTypes = AreaType.values();
         model.addAttribute("areaTypes", areaTypes);
 
-        List<Job> filteredJobs;
+        List<Job> filteredJobs = new ArrayList<>();
 
         // "all" 값을 null로 변환하여 처리
         if ("".equals(work)) {
@@ -140,14 +144,17 @@ public class JobController {
             filteredJobs = jobService.getJobsByWork(work);
         } else if (employ != null) {
             filteredJobs = jobService.getJobsByEmploy(employ);
+            System.out.println("지나긴 해?");
         } else if (area != null) {
             filteredJobs = jobService.getJobsByArea(area);
         } else {
             filteredJobs = jobService.findAllComm();
+            System.out.println("이걸 지나냐?");
         }
 
-        if(keyword != null){
-            filteredJobs = jobService.searchJobsByKeyword(keyword);
+        if (keyword != null && !keyword.isEmpty()) {
+            List<Job> keywordFilteredJobs = jobService.searchJobsByKeyword(keyword);
+            filteredJobs.retainAll(keywordFilteredJobs);  // 병합한 후 중복된 항목만 남김
         }
 
         model.addAttribute("work", work);

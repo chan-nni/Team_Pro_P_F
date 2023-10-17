@@ -42,8 +42,8 @@
                   </select>
                 </div>
                 <div class="col-md-3">
-                  <label for="job">채용 형태</label>
-                  <select name="job" id="job" class="category">
+                  <label for="employ">채용 형태</label>
+                  <select name="employ" id="employ" class="category">
                     <option value="">채용 형태</option>
                     <th:block th:each="category : ${employCategories}">
                       <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${employ == category}"></option>

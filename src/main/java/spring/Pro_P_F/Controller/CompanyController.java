@@ -1,4 +1,4 @@
-package spring.Pro_P_F.Controller.PageMove;
+package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

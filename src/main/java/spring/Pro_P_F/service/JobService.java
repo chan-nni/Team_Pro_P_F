@@ -32,6 +32,10 @@ public class JobService {
         this.companyMemRepository = companyMemRepository;
     }
 
+    // 공고 삭제
+    public void deleteJobBySeq(Long id) {
+        jobRepository.deleteBySeq(id);
+    }
 
     public void saveJob(Job job) {
         jobRepository.save(job);

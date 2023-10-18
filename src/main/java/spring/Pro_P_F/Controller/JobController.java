@@ -3,6 +3,7 @@ package spring.Pro_P_F.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CommunityForm;
@@ -212,6 +213,14 @@ public class JobController {
             // 리디렉션 또는 오류 메시지 표시 등을 수행
             return "redirect:/"; // 예시로 홈페이지로 리디렉션
         }
+    }
+
+    @GetMapping("job_delete")
+    @Transactional
+    public String deleteJob(@RequestParam("id") Long id) {
+        jobService.deleteJobBySeq(id);
+
+        return "redirect:/c_pofo";
     }
 
 }

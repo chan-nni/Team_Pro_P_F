@@ -9,6 +9,8 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 
     List<Job> findAll();
 
+    void deleteBySeq(Long id);
+
     List<Job> findByCompany(Company company);
 
     List<Job> findBySeq(Long jSeq);

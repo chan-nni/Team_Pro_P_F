@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<main id="main">
+
+  <!-- ======= Contact Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Contact</h2>
+        <ol>
+          <li><a href="../home/index.html">Home</a></li>
+          <li>Contact</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <div class="container">
+
+      <div class="row">
+        <div th:each="job : ${jobs}">
+        <form th:action="@{/job_edit(id=${job.seq})}" method="post" role="form" class="php-email-form">
+
+            <div class="row">
+              <h2>채용 공고</h2>
+            </div><hr class="job_sun"><br>
+            <input type="hidden" th:value="*{job.seq}" id="seq" name="seq">
+            <div class="row job_sub">
+              <div class="col-md-1 form-group job_name">
+                <h4>제목</h4>
+              </div>
+              <div class="col-md-10 form-group">
+                <input type="text" th:value="*{job.title}" class="form-control" name="title" id="title" placeholder="Your Name" required>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-1">
+                <h5>모집직무</h5>
+              </div>
+              <div class="col-md-5">
+                <select name="work" id="work" class="category">
+                  <option value="">직무 선택</option>
+                  <th:block th:each="category : ${workCategories}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" name="work" th:selected="${job.work == category}"></option>
+                  </th:block>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <h5>채용형태</h5>
+              </div>
+              <div class="col-md-5">
+                <select name="employ" id="employ" class="category">
+                  <option value="">채용 형태</option>
+                  <th:block th:each="category : ${employCategories}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" name="employ" th:selected="${job.employ == category}"></option>
+                  </th:block>
+                </select>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-1">
+                <h5>채용 인원</h5>
+              </div>
+              <div class="col-md-3">
+                <input type="text" th:value="*{job.person}" name="person" class="form-control" id="num" required>
+              </div>
+              <div class="col-md-2">
+                <h5>명</h5>
+              </div>
+              <div class="col-md-1">
+                <h5>근무지역</h5>
+              </div>
+              <div class="col-md-5">
+                <select name="area" id="area" class="category">
+                  <option value="">지역 선택</option>
+                  <th:block th:each="category : ${areaTypes}">
+                    <option th:value="${category}" th:text="${category.getDisplayName()}" name="area" th:selected="${job.area == category}"></option>
+                  </th:block>
+                </select>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-1">
+                <h5>모집 기간</h5>
+              </div>
+              <div class="col-md-4">
+                <input type="date" th:value="*{job.startdate}" name="startdate" class="form-control" id="s_date" required>
+              </div>
+              <div class="col-md-2 job_name">
+                <h5>~</h5>
+              </div>
+              <div class="col-md-4">
+                <input type="date" th:value="*{job.end_date}" name="end_date" class="form-control" id="e_date" required>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-1">
+                <h5> 공고 내용</h5>
+              </div>
+              <div class="col-md-11">
+                <textarea class="form-control" th:value="*{job.content}" name="content" rows="5" required=""></textarea>
+              </div>
+            </div><hr><br><br>
+
+            <!--              <div class="row">-->
+            <!--                <h2>담당자 정보</h2>-->
+            <!--              </div><hr class="job_sun"><br>-->
+
+            <!--              <div class="row">-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                  <h4>담당자</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-10 form-group">-->
+            <!--                  <input type="text" name="ad_name" class="form-control" id="ad_name" placeholder="Your Name" required>-->
+            <!--                </div>-->
+            <!--              </div><br>-->
+
+            <!--              <div class="row job_sub">-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                  <h4>연락처</h4>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-1"></div>-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                  <h5>전화번호</h5>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-3 form-group">-->
+            <!--                  <input type="text" name="ad_phone1" class="form-control" id="ad_phone1" placeholder="021234567" required>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-1"></div>-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                  <h5>휴대폰</h5>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-3 form-group">-->
+            <!--                  <input type="text" name="ad_phone1" class="form-control" id="ad_phone2" placeholder="01012345678" required>-->
+            <!--                </div>-->
+            <!--              </div><br>-->
+
+            <!--              <div class="row job_sub">-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                </div>-->
+            <!--                <div class="col-md-1"></div>-->
+            <!--                <div class="col-md-1 form-group job_name">-->
+            <!--                  <h5>E-mail</h5>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-3 form-group">-->
+            <!--                  <input type="text" name="ad_phone1" class="form-control" id="ad_email" placeholder="hong@naver.com" required>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-1"></div>-->
+
+            <!--              </div><br>-->
+
+            <div class="text-center"><button type="submit">수정하기</button></div>
+        </form>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

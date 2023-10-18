@@ -92,7 +92,7 @@
               <td th:text="${job.end_date}">~ 4/30</td>
               <th>
                 <div class="text-center">
-                  <button type="submit">수정</button>
+                  <a th:href="@{/job_edit(id=${job.seq})}">수정</a>
                   <button type="submit">삭제</button>
                 </div>
               </th>

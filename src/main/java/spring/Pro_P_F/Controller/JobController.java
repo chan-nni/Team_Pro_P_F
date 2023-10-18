@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.service.CompanyMemService;
@@ -68,14 +66,6 @@ public class JobController {
             return "errorPage"; // 예시로 "errorPage"로 반환
         }
     }
-
-    // 공고 목록
-//    @GetMapping("/employ")
-//    public String list(Model model) {
-//        List<Job> jobs = jobService.findAllComm();
-//        model.addAttribute("jobs", jobs);
-//        return "company/employ";
-//    }
 
     @GetMapping("/employ")
     public String yourPage(Model model) {
@@ -168,12 +158,60 @@ public class JobController {
         return "company/employ";
     }
 
+
+    // 공고 상세보기
     @GetMapping("job_de")
-    public String job_Detail(@RequestParam("id") Long jobId, Model model){
+    public String job_Detail(@RequestParam("id") Long jobId, Model model) {
         List<Job> jobs = jobService.findBySeq(jobId);
         model.addAttribute("jobs", jobs);
 
         return "company/employ_detail";
+    }
+
+    // 공고 수정페이지로 이동
+    @GetMapping("job_edit")
+    public String job_Edit(@RequestParam("id") Long jobId, Model model) {
+        List<Job> jobs = jobService.findBySeq(jobId);
+        model.addAttribute("jobs", jobs);
+
+        // 열거형(enum) 값을 가져와서 모델에 추가
+        WorkType[] workCategories = WorkType.values();
+        model.addAttribute("workCategories", workCategories);
+
+        EmployType[] employCategories = EmployType.values();
+        model.addAttribute("employCategories", employCategories);
+
+        AreaType[] areaTypes = AreaType.values();
+        model.addAttribute("areaTypes", areaTypes);
+
+        return "company/employ_edit";
+    }
+
+    @PostMapping("job_edit")
+    public String updateJob(@RequestParam("id") Long id, Job job) {
+
+        List<Job> editJob = jobService.findBySeq(id);
+        System.out.println("뭐냐 이건" + id);
+        if (editJob != null && !editJob.isEmpty()) {
+            Job existingJob = editJob.get(0);
+
+            existingJob.setTitle(job.getTitle());
+            existingJob.setStartdate(job.getStartdate());
+            existingJob.setEnd_date(job.getEnd_date());
+            existingJob.setPerson(job.getPerson());
+            existingJob.setContent(job.getContent());
+            existingJob.setWork(job.getWork());
+            existingJob.setArea(job.getArea());
+
+            jobService.saveJob(existingJob);
+
+            // 성공적으로 수정한 경우 리디렉션
+            return "redirect:/c_pofo";
+        } else {
+            // 해당 ID의 작업을 찾지 못한 경우에 대한 처리
+            // 리디렉션 또는 오류 메시지 표시 등을 수행
+            return "redirect:/"; // 예시로 홈페이지로 리디렉션
+        }
     }
 
 }

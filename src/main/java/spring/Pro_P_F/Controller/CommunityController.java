@@ -69,6 +69,7 @@ public class CommunityController {
         return "my/community";
     }
 
+    // 커뮤니티 페이지 디테일
     @GetMapping("/com_de")
     public String showComDetails(@RequestParam("id") Long comId, Model model) {
         List<Community> communities = communityService.findByseq(comId);

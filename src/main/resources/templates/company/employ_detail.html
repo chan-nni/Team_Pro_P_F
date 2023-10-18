@@ -25,7 +25,7 @@
   </section><!-- End Contact Section -->
 
   <!-- ======= Contact Section ======= -->
-  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+  <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" th:each="job : ${jobs}">
     <div class="container">
 
       <div class="row">
@@ -37,32 +37,32 @@
           <form action="#" method="post" role="form" class="php-email-form">
             <div class="col-lg-12">
               <div class="col-md-12 mx-auto text-center">
-                <h3>제목</h3>
+                <h3 th:text="${job.title}">제목</h3>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
                 <p>모집 직무</p>
-                <h5>프론트 엔드 / 백엔드</h5>
+                <h5 th:text="${job.work.getDisplayName()}">프론트 엔드 / 백엔드</h5>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
                 <p>채용 형태</p>
-                <h5>정규직</h5>
+                <h5 th:text="${job.employ.getDisplayName()}">정규직</h5>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
                 <p>채용 인원</p>
-                <h5>2명</h5>
+                <h5 th:text="${job.person}">2</h5><h5>명</h5>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
                 <p>근무 지역</p>
-                <h5>서울</h5>
+                <h5 th:text="${job.area.getDisplayName()}">서울</h5>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
                 <p>모집 기간</p>
-                <h5>2023-09-05 ~ 2023-09-15</h5>
+                <h5 th:text="${job.startdate}">2023-09-05</h5> ~ <h5 th:text="${job.end_date}">2023-09-05</h5>
                 <hr class="section-divider">
               </div>
               <div class="job-info">
@@ -72,7 +72,7 @@
               </div>
               <div class="job-info">
                 <p>공고 내용</p>
-                <h5>프론트 엔드, 백엔드 각 1명씩 모집하고 있습니다. <br> 풀스택 가능하신 분 우대합니다.</h5>
+                <h5 th:text="${job.content}">프론트 엔드, 백엔드 각 1명씩 모집하고 있습니다. <br> 풀스택 가능하신 분 우대합니다.</h5>
                 <hr class="section-divider">
               </div>
             </div>

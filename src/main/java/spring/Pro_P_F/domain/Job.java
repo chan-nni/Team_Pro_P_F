@@ -14,7 +14,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Job {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long j_seq;
+    @Column(name = "j_seq")
+    private Long seq;
 
     private String title;
 

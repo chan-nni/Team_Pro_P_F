@@ -22,6 +22,10 @@ public class JobService {
         return jobRepository.findTop4ByOrderByStartdateDesc();
     }
 
+    public List<Job> findBySeq(Long id) {
+        return jobRepository.findBySeq(id);
+    }
+
     @Autowired
     public JobService(JobRepository jobRepository, CompanyMemRepository companyMemRepository) {
         this.jobRepository = jobRepository;

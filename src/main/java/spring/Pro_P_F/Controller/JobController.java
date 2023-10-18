@@ -1,6 +1,7 @@
 package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -167,6 +168,13 @@ public class JobController {
         return "company/employ";
     }
 
+    @GetMapping("job_de")
+    public String job_Detail(@RequestParam("id") Long jobId, Model model){
+        List<Job> jobs = jobService.findBySeq(jobId);
+        model.addAttribute("jobs", jobs);
+
+        return "company/employ_detail";
+    }
 
 }
 

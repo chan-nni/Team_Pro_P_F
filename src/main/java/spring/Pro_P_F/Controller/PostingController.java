@@ -122,7 +122,6 @@ public class PostingController {
         model.addAttribute("postings", postings);
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
-
 }
 
 

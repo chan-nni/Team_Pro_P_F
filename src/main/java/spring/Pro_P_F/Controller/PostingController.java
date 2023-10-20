@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spring.Pro_P_F.Controller.Form.PostForm;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
+import spring.Pro_P_F.domain.PostingLike;
 import spring.Pro_P_F.domain.Series;
 import spring.Pro_P_F.service.MemberService;
+import spring.Pro_P_F.service.PostingLikeService;
 import spring.Pro_P_F.service.PostingService;
 import spring.Pro_P_F.service.SeriesService;
 
@@ -29,6 +31,9 @@ public class PostingController {
 
     @Autowired
     private SeriesService seriesService;
+
+    @Autowired
+    private PostingLikeService postingLikeService;
 
     // 포스팅 등록 페이지 로드
     @GetMapping("/upload")
@@ -81,6 +86,28 @@ public class PostingController {
         List<Posting> postings = postingService.findByid(postId);
         model.addAttribute("postings", postings);
         return "my/posting_detail";
+    }
+
+    // posting 좋아요
+    @PostMapping("/like")
+    public String likePost(@RequestParam Long postId, HttpSession session) {
+        List<Posting> postings = postingService.findByid(postId);
+        Posting posting = postings.get(0);
+
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
+
+        if (posting != null && member != null) {
+            PostingLike postingLike = new PostingLike();
+            postingLike.setPosting(posting);
+            postingLike.setMember(member);
+            postingLikeService.saveLike(postingLike);
+
+            posting.setP_like(posting.getP_like() + 1);
+            postingService.save(posting);
+        }
+        return "redirect:/post_de?id=" + postId;
+
     }
 
     // 클릭한 포스팅 아이디 마이페이지 로드

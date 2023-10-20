@@ -74,6 +74,10 @@
 <!--              </ul>-->
 <!--            </div>-->
 
+            <form th:action="@{/like(postId=${posting.p_seq})}" method="post">
+              <button type="submit">좋아요</button>
+              <label th:text="${posting.p_like}"></label>
+            </form>
 
           </article><!-- End blog entry -->
 

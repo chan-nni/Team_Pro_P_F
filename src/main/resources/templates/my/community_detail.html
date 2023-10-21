@@ -31,9 +31,9 @@
 
       <div class="row">
 
-        <div >
+        <div th:each="community : ${communities}">
 
-          <article class="entry entry-single" th:each="community : ${communities}">
+          <article class="entry entry-single">
 
             <div class="entry-img">
               <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
@@ -60,37 +60,41 @@
 
           </article><!-- End blog entry -->
 
+          <form action="#" th:action="@{/clike(id=${community.seq})}" method="post">
+            <button type="submit">좋아요</button>
+            <label th:text="${community.c_like}"></label>
+          </form>
 
-<!--          <div class="blog-comments">-->
+          <div class="blog-comments">
 
-<!--            <div id="comment-1" class="comment">-->
-<!--              <div class="d-flex">-->
-<!--                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>-->
-<!--                <div>-->
-<!--                  <h5><a href="">Georgia Reader</a></h5>-->
-<!--                  <time datetime="2020-01-01">2020-01-04</time>-->
-<!--                  <p>-->
-<!--                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.-->
-<!--                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>&lt;!&ndash; End comment #1 &ndash;&gt;-->
+            <div id="comment-1" class="comment">
+              <div class="d-flex">
+                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
+                <div>
+                  <h5><a href="">Georgia Reader</a></h5>
+                  <time datetime="2020-01-01">2020-01-04</time>
+                  <p>
+                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
+                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                  </p>
+                </div>
+              </div>
+            </div><!-- End comment #1 -->
 
-<!--            <div class="reply-form">-->
-<!--              <h4>댓글 달기</h4>-->
-<!--              <form action="">-->
-<!--                <div class="row">-->
-<!--                  <div class="col form-group">-->
-<!--                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <button type="submit" class="btn btn-primary">Post Comment</button>-->
-<!--              </form>-->
+            <div class="reply-form">
+              <h4>댓글 달기</h4>
+              <form action="">
+                <div class="row">
+                  <div class="col form-group">
+                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+              </form>
 
-<!--            </div>-->
+            </div>
 
-<!--          </div>&lt;!&ndash; End blog comments &ndash;&gt;-->
+          </div><!-- End blog comments -->
 
         </div><!-- End blog entries list -->
 

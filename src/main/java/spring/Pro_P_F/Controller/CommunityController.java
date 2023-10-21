@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.domain.Community;
+import spring.Pro_P_F.domain.CommunityLike;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
+import spring.Pro_P_F.service.CommunityLikeService;
 import spring.Pro_P_F.service.CommunityService;
 import spring.Pro_P_F.service.MemberService;
 
@@ -26,6 +28,9 @@ public class CommunityController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private CommunityLikeService communityLikeService;
 
     // 커뮤니티 게시물 등록 페이지 로드
     @GetMapping("/com_add")
@@ -105,5 +110,24 @@ public class CommunityController {
         return "my/community";
     }
 
+    // 커뮤니티 좋아요
+    @PostMapping("/clike")
+    public String likeComm(@RequestParam Long id, HttpSession session) {
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
 
+        List<Community> communities = communityService.findByseq(id);
+        Community community = communities.get(0);
+
+        if (community != null) {
+            CommunityLike communityLike = new CommunityLike();
+            communityLike.setCommunity(community);
+            communityLike.setMember(member);
+            communityLikeService.saveLike(communityLike);
+
+            community.setC_like(community.getC_like() + 1);
+            communityService.saveCommunity(community);
+        }
+        return "redirect:/com_de?id=" + id;
+    }
 }

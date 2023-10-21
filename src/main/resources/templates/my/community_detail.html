@@ -67,15 +67,12 @@
 
           <div class="blog-comments">
 
-            <div id="comment-1" class="comment">
+            <div id="comment-1" class="comment" th:each="comment : ${community.comments}">
               <div class="d-flex">
-                <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
                 <div>
-                  <h5><a href="">Georgia Reader</a></h5>
-                  <time datetime="2020-01-01">2020-01-04</time>
-                  <p>
-                    Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
-                    Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
+                  <h5 th:text="${comment.member.mid}">이름</h5>
+                  <p th:text="${comment.content}">
+                    내용
                   </p>
                 </div>
               </div>
@@ -83,10 +80,11 @@
 
             <div class="reply-form">
               <h4>댓글 달기</h4>
-              <form action="">
+              <form action="/ccreate" method="post">
                 <div class="row">
                   <div class="col form-group">
-                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                    <input type="hidden" name="communityId" th:value="${community.seq}">
+                    <textarea name="content" class="form-control" placeholder="Your Comment*"></textarea>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Post Comment</button>

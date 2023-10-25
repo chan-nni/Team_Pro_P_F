@@ -1,5 +1,6 @@
 package spring.Pro_P_F.Controller;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -124,6 +125,44 @@ public class PostingController {
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
 
+    // 수정 페이지로 이동
+    @GetMapping("posting_edit")
+    public String posting_Edit(@RequestParam("id") Long id, Model model) {
+        List<Posting> postings = postingService.findByid(id);
+        model.addAttribute("postings", postings);
+
+        List<Series> categories = seriesService.getAllSeries(); // 카테고리 목록을 DB에서 가져옴
+        model.addAttribute("categories", categories); // Thymeleaf로 카테고리 목록 전달
+
+        return "my/Edit_upload";
+    }
+
+    // 수정
+    @PostMapping("posting_edit")
+    public String updatePosting(@RequestParam("id") Long id, Posting posting) {
+       List<Posting> searchPosting = postingService.findByid(id);
+
+        if (searchPosting != null && !searchPosting.isEmpty()) {
+            Series series = seriesService.findByName(posting.getSeries().getName());
+
+
+            Posting editPosting = searchPosting.get(0);
+
+            editPosting.setP_title(posting.getP_title());
+            editPosting.setP_content(posting.getP_content());
+            editPosting.setSeries(series);
+
+            System.out.println(posting.getP_title());
+
+            postingService.save(editPosting);
+
+            return "redirect:/post_de?id=" + editPosting.getP_seq();
+        } else {
+            return "redirect:/";
+        }
+    }
+
+
     // 삭제
     @GetMapping("posting_delete")
     @Transactional
@@ -132,6 +171,8 @@ public class PostingController {
 
         return "redirect:/post";
     }
+
+
 }
 
 

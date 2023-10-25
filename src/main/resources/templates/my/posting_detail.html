@@ -78,7 +78,7 @@
               <button type="submit">좋아요</button>
               <label th:text="${posting.p_like}"></label>
             </form>
-            <a th:href="@{/posting_delete(id=${posting.p_seq})}" th:if="${session.m_id == posting.member.mid}">수정하기</a>
+            <a th:href="@{/posting_edit(id=${posting.p_seq})}" th:if="${session.m_id == posting.member.mid}">수정하기</a>
             <a th:href="@{/posting_delete(id=${posting.p_seq})}" th:if="${session.m_id == posting.member.mid}">삭제하기</a>
 
           </article><!-- End blog entry -->

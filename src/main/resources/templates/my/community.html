@@ -148,7 +148,7 @@
                 </div>
               </div>
               <!-- 세션에서 m_id가 없는 경우에만 링크를 숨깁니다 -->
-              <a th:href="@{/com_add}" class="btn-create" th:if="${session.m_id != null}">글 작성하기</a>
+              <a th:href="@{/com_add}" class="btn-create" th:if="${session.m_id != null and session.cy_id == null} or ${session.m_id == null and session.cy_id != null}">글 작성하기</a>
               <table class="table">
                 <thead>
                 <tr>

@@ -78,23 +78,25 @@
               <th>채용형태</th>
               <th>기업명</th>
               <th>근무지역</th>
+              <th>시작일</th>
               <th>마감일</th>
-              <th></th>
+              <th>수정</th>
+              <th>삭제</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="job : ${jobs}">
               <td th:text="${job.title}">IOS 개발자 구함둥</td>
-              <td th:text="${job.employ}">경력 </td>
+              <td th:text="${job.employ.getDisplayName()}">경력 </td>
               <td th:text="${job.company.company_name}">카카오</td>
-              <td th:text="${job.area}">서울</td>
+              <td th:text="${job.area.getDisplayName()}">서울</td>
               <td th:text="${job.startdate}"></td>
               <td th:text="${job.end_date}">~ 4/30</td>
               <th>
-                <div class="text-center">
                   <a th:href="@{/job_edit(id=${job.seq})}">수정</a>
+              </th>
+              <th>
                   <a th:href="@{/job_delete(id=${job.seq})}">삭제</a>
-                </div>
               </th>
             </tr>
             </tbody>

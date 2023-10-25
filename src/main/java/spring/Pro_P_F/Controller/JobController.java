@@ -188,6 +188,7 @@ public class JobController {
         return "company/employ_edit";
     }
 
+    // 수정
     @PostMapping("job_edit")
     public String updateJob(@RequestParam("id") Long id, Job job) {
 
@@ -215,6 +216,7 @@ public class JobController {
         }
     }
 
+    // 삭제
     @GetMapping("job_delete")
     @Transactional
     public String deleteJob(@RequestParam("id") Long id) {

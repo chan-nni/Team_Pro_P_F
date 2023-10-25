@@ -19,6 +19,13 @@ public class PostingRepository {
         em.persist(posting);
     }
 
+    // 삭제
+    public void deleteByPSeq(Long id) {
+        em.createQuery("DELETE FROM Posting p WHERE p.p_seq = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
+
     public List<Posting> findAll() {
         return em.createQuery("select post from Posting post ORDER BY post.p_date desc", Posting.class)
                 .getResultList();

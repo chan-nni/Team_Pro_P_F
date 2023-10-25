@@ -24,6 +24,10 @@ public class PostingService {
         return posting.getP_seq();
     }
 
+    public void deletePostingByPSeq(Long id) {
+        postingRepository.deleteByPSeq(id);
+    }
+
     public List<Posting> findAll() {
         return postingRepository.findAll();
     }

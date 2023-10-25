@@ -37,4 +37,7 @@ public class Posting {
     @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PComment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "posting", orphanRemoval = true)
+    private List<PostingLike> children = new ArrayList<>();
+
 }

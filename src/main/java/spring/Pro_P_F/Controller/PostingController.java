@@ -2,6 +2,7 @@ package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -121,6 +122,15 @@ public class PostingController {
         List<Posting> postings = postingService.findBym_id(memberId);
         model.addAttribute("postings", postings);
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
+    }
+
+    // 삭제
+    @GetMapping("posting_delete")
+    @Transactional
+    public String deletePosting(@RequestParam("id") Long id) {
+        postingService.deletePostingByPSeq(id);
+
+        return "redirect:/post";
     }
 }
 

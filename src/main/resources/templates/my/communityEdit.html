@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+  <main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Community Upload</h2>
+          <ol>
+            <li><a href="../home/index.html">Home</a></li>
+            <li>Community Upload</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+      <div class="container">
+
+        <div class="row">
+          <form th:action="@{/community_edit(id=${community.seq})}" method="post" th:each="community : ${communities}" role="form">
+            <div class="row">
+              <div class="col-md-1 form-group job_name">
+                <h4>게시판</h4>
+              </div>
+              <div class="col-md-10 form-group">
+                <select class="job_sel" th:value="${community.category}" name="category">
+                  <option value="free" th:selected="${community.category == 'free'}">자유 게시판</option>
+                  <option value="ready" th:selected="${community.category == 'ready'}">취업 게시판</option>
+                  <option value="college" th:selected="${community.category == 'college'}">대학 게시판</option>
+                </select>
+
+              </div>
+            </div><br>
+
+            <div class="row job_sub">
+              <div class="col-md-1 form-group job_name">
+                <h4>제목</h4>
+              </div>
+              <div class="col-md-10 form-group">
+                <input type="text" th:value="*{community.title}" class="form-control" name="title" required>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-12">
+                <!-- 수정된 코드 -->
+                <textarea class="form-control" name="content" rows="5" th:text="${community.content}"></textarea>
+              </div>
+            </div><hr><br>
+
+            <div class="my-3">
+<!--              <div class="loading">Loading</div>-->
+<!--              <div class="error-message"></div>-->
+            </div>
+            <div class="text-center"><button type="submit" class="btn profile-edit-btn">수정하기</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+
+</body>
+
+</html>

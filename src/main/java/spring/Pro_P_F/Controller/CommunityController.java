@@ -2,6 +2,7 @@ package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -129,5 +130,44 @@ public class CommunityController {
             communityService.saveCommunity(community);
         }
         return "redirect:/com_de?id=" + id;
+    }
+
+    // 삭제
+    @GetMapping("community_delete")
+    @Transactional
+    public String deleteCommunity(@RequestParam("id") Long id) {
+        communityService.deleteCommunity(id);
+
+
+        return "redirect:/com";
+    }
+
+    // 수정페이지 이동
+    @GetMapping("community_edit")
+    public String communityEdit(@RequestParam("id") Long id, Model model) {
+        List<Community> communities = communityService.findByseq(id);
+        model.addAttribute("communities", communities);
+
+        return "my/communityEdit";
+    }
+
+    // 수정
+    @PostMapping("community_edit")
+    public String updateCommunity(@RequestParam("id") Long id, Community community) {
+        List<Community> communities = communityService.findByseq(id);
+
+        if (communities != null && !communities.isEmpty()) {
+            Community editCommunity = communities.get(0);
+
+            editCommunity.setTitle(community.getTitle());
+            editCommunity.setContent(community.getContent());
+            editCommunity.setCategory(community.getCategory());
+
+            communityService.saveCommunity(editCommunity);
+
+            return "redirect:/com_de?id=" + editCommunity.getSeq();
+        } else {
+            return "redirect:/com";
+        }
     }
 }

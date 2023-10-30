@@ -38,6 +38,6 @@ public class Posting {
     private List<PComment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "posting", orphanRemoval = true)
-    private List<PostingLike> children = new ArrayList<>();
+    private List<PostingLike> postingLikes = new ArrayList<>();
 
 }

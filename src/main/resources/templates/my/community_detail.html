@@ -58,6 +58,9 @@
               안녕 이게 보이면 안된단다
             </div>
 
+            <a th:href="@{/community_edit(id=${community.seq})}" th:if="${session.m_id == community.member.mid}">수정하기</a>
+            <a th:href="@{/community_delete(id=${community.seq})}" th:if="${session.m_id == community.member.mid}">삭제하기</a>
+
           </article><!-- End blog entry -->
 
           <form action="#" th:action="@{/clike(id=${community.seq})}" method="post">

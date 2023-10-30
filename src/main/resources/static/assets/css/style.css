@@ -2883,10 +2883,6 @@ select.category option {
 }
 
 /*공고 상세 페이지 CSS*/
-.contact {
-  background-color: #f7f7f7;
-  padding: 20px;
-}
 
 .job-info-grid {
   display: grid;

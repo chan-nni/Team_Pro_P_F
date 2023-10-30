@@ -142,6 +142,9 @@ public class PostingController {
         List<Series> categories = seriesService.getAllSeries(); // 카테고리 목록을 DB에서 가져옴
         model.addAttribute("categories", categories); // Thymeleaf로 카테고리 목록 전달
 
+        String dbContent = postingService.getContentById(id);
+        model.addAttribute("dbContent", dbContent);
+
         return "my/Edit_upload";
     }
 

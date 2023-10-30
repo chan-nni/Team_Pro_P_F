@@ -40,6 +40,16 @@ public class PostingService {
         return postingRepository.findBym_id(member);
     }
 
+    // 내용 가져오기
+    public String getContentById(Long id) {
+        List<Posting> posting = postingRepository.findByid(id);
+        if (posting != null) {
+            Posting dbposting = posting.get(0);
+            return dbposting.getP_content();
+        }
+        return null;
+    }
+
     public List<Posting> new_posting(){
         return postingRepository.new_posting();
     }

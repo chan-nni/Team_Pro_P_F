@@ -86,24 +86,21 @@
 
         <div class="input-field">
             <form th:action="@{/posting_edit(id=${posting.p_seq})}" method="post" th:each="posting : ${postings}">
-               <div class="row">
+                <div class="row">
                     <div class="col-md-8 input-field">
-                        <input type="text" th:value="*{posting.p_title}" name="p_title" placeholder="제목" maxlength="100">
+                        <input type="text" th:value="${posting != null and posting.p_title != null} ? *{posting.p_title} : ''" name="p_title" placeholder="제목" maxlength="100">
                     </div>
                     <div class="col-md-4 input-field">
-                        <select id="category" name="series.name" th:value="*{posting.series.name}">
+                        <select id="category" name="series.name" th:value="${posting != null and posting.series != null and posting.series.name != null} ? *{posting.series.name} : ''">
                             <option value="">카테고리 선택</option>
-                            <option th:each="category : ${categories}"
-                                    th:value="${category.name}"
-                                    th:text="${category.name}">
-                            </option>
+                            <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
                         </select>
-
                     </div>
-               </div>
-                <input type="hidden" th:value="*{posting.p_content}" name="p_content" id="postContent" />
+                </div>
+                <input type="hidden" th:value="${posting != null and posting.p_content != null} ? *{posting.p_content} : ''" name="p_content" id="postContent" />
                 <div id="editor"></div>
-                <script>
+                <script th:inline="javascript">
+                    var dbContent = [[${dbContent}]]; // 값이 없을 경우 빈 문자열로 초기화
                     var quill = new Quill('#editor', {
                         modules: {
                             toolbar: [
@@ -125,6 +122,10 @@
                         theme: 'snow',
                         maxLength: 1000
                     });
+
+                    if (dbContent !== '') {
+                        quill.root.innerHTML = dbContent; // 가져온 내용을 Quill 에디터에 설정
+                    }
 
                     var form = document.querySelector('form');
                     form.onsubmit = function() {

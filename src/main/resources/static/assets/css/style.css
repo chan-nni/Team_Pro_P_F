@@ -2882,6 +2882,31 @@ select.category option {
   line-height: 24px; /* 위아래 여백을 늘립니다. */ /*이것도 안됨;;;; */
 }
 
+/*공고 상세 페이지 CSS*/
+.contact {
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.job-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.job-info {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.job-description {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
 /*==================================================================================================================*/
 /* 신예희 ---------------------------------------------------------------------------------------------------------------*/
 .search123 {

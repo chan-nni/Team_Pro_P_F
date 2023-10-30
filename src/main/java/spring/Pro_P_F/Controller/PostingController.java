@@ -2,6 +2,7 @@ package spring.Pro_P_F.Controller;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -124,6 +125,13 @@ public class PostingController {
         model.addAttribute("postings", postings);
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
+
+    // 클릭한 시리즈 포스팅 페이지 로드
+    @GetMapping("/seriesProfile")
+    public String seriesProfile(@RequestParam("memberId") String memberId, Model model) {
+        return "/";
+    }
+
 
     // 수정 페이지로 이동
     @GetMapping("posting_edit")

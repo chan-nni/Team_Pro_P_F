@@ -60,19 +60,15 @@
               안녕 이게 보이면 안된단다
             </div>
 
-<!--            <div class="entry-footer">-->
-<!--              <i class="bi bi-folder"></i>-->
-<!--              <ul class="cats">-->
-<!--                <li><a href="#">시리즈</a></li>-->
-<!--              </ul>-->
-
-<!--              <i class="bi bi-tags"></i>-->
-<!--              <ul class="tags">-->
-<!--                <li><a href="#">태그</a></li>-->
-<!--                <li><a href="#">태그</a></li>-->
-<!--                <li><a href="#">태그</a></li>-->
-<!--              </ul>-->
-<!--            </div>-->
+            <div class="entry-footer">
+              <i class="bi bi-folder"></i>
+              <ul class="cats">
+                <li>
+                  <a href="#" th:if="${posting.series != null}" th:text="${posting.series.name}">시리즈</a>
+                  <span th:if="${posting.series == null}">없음</span>
+                </li>
+              </ul>
+            </div>
 
             <form th:action="@{/like(postId=${posting.p_seq})}" method="post">
               <button type="submit">좋아요</button>

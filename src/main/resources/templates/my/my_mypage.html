@@ -90,7 +90,7 @@
                 </div>
 
                 <h2 class="entry-title">
-                  <a href="blog-single.html" th:text="${posting.p_title}">title</a>
+                  <a th:href="@{/post_de(id=${posting.p_seq})}" th:text="${posting.p_title}">title</a>
                 </h2>
 
                 <div class="entry-meta">

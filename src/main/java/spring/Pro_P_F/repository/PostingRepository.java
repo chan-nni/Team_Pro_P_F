@@ -7,6 +7,7 @@ import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -18,6 +19,12 @@ public class PostingRepository {
     public void save(Posting posting) {
         em.persist(posting);
     }
+
+    public List<Posting> findAllOrderedBySeqDesc() {
+        Query query = em.createNativeQuery("SELECT * FROM Posting ORDER BY p_seq DESC", Posting.class);
+        return query.getResultList();
+    }
+
 
     // 삭제
     public void deleteByPSeq(Long id) {

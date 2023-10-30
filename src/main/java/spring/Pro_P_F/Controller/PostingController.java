@@ -21,6 +21,7 @@ import spring.Pro_P_F.service.SeriesService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -78,7 +79,7 @@ public class PostingController {
     // 포스팅 목록 페이지
     @GetMapping("/post")
     public String list(Model model) {
-        List<Posting> postings = postingService.findAll();
+        List<Posting> postings = postingService.findAllOrderedBySeqDesc();
         model.addAttribute("postings", postings);
         return "my/posting";
     }

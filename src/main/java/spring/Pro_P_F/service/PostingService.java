@@ -50,6 +50,10 @@ public class PostingService {
         return null;
     }
 
+    public List<Posting> findAllOrderedBySeqDesc() {
+        return postingRepository.findAllOrderedBySeqDesc();
+    }
+
     public List<Posting> new_posting(){
         return postingRepository.new_posting();
     }

@@ -76,6 +76,7 @@ public class CommunityController {
 //        return "my/community";
 //    }
 
+    // 카테고리 + 목록 로드
     @GetMapping("/com")
     public String getCommunityByCategory(@RequestParam(name = "category", required = false) String category,
                                          @RequestParam(defaultValue = "0") int page, Model model) {
@@ -128,7 +129,7 @@ public class CommunityController {
         List<Community> communities = communityService.searchCommunitiesByKeyword(keyword);
         model.addAttribute("communities", communities);
         model.addAttribute("keyword", keyword);
-        return "my/community";
+        return "my/communitySearch";
     }
 
     // 커뮤니티 좋아요

@@ -26,7 +26,7 @@ public class PCommentController {
         Posting posting = new Posting();
         String mId = (String) session.getAttribute("m_id");
 
-        posting.setP_seq(postId);
+        posting.setSeq(postId);
         comment.setPosting(posting);
         comment.setContent(content);
 

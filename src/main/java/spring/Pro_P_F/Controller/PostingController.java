@@ -1,8 +1,6 @@
 package spring.Pro_P_F.Controller;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,7 +19,6 @@ import spring.Pro_P_F.service.SeriesService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -69,7 +66,7 @@ public class PostingController {
         posting.setMember(member);
         posting.setP_title(form.getTitle());
         posting.setP_content(form.getContent());
-        posting.setP_date(LocalDate.now());
+        posting.setDate(LocalDate.now());
         posting.setSeries(series);
 
         postingService.save(posting);
@@ -168,7 +165,7 @@ public class PostingController {
 
             postingService.save(editPosting);
 
-            return "redirect:/post_de?id=" + editPosting.getP_seq();
+            return "redirect:/post_de?id=" + editPosting.getSeq();
         } else {
             return "redirect:/";
         }
@@ -179,7 +176,7 @@ public class PostingController {
     @GetMapping("posting_delete")
     @Transactional
     public String deletePosting(@RequestParam("id") Long id) {
-        postingService.deletePostingByPSeq(id);
+        postingService.deletePostingBySeq(id);
 
         return "redirect:/post";
     }

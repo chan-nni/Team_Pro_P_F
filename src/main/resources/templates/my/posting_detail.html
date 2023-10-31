@@ -50,7 +50,7 @@
                     <i class="bi bi-person" th:text="${posting.member.mid}"></i>
                   </a>
                 </li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.p_date}"></i></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
 <!--                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>12</li>-->
 <!--                <li class="d-flex align-items-center"><i class="bi bi-bookmark"></i></li>-->
               </ul>
@@ -70,12 +70,12 @@
               </ul>
             </div>
 
-            <form th:action="@{/like(postId=${posting.p_seq})}" method="post">
+            <form th:action="@{/like(postId=${posting.getSeq})}" method="post">
               <button type="submit">좋아요</button>
               <label th:text="${posting.p_like}"></label>
             </form>
-            <a th:href="@{/posting_edit(id=${posting.p_seq})}" th:if="${session.m_id == posting.member.mid}">수정하기</a>
-            <a th:href="@{/posting_delete(id=${posting.p_seq})}" th:if="${session.m_id == posting.member.mid}">삭제하기</a>
+            <a th:href="@{/posting_edit(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}">수정하기</a>
+            <a th:href="@{/posting_delete(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}">삭제하기</a>
 
           </article><!-- End blog entry -->
 
@@ -87,7 +87,7 @@
               <form action="/pcreate" method="post">
                 <div class="row">
                   <div class="col form-group">
-                    <input type="hidden" name="postId" th:value="${posting.p_seq}" />
+                    <input type="hidden" name="postId" th:value="${posting.getSeq}" />
                     <textarea name="content" class="form-control" placeholder="Your Comment*"></textarea>
                   </div>
                 </div>

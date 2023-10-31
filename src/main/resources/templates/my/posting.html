@@ -35,10 +35,10 @@
       <div class="row">
         <div class="col-md-3 mb-4" th:each="posting : ${postings}">
           <div class="card">
-            <a th:href="@{/post_de(id=${posting.p_seq})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
+            <a th:href="@{/post_de(id=${posting.getSeq})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
             <p class="card-text" th:text="${posting.p_title}">제목 1</p>
             <div class="card-details">
-              <span class="card-id" th:text="${posting.p_date}">날짜 1</span>
+              <span class="card-id" th:text="${posting.date}">날짜 1</span>
               <i class="fa fa-heart"><span class="card-likes" th:text="${posting.p_like}"> 좋아요</span></i>
             </div>
           </div>

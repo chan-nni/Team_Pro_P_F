@@ -1,61 +1,23 @@
 package spring.Pro_P_F.repository;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import spring.Pro_P_F.domain.Community;
-import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class PostingRepository {
+public interface PostingRepository extends JpaRepository<Posting, Long> {
 
-    private final EntityManager em;
+    List<Posting> findBySeqOrderBySeqDesc(Long Seq);
 
-    public void save(Posting posting) {
-        em.persist(posting);
-    }
+    void deleteBySeq(Long Seq);
 
-    public List<Posting> findAllOrderedBySeqDesc() {
-        Query query = em.createNativeQuery("SELECT * FROM Posting ORDER BY p_seq DESC", Posting.class);
-        return query.getResultList();
-    }
+    List<Posting> findAllByOrderByDateDesc();
 
+    List<Posting> findBySeq(Long id);
 
-    // 삭제
-    public void deleteByPSeq(Long id) {
-        em.createQuery("DELETE FROM Posting p WHERE p.p_seq = :id")
-                .setParameter("id", id)
-                .executeUpdate();
-    }
+    List<Posting> findByMember_Mid(String mId);
 
-    public List<Posting> findAll() {
-        return em.createQuery("select post from Posting post ORDER BY post.p_date desc", Posting.class)
-                .getResultList();
-    }
-
-    public List<Posting> findByid(Long id) {
-        return em.createQuery("select p from Posting p where p.id = :id", Posting.class)
-                .setParameter("id", id)
-                .getResultList();
-    }
-
-    public List<Posting> findBym_id(String mId) {
-        return em.createQuery("SELECT p FROM Posting p WHERE p.member.mid = :mId", Posting.class)
-                .setParameter("mId", mId)
-                .getResultList();
-    }
-
-    //추천 포스팅
-    public List<Posting> new_posting() {
-        return em.createQuery("SELECT p FROM Posting p ORDER BY p.p_date desc", Posting.class)
-                .setMaxResults(4)
-                .getResultList();
-    }
-
-
+    List<Posting> findTop4ByOrderByDateDesc();
 }

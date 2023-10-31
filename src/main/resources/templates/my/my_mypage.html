@@ -90,13 +90,13 @@
                 </div>
 
                 <h2 class="entry-title">
-                  <a th:href="@{/post_de(id=${posting.p_seq})}" th:text="${posting.p_title}">title</a>
+                  <a th:href="@{/post_de(id=${posting.getSeq})}" th:text="${posting.p_title}">title</a>
                 </h2>
 
                 <div class="entry-meta">
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${session.m_id}"></i></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.p_date}"></i></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
                   </ul>
                 </div>
 

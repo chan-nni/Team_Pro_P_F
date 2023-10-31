@@ -85,7 +85,7 @@
         </style>
 
         <div class="input-field">
-            <form th:action="@{/posting_edit(id=${posting.p_seq})}" method="post" th:each="posting : ${postings}">
+            <form th:action="@{/posting_edit(id=${posting.getSeq})}" method="post" th:each="posting : ${postings}">
                 <div class="row">
                     <div class="col-md-8 input-field">
                         <input type="text" th:value="${posting != null and posting.p_title != null} ? *{posting.p_title} : ''" name="p_title" placeholder="제목" maxlength="100">

@@ -1,6 +1,9 @@
 package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -11,14 +14,12 @@ import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.domain.Community;
 import spring.Pro_P_F.domain.CommunityLike;
 import spring.Pro_P_F.domain.Member;
-import spring.Pro_P_F.domain.Posting;
 import spring.Pro_P_F.service.CommunityLikeService;
 import spring.Pro_P_F.service.CommunityService;
 import spring.Pro_P_F.service.MemberService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -65,13 +66,32 @@ public class CommunityController {
     }
 
     // 커뮤니티 게시물 목록
-    @GetMapping("/com")
-    public String list(Model model) {
-        List<Community> communities = communityService.findAllComm();
-        // 최신 등록 게시물 부터 보임
-        Collections.reverse(communities);
-        model.addAttribute("communities", communities);
+//    @GetMapping("/com")
+//    public String list(Model model) {
+//        List<Community> communities = communityService.findAllComm();
+//        // 최신 등록 게시물 부터 보임
+//        Collections.reverse(communities);
+//        model.addAttribute("communities", communities);
+//
+//        return "my/community";
+//    }
 
+    @GetMapping("/com")
+    public String getCommunityByCategory(@RequestParam(name = "category", required = false) String category,
+                                         @RequestParam(defaultValue = "0") int page, Model model) {
+
+        Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
+
+        Page<Community> communities;
+
+        if (category == null || category.isEmpty()) {
+            communities = communityService.findAllCommunitiesPaged(pageable);
+        } else {
+            communities = communityService.findCommunitiesByCategoryPaged(category, pageable);
+        }
+
+        model.addAttribute("communities", communities);
+        model.addAttribute("currentPage", page);
         return "my/community";
     }
 

@@ -1,4 +1,6 @@
 package spring.Pro_P_F.repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import spring.Pro_P_F.domain.Community;
 
@@ -19,4 +21,7 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
     // 게시물 검색
     List<Community> findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(String title, String content);
 
+    Page<Community> findAll(Pageable pageable);
+
+    Page<Community> findByCategory(String category, Pageable pageable);
 }

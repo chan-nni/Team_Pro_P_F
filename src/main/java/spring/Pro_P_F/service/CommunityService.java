@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.Pro_P_F.domain.Community;
@@ -51,6 +53,14 @@ public class CommunityService {
 
     public List<Community> findByseq(Long id){
         return communityRepository.findByseq(id);
+    }
+
+    public Page<Community> findAllCommunitiesPaged(Pageable pageable) {
+        return communityRepository.findAll(pageable);
+    }
+
+    public Page<Community> findCommunitiesByCategoryPaged(String category, Pageable pageable) {
+        return communityRepository.findByCategory(category, pageable);
     }
 
     // 검색어로 커뮤니티 게시물 검색

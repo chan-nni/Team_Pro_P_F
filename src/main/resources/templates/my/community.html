@@ -139,16 +139,6 @@
 
           <section class="article-list table-common con">
             <div class="table-responsive"> <!-- text-center 클래스 추가 -->
-              <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="search123 category">
-                  <form th:action="@{/community_search}" method="get">
-                    <input type="text" th:value="${keyword}" name="keyword" placeholder="검색어 입력">
-                    <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
-                  </form>
-                </div>
-              </div>
-              <!-- 세션에서 m_id가 없는 경우에만 링크를 숨깁니다 -->
-              <a th:href="@{/com_add}" class="btn-create" th:if="${session.m_id != null and session.cy_id == null} or ${session.m_id == null and session.cy_id != null}">글 작성하기</a>
               <table class="table">
                 <thead>
                 <tr>
@@ -171,9 +161,21 @@
                 </tr>
                 </tbody>
               </table>
-
             </div>
           </section>
+
+          <div th:if="${communities.totalPages > 1}">
+            <div class="pagination">
+              <ul>
+                <li th:each="i : ${#numbers.sequence(0, communities.totalPages - 1)}">
+                  <a th:href="@{/com(page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     </div>

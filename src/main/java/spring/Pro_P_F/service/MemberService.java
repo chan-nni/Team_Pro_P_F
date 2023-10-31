@@ -17,17 +17,17 @@ public class MemberService {
     // 회원가입
     @Transactional
     public String join(Member member) {
-        memberRepository.join(member);
+        memberRepository.save(member);
 
         return member.getMid();
     }
 
     public Member findOne(String memberId) {
-        return memberRepository.findOne(memberId);
+        return memberRepository.findByMid(memberId);
     }
 
     public boolean login(String memberid, String password) {
-        Member member = memberRepository.findOne(memberid);
+        Member member = memberRepository.findByMid(memberid);
         if (member != null && member.getM_pwd().equals(password)) {
             return true;
         }

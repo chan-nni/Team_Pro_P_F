@@ -3,6 +3,8 @@ package spring.Pro_P_F.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.repository.CompanyMemRepository;
@@ -16,6 +18,11 @@ public class JobService {
     private final CompanyMemRepository companyMemRepository; // 기업(Company) 리포지토리 추가
 
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
+
+    // 페이징 처리
+    public Page<Job> findAllJobsPaged(Pageable pageable) {
+        return jobRepository.findAll(pageable);
+    }
 
     // 4개만 출력
     public List<Job> getTop4() {

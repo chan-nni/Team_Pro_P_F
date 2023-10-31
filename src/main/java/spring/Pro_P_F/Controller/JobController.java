@@ -2,6 +2,10 @@ package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -69,8 +73,10 @@ public class JobController {
     }
 
     @GetMapping("/employ")
-    public String yourPage(Model model) {
-        List<Job> jobs = jobService.findAllComm();
+    public String yourPage(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
+
+        Page<Job> jobs = jobService.findAllJobsPaged(pageable);
         model.addAttribute("jobs", jobs);
 
         // 열거형(enum) 값을 가져와서 모델에 추가
@@ -156,7 +162,7 @@ public class JobController {
 
 
         model.addAttribute("jobs", filteredJobs);
-        return "company/employ";
+        return "company/employSearch";
     }
 
 

@@ -55,10 +55,12 @@ public class CommunityService {
         return communityRepository.findByseq(id);
     }
 
+    // 페이징 처리
     public Page<Community> findAllCommunitiesPaged(Pageable pageable) {
         return communityRepository.findAll(pageable);
     }
 
+    // 페이징 처리
     public Page<Community> findCommunitiesByCategoryPaged(String category, Pageable pageable) {
         return communityRepository.findByCategory(category, pageable);
     }

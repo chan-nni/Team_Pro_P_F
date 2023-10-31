@@ -105,21 +105,21 @@ public class CommunityController {
     }
 
     // 게시판 카테고리 선택
-    @GetMapping("/community")
-    public String getCommunityByCategory(@RequestParam(name = "category", required = false) String category, Model model) {
-        // 카테고리가 지정되지 않았을 때 전체 목록을 가져옵니다.
-        List<Community> communities;
-
-        if (category == null || category.isEmpty()) {
-            communities = communityService.getAllCommunities();
-        } else {
-            // 특정 카테고리의 게시물만 가져옵니다.
-            communities = communityService.getCommunitiesByCategory(category);
-        }
-
-        model.addAttribute("communities", communities);
-        return "my/community";
-    }
+//    @GetMapping("/community")
+//    public String getCommunityByCategory(@RequestParam(name = "category", required = false) String category, Model model) {
+//        // 카테고리가 지정되지 않았을 때 전체 목록을 가져옵니다.
+//        List<Community> communities;
+//
+//        if (category == null || category.isEmpty()) {
+//            communities = communityService.getAllCommunities();
+//        } else {
+//            // 특정 카테고리의 게시물만 가져옵니다.
+//            communities = communityService.getCommunitiesByCategory(category);
+//        }
+//
+//        model.addAttribute("communities", communities);
+//        return "my/community";
+//    }
 
     // 커뮤니티 게시물 검색(제목, 내용으로 검색)
     @GetMapping("/community_search")

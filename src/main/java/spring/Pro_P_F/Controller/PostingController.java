@@ -1,6 +1,10 @@
 package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -74,9 +78,18 @@ public class PostingController {
     }
 
     // 포스팅 목록 페이지
+//    @GetMapping("/post")
+//    public String list(Model model) {
+//        List<Posting> postings = postingService.findAllOrderedBySeqDesc();
+//        model.addAttribute("postings", postings);
+//        return "my/posting";
+//    }
     @GetMapping("/post")
-    public String list(Model model) {
-        List<Posting> postings = postingService.findAllOrderedBySeqDesc();
+    public String list(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 3, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+
+        Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
+
         model.addAttribute("postings", postings);
         return "my/posting";
     }

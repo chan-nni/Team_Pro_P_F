@@ -1,6 +1,8 @@
 package spring.Pro_P_F.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.Pro_P_F.domain.Posting;
@@ -54,5 +56,10 @@ public class PostingService {
 
     public List<Posting> new_posting(){
         return postingRepository.findTop4ByOrderByDateDesc();
+    }
+
+    // 페이징 처리
+    public Page<Posting> findAllPostingsPaged(Pageable pageable) {
+        return postingRepository.findAll(pageable);
     }
 }

@@ -47,16 +47,16 @@
       </div>
 
     </div>
+    <div th:if="${postings.totalPages > 1}">
+      <div class="pagination">
+        <ul>
+          <li th:each="i : ${#numbers.sequence(0, postings.totalPages - 1)}">
+            <a th:href="@{/post(page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="blog">
-    <div class="blog-pagination">
-      <ul class="justify-content-center">
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-      </ul>
-    </div>
-    </div>
   </section><!-- End Portfolio Section -->
 
 

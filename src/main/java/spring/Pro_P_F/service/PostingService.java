@@ -45,7 +45,7 @@ public class PostingService {
         List<Posting> posting = postingRepository.findBySeq(id);
         if (posting != null) {
             Posting dbposting = posting.get(0);
-            return dbposting.getP_content();
+            return dbposting.getContent();
         }
         return null;
     }

@@ -25,11 +25,12 @@ public class Posting {
     @JoinColumn(name = "series")
     private Series series;
 
-    private String p_title;
-    private String p_content;
+    @Column(name = "p_title")
+    private String title;
+
+    @Column(name = "p_content")
+    private String content;
     private int plike;
-    private String p_img;
-    private int p_view;
 
     @LastModifiedDate
     @Column(name = "p_date")

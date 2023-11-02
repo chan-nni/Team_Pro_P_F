@@ -68,8 +68,8 @@ public class PostingController {
         Posting posting = new Posting();
 
         posting.setMember(member);
-        posting.setP_title(form.getTitle());
-        posting.setP_content(form.getContent());
+        posting.setTitle(form.getTitle());
+        posting.setContent(form.getContent());
         posting.setDate(LocalDate.now());
         posting.setSeries(series);
 
@@ -183,11 +183,11 @@ public class PostingController {
 
             Posting editPosting = searchPosting.get(0);
 
-            editPosting.setP_title(posting.getP_title());
-            editPosting.setP_content(posting.getP_content());
+            editPosting.setTitle(posting.getTitle());
+            editPosting.setContent(posting.getContent());
             editPosting.setSeries(series);
 
-            System.out.println(posting.getP_title());
+            System.out.println(posting.getTitle());
 
             postingService.save(editPosting);
 

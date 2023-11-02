@@ -64,7 +64,7 @@
             <a th:href="@{/post_de(id=${posting.getSeq})}">
               <img src="assets/img/about.jpg" alt="Image 1">
             </a>
-            <p class="card-text" th:text="${posting.p_title}">내용 1</p>
+            <p class="card-text" th:text="${posting.title}">내용 1</p>
             <div class="card-details">
               <span class="card-id" th:text="${posting.member.mid}">아이디 1</span>
               <span class="card-likes"><i class="fa fa-heart" th:text="${posting.date}"></i></span>

@@ -207,6 +207,12 @@ public class PostingController {
         return "redirect:/post";
     }
 
+    @GetMapping("/posting_search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<Posting> postings = postingService.findByKeyword(keyword);
+        model.addAttribute("postings", postings);
+        return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
+    }
 
 }
 

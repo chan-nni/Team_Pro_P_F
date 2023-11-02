@@ -62,4 +62,8 @@ public class PostingService {
     public Page<Posting> findAllPostingsPaged(Pageable pageable) {
         return postingRepository.findAll(pageable);
     }
+
+    public List<Posting> findByKeyword(String keyword) {
+        return postingRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+    }
 }

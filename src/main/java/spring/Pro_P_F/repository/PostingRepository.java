@@ -20,4 +20,7 @@ public interface PostingRepository extends JpaRepository<Posting, Long> {
     List<Posting> findByMember_Mid(String mId);
 
     List<Posting> findTop4ByOrderByDateDesc();
+
+    List<Posting> findByTitleContainingOrContentContaining(String title, String content);
+
 }

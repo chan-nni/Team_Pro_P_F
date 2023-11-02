@@ -72,7 +72,7 @@
 
             <form th:action="@{/like(postId=${posting.getSeq})}" method="post">
               <button type="submit">좋아요</button>
-              <label th:text="${posting.p_like}"></label>
+              <label th:text="${posting.plike}"></label>
             </form>
             <a th:href="@{/posting_edit(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}">수정하기</a>
             <a th:href="@{/posting_delete(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}">삭제하기</a>

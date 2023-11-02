@@ -84,9 +84,22 @@ public class PostingController {
 //        model.addAttribute("postings", postings);
 //        return "my/posting";
 //    }
+
+    // 최신 포스팅 목록
     @GetMapping("/post")
     public String list(@RequestParam(defaultValue = "0") int page, Model model) {
         Pageable pageable = PageRequest.of(page, 3, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+
+        Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
+
+        model.addAttribute("postings", postings);
+        return "my/posting";
+    }
+
+    // 인기순 포스팅 목록
+    @GetMapping("/postLike")
+    public String Likelist(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 3, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 
@@ -117,7 +130,7 @@ public class PostingController {
             postingLike.setMember(member);
             postingLikeService.saveLike(postingLike);
 
-            posting.setP_like(posting.getP_like() + 1);
+            posting.setPlike(posting.getPlike() + 1);
             postingService.save(posting);
         }
         return "redirect:/post_de?id=" + postId;

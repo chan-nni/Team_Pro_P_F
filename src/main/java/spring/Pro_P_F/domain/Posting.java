@@ -27,7 +27,7 @@ public class Posting {
 
     private String p_title;
     private String p_content;
-    private int p_like;
+    private int plike;
     private String p_img;
     private int p_view;
 

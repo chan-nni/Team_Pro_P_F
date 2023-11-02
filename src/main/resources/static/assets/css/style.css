@@ -2322,6 +2322,7 @@ section {
 /*profile*/
 .profile {
   padding: 5rem 0;
+  text-align: center; /* 내용 가운데 정렬 */
 }
 
 .profile::after {
@@ -2331,23 +2332,14 @@ section {
 }
 
 .profile-image {
-  float: left;
-  width: calc(33.333% - 1rem);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 3rem;
-}
-
-.profile-image img {
-  border-radius: 50%;
+  display: none; /* 이미지 숨김 */
 }
 
 .profile-user-settings,
 .profile-stats,
 .profile-bio {
-  float: left;
-  width: calc(66.666% - 2rem);
+  width: 100%; /* 나머지 내용 전체 너비로 설정 */
+  margin-top: 1rem; /* 위쪽 여백 추가 */
 }
 
 .profile-user-name {
@@ -2355,6 +2347,7 @@ section {
   font-size: 3.2rem;
   font-weight: 300;
   color: black;
+  margin: 0; /* 여백 초기화 */
 }
 
 .profile-edit-btn {
@@ -2363,24 +2356,22 @@ section {
   border: 0.1rem solid #dbdbdb;
   border-radius: 0.3rem;
   padding: 0 2.4rem;
-  margin-left: 2rem;
+  margin: 0 1rem; /* 여백 추가 */
 }
 
 .profile-stats {
   margin-top: 2.3rem;
+  display: flex; /* 아이템을 가운데 정렬하기 위해 flex 사용 */
+  justify-content: center; /* 수평 가운데 정렬 */
 }
 
 .profile-stats li {
   display: inline-block;
   font-size: 1.6rem;
   line-height: 1.5;
-  margin-right: 4rem;
+  margin: 0 1rem; /* 여백 추가 */
   cursor: pointer;
   color: black;
-}
-
-.profile-stats li:last-of-type {
-  margin-right: 0;
 }
 
 .profile-real-name,

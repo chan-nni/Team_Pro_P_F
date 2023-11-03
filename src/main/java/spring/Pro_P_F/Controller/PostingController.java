@@ -1,7 +1,10 @@
 package spring.Pro_P_F.Controller;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -65,9 +68,9 @@ public class PostingController {
         Posting posting = new Posting();
 
         posting.setMember(member);
-        posting.setP_title(form.getTitle());
-        posting.setP_content(form.getContent());
-        posting.setP_date(LocalDate.now());
+        posting.setTitle(form.getTitle());
+        posting.setContent(form.getContent());
+        posting.setDate(LocalDate.now());
         posting.setSeries(series);
 
         postingService.save(posting);
@@ -75,9 +78,31 @@ public class PostingController {
     }
 
     // 포스팅 목록 페이지
+//    @GetMapping("/post")
+//    public String list(Model model) {
+//        List<Posting> postings = postingService.findAllOrderedBySeqDesc();
+//        model.addAttribute("postings", postings);
+//        return "my/posting";
+//    }
+
+    // 최신 포스팅 목록
     @GetMapping("/post")
-    public String list(Model model) {
-        List<Posting> postings = postingService.findAll();
+    public String list(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 3, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+
+        Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
+
+        model.addAttribute("postings", postings);
+        return "my/posting";
+    }
+
+    // 인기순 포스팅 목록
+    @GetMapping("/postLike")
+    public String Likelist(@RequestParam(defaultValue = "0") int page, Model model) {
+        Pageable pageable = PageRequest.of(page, 3, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+
+        Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
+
         model.addAttribute("postings", postings);
         return "my/posting";
     }
@@ -105,7 +130,7 @@ public class PostingController {
             postingLike.setMember(member);
             postingLikeService.saveLike(postingLike);
 
-            posting.setP_like(posting.getP_like() + 1);
+            posting.setPlike(posting.getPlike() + 1);
             postingService.save(posting);
         }
         return "redirect:/post_de?id=" + postId;
@@ -125,6 +150,13 @@ public class PostingController {
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
 
+    // 클릭한 시리즈 포스팅 페이지 로드
+    @GetMapping("/seriesProfile")
+    public String seriesProfile(@RequestParam("memberId") String memberId, Model model) {
+        return "/";
+    }
+
+
     // 수정 페이지로 이동
     @GetMapping("posting_edit")
     public String posting_Edit(@RequestParam("id") Long id, Model model) {
@@ -133,6 +165,9 @@ public class PostingController {
 
         List<Series> categories = seriesService.getAllSeries(); // 카테고리 목록을 DB에서 가져옴
         model.addAttribute("categories", categories); // Thymeleaf로 카테고리 목록 전달
+
+        String dbContent = postingService.getContentById(id);
+        model.addAttribute("dbContent", dbContent);
 
         return "my/Edit_upload";
     }
@@ -148,15 +183,15 @@ public class PostingController {
 
             Posting editPosting = searchPosting.get(0);
 
-            editPosting.setP_title(posting.getP_title());
-            editPosting.setP_content(posting.getP_content());
+            editPosting.setTitle(posting.getTitle());
+            editPosting.setContent(posting.getContent());
             editPosting.setSeries(series);
 
-            System.out.println(posting.getP_title());
+            System.out.println(posting.getTitle());
 
             postingService.save(editPosting);
 
-            return "redirect:/post_de?id=" + editPosting.getP_seq();
+            return "redirect:/post_de?id=" + editPosting.getSeq();
         } else {
             return "redirect:/";
         }
@@ -167,11 +202,17 @@ public class PostingController {
     @GetMapping("posting_delete")
     @Transactional
     public String deletePosting(@RequestParam("id") Long id) {
-        postingService.deletePostingByPSeq(id);
+        postingService.deletePostingBySeq(id);
 
         return "redirect:/post";
     }
 
+    @GetMapping("/posting_search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<Posting> postings = postingService.findByKeyword(keyword);
+        model.addAttribute("postings", postings);
+        return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
+    }
 
 }
 

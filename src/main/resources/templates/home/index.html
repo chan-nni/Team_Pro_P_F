@@ -61,11 +61,13 @@
         </div>
         <div class="card-container col-md-3" th:each="posting : ${new_posting}">
           <div class="card">
-            <img src="assets/img/about.jpg" alt="Image 1">
-            <p class="card-text" th:text="${posting.p_title}">내용 1</p>
+            <a th:href="@{/post_de(id=${posting.getSeq})}">
+              <img src="assets/img/about.jpg" alt="Image 1">
+            </a>
+            <p class="card-text" th:text="${posting.title}">내용 1</p>
             <div class="card-details">
               <span class="card-id" th:text="${posting.member.mid}">아이디 1</span>
-              <span class="card-likes"><i class="fa fa-heart" th:text="${posting.p_date}"></i></span>
+              <span class="card-likes"><i class="fa fa-heart" th:text="${posting.date}"></i></span>
             </div>
         </div>
 

@@ -14,7 +14,8 @@ import java.util.List;
 public class Posting {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long p_seq;
+    @Column(name = "p_seq")
+    private Long seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mid")
@@ -24,14 +25,16 @@ public class Posting {
     @JoinColumn(name = "series")
     private Series series;
 
-    private String p_title;
-    private String p_content;
-    private int p_like;
-    private String p_img;
-    private int p_view;
+    @Column(name = "p_title")
+    private String title;
+
+    @Column(name = "p_content")
+    private String content;
+    private int plike;
 
     @LastModifiedDate
-    private LocalDate p_date;
+    @Column(name = "p_date")
+    private LocalDate date;
     // 스크랩 컬럼, 테이블 추가 필요
 
     @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, orphanRemoval = true)

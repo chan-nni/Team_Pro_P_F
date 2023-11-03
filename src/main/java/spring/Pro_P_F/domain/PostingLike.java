@@ -14,7 +14,7 @@ public class PostingLike {
     private Long seq;
 
     @ManyToOne
-    @JoinColumn(name = "p_seq")
+    @JoinColumn(name = "seq")
     private Posting posting;
 
     @ManyToOne

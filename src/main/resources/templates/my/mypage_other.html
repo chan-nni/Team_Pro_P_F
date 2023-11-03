@@ -80,24 +80,24 @@
 
               <article class="entry" th:each="posting : ${postings}">
 
-                <a th:href="'/post_de?id=' + ${posting.p_seq}">
+                <a th:href="'/post_de?id=' + ${posting.getSeq}">
                   <div class="entry-img">
                     <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
                   </div>
                 </a>
 
                 <h2 class="entry-title">
-                  <a href="#" th:text="${posting.p_title}">title</a>
+                  <a href="#" th:text="${posting.title}">title</a>
                 </h2>
 
                 <div class="entry-meta">
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${memberId}"></i></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.p_date}"></i></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
                   </ul>
                 </div>
 
-                <div class="entry-content" th:utext="${posting.p_content}">
+                <div class="entry-content" th:utext="${posting.content}">
                   <p>
                     content
                   </p>

@@ -174,15 +174,6 @@
             </div>
           </section>
 
-          <div th:if="${communities.totalPages > 1}">
-            <div class="pagination">
-              <ul>
-                <li th:each="i : ${#numbers.sequence(0, communities.totalPages - 1)}">
-                  <a th:href="@{/com(page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
-                </li>
-              </ul>
-            </div>
-          </div>
 
 
 

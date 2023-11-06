@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .contact {
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -27,64 +34,61 @@
   <!-- ======= Contact Section ======= -->
   <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" th:each="job : ${jobs}">
     <div class="container">
-
       <div class="row">
-
         <div class="col-lg-6 mx-auto">
-          <div class="entry-img" >
-            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-          </div>
           <form action="#" method="post" role="form" class="php-email-form">
             <div class="col-lg-12">
               <div class="col-md-12 mx-auto text-center">
                 <h3 th:text="${job.title}">제목</h3>
                 <hr class="section-divider">
               </div>
-              <div class="job-info">
-                <p>모집 직무</p>
-                <h5 th:text="${job.work.getDisplayName()}">프론트 엔드 / 백엔드</h5>
-                <hr class="section-divider">
+              <div class="job-info-grid">
+                <div class="job-info">
+                  <p>모집 직무</p>
+                  <h5 th:text="${job.work.getDisplayName()}">프론트 엔드 / 백엔드</h5>
+                  <hr class="section-divider">
+                </div>
+                <div class="job-info">
+                  <p>채용 형태</p>
+                  <h5 th:text="${job.employ.getDisplayName()}">정규직</h5>
+                  <hr class="section-divider">
+                </div>
+                <div class="job-info">
+                  <p>채용 인원</p>
+                  <h5><span th:text="${job.person}"></span>명</h5>
+                  <hr class="section-divider">
+                </div>
+
+                <div class="job-info">
+                  <p>근무 지역</p>
+                  <h5 th:text="${job.area.getDisplayName()}">서울</h5>
+                  <hr class="section-divider">
+                </div>
+                <div class="job-info">
+                  <p>모집 기간</p>
+                  <h5 th:text="${job.startdate} + ' ~ ' + ${job.end_date}"></h5>
+                  <hr class="section-divider">
+                </div>
+                <div class="job-info">
+                  <p>홈페이지</p>
+                  <h5><a href="#">회사 홈페이지 링크</a></h5>
+                  <hr class="section-divider">
+                </div>
               </div>
-              <div class="job-info">
-                <p>채용 형태</p>
-                <h5 th:text="${job.employ.getDisplayName()}">정규직</h5>
-                <hr class="section-divider">
-              </div>
-              <div class="job-info">
-                <p>채용 인원</p>
-                <h5 th:text="${job.person}">2</h5><h5>명</h5>
-                <hr class="section-divider">
-              </div>
-              <div class="job-info">
-                <p>근무 지역</p>
-                <h5 th:text="${job.area.getDisplayName()}">서울</h5>
-                <hr class="section-divider">
-              </div>
-              <div class="job-info">
-                <p>모집 기간</p>
-                <h5 th:text="${job.startdate}">2023-09-05</h5> ~ <h5 th:text="${job.end_date}">2023-09-05</h5>
-                <hr class="section-divider">
-              </div>
-              <div class="job-info">
-                <p>홈페이지</p>
-                <h5><a href="#">회사 홈페이지 링크</a></h5>
-                <hr class="section-divider">
-              </div>
-              <div class="job-info">
+              <div class="py-4"></div>
+              <div class="job-description">
                 <p>공고 내용</p>
                 <h5 th:text="${job.content}">프론트 엔드, 백엔드 각 1명씩 모집하고 있습니다. <br> 풀스택 가능하신 분 우대합니다.</h5>
-                <hr class="section-divider">
               </div>
-            </div>
-            <div class="col-md-6 mx-auto text-center"> <!-- text-center 클래스 추가 -->
-              <button type="submit" class="btn btn-primary">스크랩</button>
-              <button type="submit" class="btn btn-success">지원하기</button>
+              <hr class="section-divider">
+              <div class="col-md-6 mx-auto text-center">
+                <button type="submit" class="btn btn-primary">스크랩</button>
+                <button type="submit" class="btn btn-success">지원하기</button>
+              </div>
             </div>
           </form>
         </div>
-
       </div>
-
     </div>
   </section><!-- End Contact Section -->
 

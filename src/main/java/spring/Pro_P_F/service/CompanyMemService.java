@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.Pro_P_F.domain.Community;
 import spring.Pro_P_F.domain.Company;
+import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.repository.CompanyMemRepository;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public class CompanyMemService {
 
     public List<Company> findAllComm() {
         return companyMemRepository.findAll();
+    }
+
+    public void save(Company company) {
+        companyMemRepository.save(company);
     }
 
 }

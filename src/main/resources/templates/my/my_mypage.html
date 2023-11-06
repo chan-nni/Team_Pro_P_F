@@ -193,21 +193,6 @@
       }
     </style>
 
-<!--    <div class="tab_content" id="design_content" th:each="member : ${member}">-->
-<!--      <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>-->
-<!--      <div th:unless="${member.intro != null}">-->
-<!--        <button class="btn intro-btn" id="introButton" onclick="showIntroForm()">소개 작성하기</button>-->
-<!--        <div id="introForm" style="display: none;">-->
-<!--          <h3>소개 작성</h3><br>-->
-<!--          <form th:action="@{/M_intro}" method="post">-->
-<!--            <label for="description">소개:</label>-->
-<!--            <textarea id="description" th:field="*{member.intro}" name="description" rows="8" cols="105" required></textarea><br><br>-->
-<!--            <button type="submit">저장</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="tab_content" id="design_content" th:each="member : ${member}">
       <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>
       <div th:unless="${member.intro != null}">

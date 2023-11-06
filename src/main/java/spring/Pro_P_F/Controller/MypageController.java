@@ -42,7 +42,7 @@ public class MypageController {
         return "my/my_mypage";
     }
 
-    // 소개 작성 후
+    // 개인 소개 작성 후
     @PostMapping("/M_intro")
     public String Intro_My(Member mem, HttpSession session) {
         String mId = (String) session.getAttribute("m_id");

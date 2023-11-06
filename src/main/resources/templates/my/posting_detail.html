@@ -9,185 +9,208 @@
 
 <main id="main">
 
-  <!-- ======= Blog_detail Section ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
+    <!-- ======= Blog_detail Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
 
-      <div class="d-flex justify-content-between align-items-center">
-        <h2>Posting</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Posting</h2>
 
-        <ol>
-          <li><a href="../home/index.html">Home</a></li>
-          <li><a href="community.html">Posting</a></li>
-        </ol>
-      </div>
-
-    </div>
-  </section><!-- End Blog Section -->
-
-  <!-- ======= Blog Single Section ======= -->
-  <section id="blog" class="blog">
-    <div class="container" data-aos="fade-up">
-
-      <div class="row">
-
-        <div th:each="posting : ${postings}">
-
-          <article class="entry entry-single">
-
-            <div class="entry-img">
-              <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                <ol>
+                    <li><a href="../home/index.html">Home</a></li>
+                    <li><a href="community.html">Posting</a></li>
+                </ol>
             </div>
 
-            <h2 class="entry-title" th:text="${posting.title}">
-              커뮤니티 제목
-            </h2>
+        </div>
+    </section><!-- End Blog Section -->
 
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center">
-                  <a th:href="@{/profile(memberId=${posting.member.mid})}">
-                    <i class="bi bi-person" th:text="${posting.member.mid}"></i>
-                  </a>
-                </li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
-<!--                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>12</li>-->
-<!--                <li class="d-flex align-items-center"><i class="bi bi-bookmark"></i></li>-->
-              </ul>
+    <!-- ======= Blog Single Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+
+                <div th:each="posting : ${postings}">
+
+                    <article class="entry entry-single">
+
+                        <div class="entry-img">
+                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                        </div>
+
+                        <h2 class="entry-title" th:text="${posting.title}">
+                            커뮤니티 제목
+                        </h2>
+
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center">
+                                    <a th:href="@{/profile(memberId=${posting.member.mid})}">
+                                        <i class="bi bi-person" th:text="${posting.member.mid}"></i>
+                                    </a>
+                                </li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"
+                                                                         th:text="${posting.date}"></i></li>
+                                <!--                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>12</li>-->
+                                <!--                <li class="d-flex align-items-center"><i class="bi bi-bookmark"></i></li>-->
+                            </ul>
+                        </div>
+
+                        <div class="entry-content" th:utext="${posting.content}">
+                            안녕 이게 보이면 안된단다
+                        </div>
+
+                        <div class="entry-footer">
+                            <i class="bi bi-folder"></i>
+                            <ul class="cats">
+                                <li>
+                                    <a th:href="@{/seriesProfile(memberId=${posting.series.s_seq})}"
+                                       th:if="${posting.series != null}" th:text="${posting.series.name}">시리즈</a>
+                                    <span th:if="${posting.series == null}">없음</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <style>
+                            /*포스팅 내용 CSS*/
+                            .entry-content {
+                                color: black;
+                                font-size: 18px;
+                            }
+                            /* "좋아요" 버튼 스타일링 (배경 없음) */
+                            .like-button {
+                                background-color: white;
+                                border: none;
+                                padding: 5px;
+                                cursor: pointer;
+                            }
+
+                            /* "좋아요" 아이콘 스타일링 */
+                            .like-button i {
+                                color: #68A4C4; /* 아이콘 색상 설정 */
+                                font-size: 18px; /* 아이콘 크기 설정 (선택적) */
+                                margin-right: 5px; /* 아이콘과 텍스트 사이 여백 설정 */
+                            }
+
+                            /* "좋아요" 버튼에 호버 효과 스타일링 (선택적) */
+                            .like-button:hover {
+                                color: #8dbad2;
+                            }
+
+                            /* "좋아요" 버튼 밑에 텍스트 스타일링 (선택적) */
+                            .like-button span {
+                                color: #68A4C4; /* 텍스트 색상 설정 */
+                                font-weight: bold; /* 텍스트를 굵게 표시 */
+                            }
+
+                            .change-button {
+                                display: inline-block;
+                                padding: 8.1px 14.7px;
+                                border: 2px solid #68A4C4;
+                                text-decoration: none;
+                                background: #68A4C4;
+                                color: #fff !important; /* 텍스트 색상을 강제로 하얀색으로 설정 */
+                                border-radius: 0;
+                                cursor: pointer;
+                                transition: background-color 0.4s;
+                                margin-right: 10px; /* 수정하기 버튼의 오른쪽 간격 설정 */
+                            }
+
+                            .change-button:hover {
+                                background: #8dbad2;
+                                /*color: white;*/
+                                border-color: #8dbad2; /* hover 시 테두리 색상 변경 */
+                            }
+
+                        </style>
+
+                        <form th:action="@{/like(postId=${posting.getSeq})}" method="post">
+                            <hr class="section-divider">
+                            <button type="submit" class="like-button">
+                                <i class="fas fa-thumbs-up"></i> <!--좋아요-->
+                                <span th:text="${posting.plike}"></span>
+                            </button>
+                            <hr class="section-divider">
+                        </form>
+
+                        <div class="button-container">
+                            <a th:href="@{/posting_edit(id=${posting.getSeq})}"
+                               th:if="${session.m_id == posting.member.mid}" class="change-button">수정하기</a>
+                            <a th:href="@{/posting_delete(id=${posting.getSeq})}"
+                               th:if="${session.m_id == posting.member.mid}" class="signup-button">삭제하기</a>
+                        </div>
+
+                    </article><!-- End blog entry -->
+
+                    <div class="blog-comments">
+
+                        <div class="reply-form">
+                            <h4>댓글</h4><br>
+                            <form action="/pcreate" method="post">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <div class="comment-input-container">
+                                            <input type="hidden" name="postId" th:value="${posting.getSeq}"/>
+                                            <textarea name="content" class="form-control"
+                                                      placeholder="댓글 작성하기"></textarea>
+                                            <button type="submit" class="btn btn-primary">등록</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <ul>
+                                <hr class="section-divider">
+                                <li th:each="comment : ${posting.comments}">
+                                    <p class="comment-id" th:text="${comment.member.mid}"></p>
+                                    <p class="comment-text" th:text="${comment.content}">댓글 내용</p>
+                                    <hr class="section-divider">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <style>
+                            /* 부모 컨테이너 스타일링 */
+                            .comment-input-container {
+                                display: flex; /* 요소들을 가로로 정렬 */
+                                align-items: center; /* 세로 중앙 정렬 */
+                            }
+
+                            /* textarea 스타일링 (선택적으로 조정 가능) */
+                            .comment-input-container textarea {
+                                flex: 1; /* 남은 공간을 차지하도록 확장 */
+                            }
+
+                            /* 등록 버튼 스타일링 (선택적으로 조정 가능) */
+                            .comment-input-container button {
+                                margin-left: 10px; /* 등록 버튼과 textarea 사이 여백 설정 */
+                            }
+
+                            /* 댓글 작성자의 이름 스타일링 */
+                            .comment-id {
+                                font-weight: bold; /*이름 텍스트를 굵게 표시*/
+                                color: #000000;
+                            }
+                            /*p:first-child {*/
+                            /*    font-weight: bold; !* 이름 텍스트를 굵게 표시 *!*/
+                            /*    color: #000000;*/
+                            /*}*/
+
+                            /* 댓글 내용 스타일링 */
+                            .comment-text {
+                                color: #000000; /* 댓글 내용 텍스트 색상을 검은색으로 설정 */
+                            }
+                        </style>
+
+                    </div><!-- End blog comments -->
+
+                </div><!-- End blog entries list -->
+
             </div>
 
-            <div class="entry-content" th:utext="${posting.content}">
-              안녕 이게 보이면 안된단다
-            </div>
-
-            <div class="entry-footer">
-              <i class="bi bi-folder"></i>
-              <ul class="cats">
-                <li>
-                  <a th:href="@{/seriesProfile(memberId=${posting.series.s_seq})}" th:if="${posting.series != null}" th:text="${posting.series.name}">시리즈</a>
-                  <span th:if="${posting.series == null}">없음</span>
-                </li>
-              </ul>
-            </div>
-
-            <style>
-              /* "좋아요" 버튼 스타일링 (배경 없음) */
-              .like-button {
-                background-color: white;
-                border: none;
-                padding: 5px;
-                cursor: pointer;
-              }
-
-              /* "좋아요" 아이콘 스타일링 */
-              .like-button i {
-                color: #68A4C4; /* 아이콘 색상 설정 */
-                font-size: 18px; /* 아이콘 크기 설정 (선택적) */
-                margin-right: 5px; /* 아이콘과 텍스트 사이 여백 설정 */
-              }
-
-              /* "좋아요" 버튼에 호버 효과 스타일링 (선택적) */
-              .like-button:hover {
-                color: #8dbad2;
-              }
-
-              /* "좋아요" 버튼 밑에 텍스트 스타일링 (선택적) */
-              .like-button span {
-                color: #68A4C4; /* 텍스트 색상 설정 */
-                font-weight: bold; /* 텍스트를 굵게 표시 */
-              }
-
-              .change-button {
-                background: #68A4C4;
-                border: 0;
-                padding: 8.1px 14.7px;
-                color: #fff !important; /* 텍스트 색상을 강제로 하얀색으로 설정 */
-                transition: 0.4s;
-              }
-
-              .change-button:hover {
-                background: #8dbad2;
-              }
-
-            </style>
-
-            <form th:action="@{/like(postId=${posting.getSeq})}" method="post">
-              <hr class="section-divider">
-              <button type="submit" class="like-button">
-                <i class="fas fa-thumbs-up"></i> <!--좋아요-->
-                <span th:text="${posting.plike}"></span>
-              </button>
-            </form>
-
-            <a th:href="@{/posting_edit(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}" class="change-button">수정하기</a>
-            <a th:href="@{/posting_delete(id=${posting.getSeq})}" th:if="${session.m_id == posting.member.mid}" class="signup-button">삭제하기</a>
-
-          </article><!-- End blog entry -->
-
-
-          <div class="blog-comments">
-
-            <div class="reply-form">
-              <h4>댓글</h4><br>
-              <form action="/pcreate" method="post">
-                <div class="row">
-                  <div class="col form-group">
-                    <div class="comment-input-container">
-                      <input type="hidden" name="postId" th:value="${posting.getSeq}" />
-                      <textarea name="content" class="form-control" placeholder="댓글 작성하기"></textarea>
-                      <button type="submit" class="btn btn-primary">등록</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-              <ul>
-                <hr class="section-divider">
-                <li th:each="comment : ${posting.comments}">
-                  <p th:text="${comment.member.mid}"></p>
-                  <p th:text="${comment.content}"></p>
-                  <hr class="section-divider">
-                </li>
-              </ul>
-            </div>
-
-            <style>
-              /* 부모 컨테이너 스타일링 */
-              .comment-input-container {
-                display: flex; /* 요소들을 가로로 정렬 */
-                align-items: center; /* 세로 중앙 정렬 */
-              }
-
-              /* textarea 스타일링 (선택적으로 조정 가능) */
-              .comment-input-container textarea {
-                flex: 1; /* 남은 공간을 차지하도록 확장 */
-              }
-
-              /* 등록 버튼 스타일링 (선택적으로 조정 가능) */
-              .comment-input-container button {
-                margin-left: 10px; /* 등록 버튼과 textarea 사이 여백 설정 */
-              }
-
-              /* 댓글 작성자의 이름 스타일링 */
-              p:first-child {
-                font-weight: bold; /* 이름 텍스트를 굵게 표시 */
-                color: #000000;
-              }
-
-              /* 댓글 내용 스타일링 */
-              p:last-child {
-                color: #000000 !important; /* 댓글 내용 텍스트 색상을 검은색으로 설정 */
-              }
-            </style>
-
-          </div><!-- End blog comments -->
-
-        </div><!-- End blog entries list -->
-
-      </div>
-
-    </div>
-  </section><!-- End Blog Single Section -->
+        </div>
+    </section><!-- End Blog Single Section -->
 
 </main><!-- End #main -->
 

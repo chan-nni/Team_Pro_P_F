@@ -193,24 +193,48 @@
       }
     </style>
 
-    <div class="tab_content" id="design_content">
-      <button class="btn intro-btn" id="introButton" onclick="showIntroForm()">소개 작성하기</button>
-      <div id="introForm" style="display: none;">
-        <h3>인적사항 작성</h3><br>
-        <form id="introDataForm">
-          <label for="name">이름:</label>
-          <input type="text" id="name" name="name" required><br><br>
+<!--    <div class="tab_content" id="design_content" th:each="member : ${member}">-->
+<!--      <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>-->
+<!--      <div th:unless="${member.intro != null}">-->
+<!--        <button class="btn intro-btn" id="introButton" onclick="showIntroForm()">소개 작성하기</button>-->
+<!--        <div id="introForm" style="display: none;">-->
+<!--          <h3>소개 작성</h3><br>-->
+<!--          <form th:action="@{/M_intro}" method="post">-->
+<!--            <label for="description">소개:</label>-->
+<!--            <textarea id="description" th:field="*{member.intro}" name="description" rows="8" cols="105" required></textarea><br><br>-->
+<!--            <button type="submit">저장</button>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-          <label for="age">나이:</label>
-          <input type="text" id="age" name="age" required><br><br>
-
-          <label for="description">자기소개:</label>
-          <textarea id="description" name="description" rows="8" cols="105" required></textarea><br><br>
-
-          <button type="submit">저장</button>
-        </form>
+    <div class="tab_content" id="design_content" th:each="member : ${member}">
+      <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>
+      <div th:unless="${member.intro != null}">
+        <button class="btn intro-btn" id="introButton" onclick="showIntroForm()">소개 작성하기</button>
+        <div id="introForm" style="display: none;">
+          <h3>소개 작성</h3><br>
+          <form th:action="@{/M_intro}" method="post">
+            <label for="description">소개:</label>
+            <textarea id="description" th:field="*{member.intro}" name="description" rows="8" cols="105" required></textarea><br><br>
+            <button type="submit">저장</button>
+          </form>
+        </div>
+      </div>
+      <div th:if="${member.intro != null}">
+        <button class="btn intro-btn" id="editIntroButton" onclick="showEditIntroForm()">소개 수정하기</button>
+        <div id="editIntroForm" style="display: none;">
+          <h3>소개 수정</h3><br>
+          <form th:action="@{/M_intro}" method="post">
+            <label for="editedDescription">수정된 소개:</label>
+            <textarea id="editedDescription" th:field="*{member.intro}" name="editedDescription" rows="8" cols="105" required></textarea><br><br>
+            <button type="submit">저장</button>
+          </form>
+        </div>
       </div>
     </div>
+
+
 
     <script>
       function showIntroForm() {
@@ -220,6 +244,11 @@
         } else {
           introForm.style.display = "none";
         }
+      }
+
+      function showEditIntroForm() {
+        var editIntroForm = document.getElementById('editIntroForm');
+        editIntroForm.style.display = 'block';
       }
     </script>
 

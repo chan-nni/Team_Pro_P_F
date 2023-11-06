@@ -35,7 +35,6 @@ public class Posting {
     @LastModifiedDate
     @Column(name = "p_date")
     private LocalDate date;
-    // 스크랩 컬럼, 테이블 추가 필요
 
     @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PComment> comments = new ArrayList<>();

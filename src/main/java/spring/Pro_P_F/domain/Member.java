@@ -22,5 +22,8 @@ public class Member {
 
     private String m_email;
 
+    @Column(name = "m_intro")
+    private String intro;
+
     private String m_git;
 }

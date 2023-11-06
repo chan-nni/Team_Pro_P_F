@@ -34,4 +34,7 @@ public class MemberService {
         return false;
     }
 
+    public void save(Member member) {
+        memberRepository.save(member);
+    }
 }

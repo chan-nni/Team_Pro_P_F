@@ -214,6 +214,15 @@ public class PostingController {
         return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
     }
 
+    // 시리즈별 포스팅 목록
+    @GetMapping("/series_posting")
+    public String Series_Posting(@RequestParam("id") Long seriesId, Model model) {
+        Series series = seriesService.findBySeq(seriesId);
+       List<Posting> seriesPostings = postingService.findBySeries(series);
+
+       model.addAttribute("seriesPostings", seriesPostings);
+        return "my/series";
+    }
 }
 
 

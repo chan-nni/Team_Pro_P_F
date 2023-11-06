@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.Pro_P_F.domain.Posting;
+import spring.Pro_P_F.domain.Series;
 import spring.Pro_P_F.repository.PostingRepository;
 
 import java.util.List;
@@ -38,6 +39,11 @@ public class PostingService {
 
     public List<Posting> findBym_id(String member){
         return postingRepository.findByMember_Mid(member);
+    }
+
+    // 시리즈 별 포스팅 목록
+    public List<Posting> findBySeries(Series series){
+        return postingRepository.findBySeries(series);
     }
 
     // 내용 가져오기

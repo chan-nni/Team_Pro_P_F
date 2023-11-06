@@ -123,7 +123,7 @@
       <section class="services">
         <div class="Scard-container">
           <div class="card" th:each="series1 : ${series}">
-            <img src="assets/img/about.jpg" alt="Image 1">
+            <a th:href="@{/series_posting(id=${series1.getSeq()})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
             <p class="card-text" th:text="${series1.name}">제목 1</p>
             <div class="card-details">
               <span class="card-id" th:text="${series1.member.mid}">아이디 1</span>

@@ -17,6 +17,7 @@ public class SeriesController {
     @Autowired
     private SeriesService seriesService;
 
+    // 시리즈 목록
     @GetMapping("/series")
     public String seriesList(Model model) {
         List<Series> seriesList = seriesService.getAllSeries();
@@ -24,18 +25,19 @@ public class SeriesController {
         return "my/series_add";
     }
 
+    // 시리즈 추가
     @PostMapping("/addSeries")
     public String addSeries(@RequestParam("seriesName") String seriesName) {
         seriesService.addSeries(seriesName);
         return "redirect:/series";
     }
 
+    // 시리즈 수정
     @PostMapping("/updateSeries")
     public String updateSeries(@RequestParam("seriesId") Long seriesId, @RequestParam("seriesName") String seriesName) {
         seriesService.updateSeries(seriesId, seriesName);
         return "redirect:/series";
     }
 
-    // 다른 메서드 (시리즈 삭제, 시리즈 조회 등)도 추가 가능
 }
 

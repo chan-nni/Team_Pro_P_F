@@ -13,7 +13,8 @@ import java.time.LocalDate;
 public class Series {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long s_seq;
+    @Column(name = "s_seq")
+    private Long seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mid")

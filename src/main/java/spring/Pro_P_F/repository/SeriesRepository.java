@@ -12,6 +12,8 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
     // 시리즈 이름으로 시리즈 엔티티를 찾는 메서드
     Series findByName(String s_name);
 
+    Series findBySeq(Long id);
+
     List<Series> findByMember_Mid(String mId);
 
 }

@@ -145,7 +145,7 @@
             <ul th:each="series : ${seriesList}">
                 <li>
                     <span th:text="${series.name}"></span>
-                    <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.s_seq} + '\');'">수정</a>
+                    <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.seq} + '\');'">수정</a>
                 </li>
             </ul>
         </div>

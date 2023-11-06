@@ -22,7 +22,6 @@ public class SeriesService {
     @Autowired
     private MemberService memberService;
 
-
     @Autowired
     private HttpSession session;
 
@@ -59,6 +58,10 @@ public class SeriesService {
     // 시리즈 이름으로 시리즈 엔티티를 찾는 메서드
     public Series findByName(String s_name) {
         return seriesRepository.findByName(s_name);
+    }
+
+    public Series findBySeq(Long id) {
+        return seriesRepository.findBySeq(id);
     }
 
     public List<Series> findByMId(String mId) {

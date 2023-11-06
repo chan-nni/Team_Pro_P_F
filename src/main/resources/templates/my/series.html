@@ -66,9 +66,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each = "seriesPosting : ${seriesPostings}">
-                  <td>1</td>
-                  <td th:text="${seriesPosting.title}">제목</td>
+                <tr th:each = "seriesPosting, status : ${seriesPostings}">
+                  <td th:text="${status.index + 1}">1</td>
+                  <td>
+                    <a th:href="@{/post_de(id=${seriesPosting.seq})}" th:text="${seriesPosting.title}"></a>
+                  </td>
                   <td th:text="${seriesPosting.date}">날짜</td>
                   <td th:text="${seriesPosting.plike}">좋아요</td>
                 </tr>

@@ -107,7 +107,7 @@ public class PostingController {
         return "my/posting";
     }
 
-    // 클릭한 포스팅 상세페이지 로드
+    // 한 포스팅 상세페이지 로드
     @GetMapping("/post_de")
     public String showPostDetails(@RequestParam("id") Long postId, Model model) {
         List<Posting> postings = postingService.findByid(postId);
@@ -149,13 +149,6 @@ public class PostingController {
         model.addAttribute("postings", postings);
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
-
-    // 클릭한 시리즈 포스팅 페이지 로드
-    @GetMapping("/seriesProfile")
-    public String seriesProfile(@RequestParam("memberId") String memberId, Model model) {
-        return "/";
-    }
-
 
     // 수정 페이지로 이동
     @GetMapping("posting_edit")
@@ -223,6 +216,7 @@ public class PostingController {
        model.addAttribute("seriesPostings", seriesPostings);
         return "my/series";
     }
+
 }
 
 

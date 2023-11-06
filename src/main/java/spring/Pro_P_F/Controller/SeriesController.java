@@ -38,6 +38,5 @@ public class SeriesController {
         seriesService.updateSeries(seriesId, seriesName);
         return "redirect:/series";
     }
-
 }
 

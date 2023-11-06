@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
 import spring.Pro_P_F.domain.Series;
 import spring.Pro_P_F.repository.PostingRepository;
@@ -72,4 +73,10 @@ public class PostingService {
     public List<Posting> findByKeyword(String keyword) {
         return postingRepository.findByTitleContainingOrContentContaining(keyword, keyword);
     }
+
+    // 마이페이지 포스팅 페이징 처리
+    public Page<Posting> findPostingsByMIdPaged(Member member, Pageable pageable) {
+        return postingRepository.findByMember(member, pageable);
+    }
+
 }

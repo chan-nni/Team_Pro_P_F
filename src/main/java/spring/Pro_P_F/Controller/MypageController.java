@@ -1,6 +1,8 @@
 package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,19 +30,25 @@ public class MypageController {
     private MemberService memberService;
 
     @GetMapping("/pofo")
-    public String port(Model model, HttpSession session) {
+    public String port(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+        int pageSize = 3; // 페이지당 아이템 수
+
         String mId = (String) session.getAttribute("m_id");
-        List<Posting> postings = postingService.findBym_id(mId);
-        model.addAttribute("postings", postings);
+        Member member = memberService.findOne(mId);
+
+        // 특정 페이지의 포스팅 리스트 가져오기
+        Page<Posting> postingPage = postingService.findPostingsByMIdPaged(member, PageRequest.of(page, pageSize));
+
+        model.addAttribute("postings", postingPage);
 
         List<Series> series = seriesService.findByMId(mId);
         model.addAttribute("series", series);
 
-        Member member = memberService.findOne(mId);
         model.addAttribute("member", member);
 
         return "my/my_mypage";
     }
+
 
     // 개인 소개 작성 후
     @PostMapping("/M_intro")

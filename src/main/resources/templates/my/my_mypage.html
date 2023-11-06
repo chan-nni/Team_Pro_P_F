@@ -46,7 +46,6 @@
 
         <ul>
 <!--          <li><i class="fab fa-github"></i> &lt;!&ndash; 깃허브 아이콘 &ndash;&gt;</li>-->
-<!--          <li><i class="far fa-envelope"></i> &lt;!&ndash; 메일 아이콘 &ndash;&gt;</li>-->
           <li><a th:href="@{/upload}" class="btn profile-edit-btn">글작성</a></li>
           <li><a th:href="@{/series}" class="btn profile-edit-btn">시리즈 추가</a></li>
         </ul>
@@ -76,7 +75,7 @@
           </form>
         </div>
       </div>
-      <!-- End sidebar search formn-->
+      <!-- End sidebar search form-->
       <!-- ======= Blog Section ======= -->
       <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
@@ -110,12 +109,18 @@
                     <a href="blog-single.html">Read More</a>
                   </div>
                 </div>
-
               </article><!-- End blog entry -->
             </div>
           </div>
         </div>
       </section>
+      <div th:if="${postings.totalPages > 1}">
+        <ul class="pagination">
+          <li th:each="i : ${#numbers.sequence(0, postings.totalPages - 1)}">
+            <a th:href="@{'/pofo?page=' + ${i}}" th:text="${i}">1</a>
+          </li>
+        </ul>
+      </div>
 
     </div>
 

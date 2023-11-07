@@ -25,12 +25,6 @@ public class CompanyController {
     @Autowired
     private CompanyMemService companyMemService;
 
-    // 공고 상세페이지
-    @GetMapping("/em_de")
-    public String Employ_detail(Model model) {
-        return "company/employ_detail";
-    }
-
     // 기업 마이페이지
     @GetMapping("/c_pofo")
     public String company(Model model, HttpSession session) {

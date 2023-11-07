@@ -38,16 +38,20 @@
           <th>채용형태</th>
           <th>기업명</th>
           <th>근무지역</th>
+          <th>시작일</th>
           <th>마감일</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>IOS 개발자 구함둥</td>
-          <td>경력 </td>
-          <td>카카오</td>
-          <td>서울</td>
-          <td>~ 4/30</td>
+        <tr th:each="scrap : ${scraps}">
+          <td>
+            <a th:href="@{/job_de(id=${scrap.job.seq})}" th:text="${scrap.job.title}"></a>
+          </td>
+          <td th:text="${scrap.job.employ.getDisplayName()}">경력 </td>
+          <td th:text="${scrap.job.company.company_name}">카카오</td>
+          <td th:text="${scrap.job.area.getDisplayName()}">서울</td>
+          <td th:text="${scrap.job.startdate}">~ 4/30</td>
+          <td th:text="${scrap.job.end_date}">~ 4/30</td>
         </tr>
         </tbody>
       </table>

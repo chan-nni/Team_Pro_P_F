@@ -176,7 +176,7 @@
         border-radius: 5px;
       }
 
-      #introDataForm button {
+      .intro-save {
         background-color: #68A4C4;
         color: white;
         padding: 10px 20px; /*버튼 크기*/
@@ -187,7 +187,7 @@
         margin: 0 auto;
       }
 
-      #introDataForm button:hover {
+      .intro-save:hover {
         background-color: #8dbad2;
       }
 
@@ -207,7 +207,7 @@
           <form th:action="@{/M_intro}" method="post">
             <label for="description">소개:</label>
             <textarea id="description" th:field="*{member.intro}" name="description" rows="8" cols="105" required></textarea><br><br>
-            <button type="submit">저장</button>
+            <button type="submit" class="intro-save">저장</button>
           </form>
         </div>
       </div>
@@ -218,7 +218,7 @@
           <form th:action="@{/M_intro}" method="post">
             <label for="editedDescription">수정된 소개:</label>
             <textarea id="editedDescription" th:field="*{member.intro}" name="editedDescription" rows="8" cols="105" required></textarea><br><br>
-            <button type="submit">저장</button>
+            <button type="submit" class="intro-save">저장</button>
           </form>
         </div>
       </div>

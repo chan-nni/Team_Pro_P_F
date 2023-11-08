@@ -31,11 +31,19 @@
   <section class="portfolio">
     <div class="container">
 
+      <style>
+        .card-title {
+          font-size: 28px;
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 20px;
+          color: #1e4356;
+        }
+      </style>
       <div class="row">
         <div class="col-md-3 mb-4" th:each="posting : ${postings}">
           <div class="card">
-            <a th:href="@{/post_de(id=${posting.getSeq})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
-            <p class="card-text" th:text="${posting.title}">제목 1</p>
+            <a th:href="@{/post_de(id=${posting.getSeq})}"><p class="card-title" th:text="${posting.title}">제목 1</p></a>
             <div class="card-details">
               <span class="card-id" th:text="${posting.date}">날짜 1</span>
               <i class="fa fa-heart"><span class="card-likes" th:text="${posting.plike}"> 좋아요</span></i>

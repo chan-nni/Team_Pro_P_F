@@ -2645,11 +2645,10 @@ a {
 
 /*포스팅 페이지 css*/
 .card-container {
-  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 카드를 표시 */
-  grid-gap: 20px; /* 카드 사이의 간격을 조정 */
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 8px;
+  background-color: #f1f1f1; /* 회색 배경 적용 */
+  padding: 10px; /* 컨테이너 안쪽 여백 추가 (원하는 크기로 조절) */
+  min-height: 150px; /* 최소 높이 설정 (원하는 크기로 조절) */
+  border-radius: 10px; /* 10px의 둥근 모서리 적용 (원하는 크기로 조절) */
 }
 
 .card {

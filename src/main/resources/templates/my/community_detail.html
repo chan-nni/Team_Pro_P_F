@@ -121,10 +121,10 @@
                         </form>
 
                         <div class="button-container">
-                            <a th:href="@{/posting_edit(id=${posting.getSeq})}"
-                               th:if="${session.m_id == posting.member.mid}" class="change-button">수정하기</a>
-                            <a th:href="@{/posting_delete(id=${posting.getSeq})}"
-                               th:if="${session.m_id == posting.member.mid}" class="signup-button">삭제하기</a>
+                            <a th:href="@{/community_edit(id=${community.getSeq})}"
+                               th:if="${session.m_id == community.member.mid}" class="change-button">수정하기</a>
+                            <a th:href="@{/community_delete(id=${community.getSeq})}"
+                               th:if="${session.m_id == community.member.mid}" class="signup-button">삭제하기</a>
                         </div>
 
                     </article><!-- End blog entry -->

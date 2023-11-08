@@ -2921,6 +2921,23 @@ select.category option {
 .pagination .active a {
   background-color: #8dbad2;
 }
+
+/*기본 버튼*/
+.simple-button {
+  background-color: #68A4C4;
+  color: white;
+  padding: 8.1px 14.7px; /* 버튼 크기 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* 인라인 블록 요소로 변경 */
+  margin: 0 10px; /* 좌우 여백 추가 (원하는 간격으로 조절) */
+}
+
+.simple-button:hover {
+  background-color: #8dbad2;
+  color: white;
+}
 /*==================================================================================================================*/
 /* 신예희 ---------------------------------------------------------------------------------------------------------------*/
 .search123 {

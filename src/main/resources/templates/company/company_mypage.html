@@ -78,18 +78,20 @@
       }
 
       /* 나머지 스타일은 이전과 동일 */
-      #introForm {
+      #introForm, #editedDataForm {
         background-color: #f2f2f2;
         padding: 20px;
         border-radius: 10px;
       }
 
-      #introForm label {
+      #introForm label, #editIntroForm label {
         font-weight: bold;
       }
 
       #introDataForm input,
-      #introDataForm textarea {
+      #editedDataForm input,
+      #introDataForm textarea,
+      #editedDataForm textarea{
         width: 100%;
         padding: 10px;
         margin: 5px 0;
@@ -97,7 +99,7 @@
         border-radius: 5px;
       }
 
-      #introDataForm button {
+      .intro-save {
         background-color: #68A4C4;
         color: white;
         padding: 10px 20px; /*버튼 크기*/
@@ -108,11 +110,12 @@
         margin: 0 auto;
       }
 
-      #introDataForm button:hover {
+      .intro-save:hover {
         background-color: #8dbad2;
       }
 
-      textarea#description {
+      textarea#description,
+      textarea#editedDescription{
         border: 1px solid #ccc; /* 좌우상단 선 스타일 */
         /*padding: 10px; !* 내용과 선 사이 여백 *!*/
         border-radius: 10px; /* 선을 둥글게 만드는 스타일 */
@@ -125,21 +128,21 @@
         <button class="btn intro-btn" id="introButton" onclick="showIntroForm()">소개 작성하기</button>
         <div id="introForm" style="display: none;">
           <h3>소개 작성</h3><br>
-          <form th:action="@{/C_intro}" method="post">
+          <form th:action="@{/C_intro}" id="introDataForm" method="post">
             <label for="description">소개:</label>
             <textarea id="description" th:field="*{companies.intro}" name="description" rows="8" cols="105" required></textarea><br><br>
-            <button type="submit">저장</button>
+            <button type="submit" class="intro-save">저장</button>
           </form>
         </div>
       </div>
       <div th:if="${companies.intro != null}">
         <button class="btn intro-btn" id="editIntroButton" onclick="showEditIntroForm()">소개 수정하기</button>
         <div id="editIntroForm" style="display: none;">
-          <h3>소개 수정</h3><br>
-          <form th:action="@{/C_intro}" method="post">
+          <form th:action="@{/C_intro}" id="editedDataForm" method="post">
+            <h3>소개 수정</h3><br>
             <label for="editedDescription">수정된 소개:</label>
             <textarea id="editedDescription" th:field="*{companies.intro}" name="editedDescription" rows="8" cols="105" required></textarea><br><br>
-            <button type="submit">저장</button>
+            <button type="submit" class="intro-save">저장</button>
           </form>
         </div>
       </div>
@@ -198,17 +201,6 @@
             </tr>
             </tbody>
           </table>
-          <section class="blog">
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
-          </section>
-
-
         </div>
       </section>
 

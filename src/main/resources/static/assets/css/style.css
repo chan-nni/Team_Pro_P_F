@@ -2894,6 +2894,33 @@ select.category option {
   border: 1px solid #ddd;
 }
 
+/*페이징 CSS*/
+.pagination {
+  display: flex;
+  justify-content: center; /* 페이지네이션을 가운데 정렬 */
+  margin-bottom: 50px; /* 아래 여백을 추가 (원하는 여백 크기로 조절) */
+}
+
+.pagination li {
+  display: inline;
+  margin: 2px;
+}
+
+.pagination a {
+  padding: 5px 10px;
+  background-color: #68A4C4;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: #8dbad2;
+}
+
+.pagination .active a {
+  background-color: #8dbad2;
+}
 /*==================================================================================================================*/
 /* 신예희 ---------------------------------------------------------------------------------------------------------------*/
 .search123 {

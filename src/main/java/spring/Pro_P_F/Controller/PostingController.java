@@ -145,8 +145,15 @@ public class PostingController {
         model.addAttribute("memberId", memberId);
         System.out.println("이걸 지났다네~~" + memberId);
 
+        Member member = memberService.findOne(memberId);
+        model.addAttribute("member", member);
+
         List<Posting> postings = postingService.findBym_id(memberId);
         model.addAttribute("postings", postings);
+
+        List<Series> series = seriesService.findByMId(memberId);
+        model.addAttribute("series", series);
+
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
 

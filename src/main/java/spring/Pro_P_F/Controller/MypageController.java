@@ -38,7 +38,6 @@ public class MypageController {
 
         // 특정 페이지의 포스팅 리스트 가져오기
         Page<Posting> postingPage = postingService.findPostingsByMIdPaged(member, PageRequest.of(page, pageSize));
-
         model.addAttribute("postings", postingPage);
 
         List<Series> series = seriesService.findByMId(mId);

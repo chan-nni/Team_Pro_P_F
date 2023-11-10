@@ -51,10 +51,16 @@
         <div class="col-md-3 mb-4" th:each="posting : ${postings}">
           <div class="card">
             <div class="card-container">
-              <a th:href="@{/post_de(id=${posting.getSeq})}"><p class="card-title" id="postTitle" th:text="${posting.title}">제목 1</p></a>
+              <a th:href="@{/post_de(id=${posting.getSeq})}">
+                <p class="card-title" id="postTitle" th:text="${posting.title}">제목 1</p>
+              </a>
+            </div>
+            <div class="card-middle">
+              <i class="bi bi-clock card-size" th:text="${posting.date}"></i>
+              <hr class="section-divider">
             </div>
             <div class="card-details">
-              <span class="card-id" th:text="${posting.date}">날짜 1</span>
+              <i class="bi bi-person"><span class="card-id" th:text="${posting.member.mid}">아이디 1</span></i>
               <i class="fa fa-heart"><span class="card-likes" th:text="${posting.plike}"> 좋아요</span></i>
             </div>
           </div>

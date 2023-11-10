@@ -2689,10 +2689,16 @@ a {
   font-size: 16px;
 }
 
+.card-middle {
+  text-align: left; /* 텍스트를 왼쪽으로 정렬합니다. */
+  font-size: 10px;
+  margin-top: 15px; /* 위 여백을 추가합니다. */
+}
+
 .card-details {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   font-size: 14px;
 }
 
@@ -2703,6 +2709,11 @@ a {
 .card-likes {
   color: #777;
 }
+
+.card-middle .card-size {
+  font-size: 11px !important;
+}
+
 /*마이페이지 시리즈 css*/
 .Scard-container {
   display: grid;

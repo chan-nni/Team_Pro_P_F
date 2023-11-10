@@ -2851,6 +2851,7 @@ a {
 .bi.bi-person,
 .bi.bi-clock {
   color: black;
+  font-size: 14px;
 }
 
 /* 모집 직무, 채용 형태, 근무 지역을 감싸는 박스 스타일 */

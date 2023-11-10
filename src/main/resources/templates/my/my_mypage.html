@@ -147,11 +147,27 @@
     <div class="tab_content" id="programming_content">
       <section class="services">
         <div class="Scard-container">
+          <script>
+            window.addEventListener('load', function() {
+              const titleElement = document.getElementById('postTitle');
+              const maxHeight = 6 * parseFloat(getComputedStyle(titleElement).lineHeight); // 6줄까지의 높이 계산 (line-height * 6)
+
+              if (titleElement.clientHeight > maxHeight) {
+                // 텍스트가 높이를 넘어가면 처리
+                let text = titleElement.textContent;
+                while (titleElement.clientHeight > maxHeight) {
+                  text = text.slice(0, -1); // 한 글자씩 줄여가며 높이를 확인
+                  titleElement.textContent = text + '...';
+                }
+              }
+            });
+          </script>
           <div class="card" th:each="series1 : ${series}">
-            <a th:href="@{/series_posting(id=${series1.getSeq()})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
-            <p class="card-text" th:text="${series1.name}">제목 1</p>
+            <div class="card-container">
+              <a th:href="@{/series_posting(id=${series1.getSeq()})}"><p class="card-title" id="postTitle" th:text="${series1.name}">제목 1</p></a>
+            </div>
             <div class="card-details">
-              <span class="card-id" th:text="${series1.member.mid}">아이디 1</span>
+              <i class="bi bi-person"><span class="card-id" th:text="${series1.member.mid}"></span></i>
               <span class="card-likes"><i class="fa fa-heart"></i> 10</span>
             </div>
           </div>

@@ -82,34 +82,54 @@
 
           <div class="row">
 
-            <div class="col-lg-12 entries">
-
-              <article class="entry" th:each="posting : ${postings}">
-
-                <div class="entry-img">
-                  <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+            <div class="col-md-auto-12 entries">
+              <section class="article-list table-common con">
+                <div class="table-responsive">
+                  <table class="table text-center">
+                    <colgroup>
+                      <col style="width: 10%;"> <!-- 번호 -->
+                      <col style="width: 30%;"> <!-- 제목 -->
+                      <col style="width: 20%;"> <!-- 아이디 -->
+                      <col style="width: 15%;"> <!-- 등록일 -->
+                      <col style="width: 15%;"> <!-- 좋아요 -->
+                    </colgroup>
+                    <thead>
+                    <tr>
+                      <th>번호</th>
+                      <th>제목</th>
+                      <th>아이디</th>
+                      <th>등록일</th>
+                      <th>좋아요</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "posting, status : ${postings}">
+                      <td th:text="${status.index + 1}">1</td>
+                      <td>
+                        <a th:href="@{/post_de(id=${posting.getSeq})}" th:text="${posting.title}"></a>
+                      </td>
+                      <td th:text="${posting.member.mid}">아이디</td>
+                      <td th:text="${posting.date}">등록일</td>
+                      <td th:text="${posting.plike}">좋아요</td>
+                    </tr>
+                    </tbody>
+                    <style>
+                      .table {
+                        table-layout: fixed;
+                        width: 100%; /* 원래의 테이블 너비로 설정 */
+                      }
+                      /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+                      .table tbody td:nth-child(2) a {
+                        display: block;
+                        width: 100%; /* 너비를 30%로 제한 */
+                        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                        overflow: hidden; /* 넘칠 때 가림 */
+                        text-overflow: ellipsis; /* 생략 부호로 표시 */
+                      }
+                    </style>
+                  </table>
                 </div>
-
-                <h2 class="entry-title">
-                  <a th:href="@{/post_de(id=${posting.getSeq})}" th:text="${posting.title}">title</a>
-                </h2>
-
-                <div class="entry-meta">
-                  <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${session.m_id}"></i></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
-                  </ul>
-                </div>
-
-                <div class="entry-content" th:utext="${posting.content}">
-                  <p>
-                    content
-                  </p>
-                  <div class="read-more">
-                    <a href="blog-single.html">Read More</a>
-                  </div>
-                </div>
-              </article><!-- End blog entry -->
+              </section>
             </div>
           </div>
         </div>

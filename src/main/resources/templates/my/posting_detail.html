@@ -65,7 +65,7 @@
                             <i class="bi bi-folder"></i>
                             <ul class="cats">
                                 <li>
-                                    <a th:href="@{/seriesProfile(memberId=${posting.series.s_seq})}"
+                                    <a th:href="@{/seriesProfile(memberId=${posting.series.seq})}"
                                        th:if="${posting.series != null}" th:text="${posting.series.name}">시리즈</a>
                                     <span th:if="${posting.series == null}">없음</span>
                                 </li>

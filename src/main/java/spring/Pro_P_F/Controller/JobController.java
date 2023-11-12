@@ -103,7 +103,7 @@ public class JobController {
 
         System.out.println("검색어: " + keyword);
         System.out.println("지역: " + area);
-        System.out.println("형탸: " + employ);
+        System.out.println("형태: " + employ);
         System.out.println("일: " + work);
 
         // 열거형(enum) 값을 가져와서 모델에 추가

@@ -115,26 +115,36 @@ public class PostingController {
         return "my/posting_detail";
     }
 
-    // posting 좋아요
+    // posting 좋아요 & 좋아요 취소
     @PostMapping("/like")
-    public String likePost(@RequestParam Long postId, HttpSession session) {
-        List<Posting> postings = postingService.findByid(postId);
-        Posting posting = postings.get(0);
-
+    public String toggleLike(@RequestParam Long postId, HttpSession session) {
         String mId = (String) session.getAttribute("m_id");
+
+        // 해당 멤버와 포스트에 대한 정보 가져오기
         Member member = memberService.findOne(mId);
+        Posting posting = postingService.findById(postId);
 
-        if (posting != null && member != null) {
-            PostingLike postingLike = new PostingLike();
-            postingLike.setPosting(posting);
-            postingLike.setMember(member);
-            postingLikeService.saveLike(postingLike);
+        if (member != null && posting != null) {
+            // 이미 좋아요를 눌렀는지 확인
+            boolean hasLiked = postingLikeService.hasLiked(member, posting);
 
-            posting.setPlike(posting.getPlike() + 1);
+            if (hasLiked) {
+                // 이미 좋아요를 누른 경우 -> 좋아요 취소
+                postingLikeService.unlikePost(member, posting);
+                posting.setPlike(posting.getPlike() - 1);
+            } else {
+                // 좋아요를 누르지 않은 경우 -> 좋아요 추가
+                PostingLike postingLike = new PostingLike();
+                postingLike.setPosting(posting);
+                postingLike.setMember(member);
+                postingLikeService.saveLike(postingLike);
+                posting.setPlike(posting.getPlike() + 1);
+            }
+
             postingService.save(posting);
         }
-        return "redirect:/post_de?id=" + postId;
 
+        return "redirect:/post_de?id=" + postId;
     }
 
     // 클릭한 포스팅 아이디 마이페이지 로드

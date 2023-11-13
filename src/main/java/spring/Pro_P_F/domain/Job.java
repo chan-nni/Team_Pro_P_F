@@ -26,7 +26,7 @@ public class Job {
     private LocalDate startdate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate end_date;
+    private LocalDate enddate;
 
     private int person;
     private String content;

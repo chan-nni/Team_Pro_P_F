@@ -191,7 +191,7 @@
               <td th:text="${job.company.company_name}">카카오</td>
               <td th:text="${job.area.getDisplayName()}">서울</td>
               <td th:text="${job.startdate}"></td>
-              <td th:text="${job.end_date}">~ 4/30</td>
+              <td th:text="${job.enddate}">~ 4/30</td>
               <th>
                   <a th:href="@{/job_edit(id=${job.seq})}">수정</a>
               </th>

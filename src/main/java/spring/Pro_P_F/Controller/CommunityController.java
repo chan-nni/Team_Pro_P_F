@@ -136,18 +136,28 @@ public class CommunityController {
     @PostMapping("/clike")
     public String likeComm(@RequestParam Long id, HttpSession session) {
         String mId = (String) session.getAttribute("m_id");
+
         Member member = memberService.findOne(mId);
+        Community community = communityService.findById(id);
 
-        List<Community> communities = communityService.findByseq(id);
-        Community community = communities.get(0);
+        if(member != null && community != null){
+            // 좋아요 눌렀는지 확인
+            boolean hasliked = communityLikeService.hasLiked(member, community);
 
-        if (community != null) {
-            CommunityLike communityLike = new CommunityLike();
-            communityLike.setCommunity(community);
-            communityLike.setMember(member);
-            communityLikeService.saveLike(communityLike);
+            if(hasliked){
+                // 좋아요를 누른 경우
+                communityLikeService.unlikeCommunity(member, community);
+                community.setC_like(community.getC_like() - 1);
+            } else {
+                // 좋아요를 누르지 않은 경우
+                CommunityLike communityLike = new CommunityLike();
+                communityLike.setCommunity(community);
+                communityLike.setMember(member);
+                communityLikeService.saveLike(communityLike);
 
-            community.setC_like(community.getC_like() + 1);
+                community.setC_like(community.getC_like() + 1);
+            }
+
             communityService.saveCommunity(community);
         }
         return "redirect:/com_de?id=" + id;

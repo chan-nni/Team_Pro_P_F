@@ -38,6 +38,10 @@ public class PostingService {
         return postingRepository.findBySeq(id);
     }
 
+    public Posting findById(Long id) {
+        return postingRepository.findById(id).orElse(null);
+    }
+
     public List<Posting> findBym_id(String member){
         return postingRepository.findByMember_Mid(member);
     }

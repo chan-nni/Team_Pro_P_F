@@ -53,7 +53,7 @@ public class JobController {
 
             job.setTitle(job1.getTitle());
             job.setStartdate(job1.getStartdate());
-            job.setEnd_date(job1.getEnd_date());
+            job.setEnddate(job1.getEnddate());
             job.setPerson(job1.getPerson());
             job.setArea(job1.getArea());
             job.setContent(job1.getContent());
@@ -74,6 +74,8 @@ public class JobController {
 
     @GetMapping("/employ")
     public String yourPage(@RequestParam(defaultValue = "0") int page, Model model) {
+        jobService.updateJobStatus();
+
         Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
 
         Page<Job> jobs = jobService.findAllJobsPaged(pageable);
@@ -205,7 +207,7 @@ public class JobController {
 
             existingJob.setTitle(job.getTitle());
             existingJob.setStartdate(job.getStartdate());
-            existingJob.setEnd_date(job.getEnd_date());
+            existingJob.setEnddate(job.getEnddate());
             existingJob.setPerson(job.getPerson());
             existingJob.setContent(job.getContent());
             existingJob.setWork(job.getWork());

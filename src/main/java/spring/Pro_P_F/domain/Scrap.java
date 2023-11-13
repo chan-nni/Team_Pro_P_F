@@ -12,11 +12,11 @@ public class Scrap {
     @Column(name = "scrapSeq")
     private Long seq;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "j_seq")
     private Job job;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mid")
     private Member member;
 }

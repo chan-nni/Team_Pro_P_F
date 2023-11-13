@@ -23,7 +23,7 @@
 
           <div class="user-dropdown">
             <div class="user-button">
-              <a th:href="@{/scrap}"><i class="bi bi-bookmarks-fill"></i></a>
+              <a th:href="@{/scrap}" th:if="${session.m_id != null}"><i class="bi bi-bookmarks-fill"></i></a>
               <i class="bi bi-person-circle" id="dropdown-toggle"></i>
             </div>
             <div class="user-dropdown-content">

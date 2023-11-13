@@ -55,6 +55,10 @@ public class CommunityService {
         return communityRepository.findByseq(id);
     }
 
+    public Community findById(Long id) {
+        return communityRepository.findById(id).orElse(null);
+    }
+
     // 페이징 처리
     public Page<Community> findAllCommunitiesPaged(Pageable pageable) {
         return communityRepository.findAll(pageable);

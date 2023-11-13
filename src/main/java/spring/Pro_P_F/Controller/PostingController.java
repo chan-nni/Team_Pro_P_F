@@ -88,7 +88,7 @@ public class PostingController {
     // 최신 포스팅 목록
     @GetMapping("/post")
     public String list(@RequestParam(defaultValue = "0") int page, Model model) {
-        Pageable pageable = PageRequest.of(page, 3, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+        Pageable pageable = PageRequest.of(page, 4, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 

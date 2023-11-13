@@ -31,10 +31,12 @@ public class Job {
     private int person;
     private String content;
 
+    @Enumerated(EnumType.STRING)
+    private JobStatus status = JobStatus.OPEN;
+
     // 모집직무
     @Enumerated(EnumType.STRING)
     private WorkType work;
-
 
     // 채용형태
     @Enumerated(EnumType.STRING)

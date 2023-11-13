@@ -74,6 +74,8 @@ public class JobController {
 
     @GetMapping("/employ")
     public String yourPage(@RequestParam(defaultValue = "0") int page, Model model) {
+        jobService.updateJobStatus();
+
         Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
 
         Page<Job> jobs = jobService.findAllJobsPaged(pageable);

@@ -3,11 +3,18 @@ package spring.Pro_P_F.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import spring.Pro_P_F.domain.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 
     List<Job> findAll();
+
+    List<Job> findByEnddateAfterAndStartdateBeforeAndStatusNot(LocalDate enddate, LocalDate startdate, JobStatus status);
+
+    List<Job> findByEnddateBeforeAndStatusNot(LocalDate enddate, JobStatus status);
+
+    List<Job> findByStartdateAfterAndStatusNot(LocalDate startdate, JobStatus status);
 
     void deleteBySeq(Long id);
 

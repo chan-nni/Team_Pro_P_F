@@ -10,6 +10,7 @@ import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.repository.CompanyMemRepository;
 import spring.Pro_P_F.repository.JobRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,6 +19,24 @@ public class JobService {
     private final CompanyMemRepository companyMemRepository; // 기업(Company) 리포지토리 추가
 
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
+
+    public void updateJobStatus() {
+        LocalDate currentDate = LocalDate.now();
+
+        List<Job> openJobs = jobRepository.findByEnddateAfterAndStartdateBeforeAndStatusNot(currentDate, currentDate, JobStatus.CLOSE);
+        openJobs.forEach(job -> job.setStatus(JobStatus.OPEN));
+
+        List<Job> closeJobs = jobRepository.findByEnddateBeforeAndStatusNot(currentDate, JobStatus.CLOSE);
+        closeJobs.forEach(job -> job.setStatus(JobStatus.CLOSE));
+
+        List<Job> beforeJobs = jobRepository.findByStartdateAfterAndStatusNot(currentDate, JobStatus.BEFORE);
+        beforeJobs.forEach(job -> job.setStatus(JobStatus.BEFORE));
+
+        jobRepository.saveAll(openJobs);
+        jobRepository.saveAll(closeJobs);
+        jobRepository.saveAll(beforeJobs);
+    }
+
 
     // 페이징 처리
     public Page<Job> findAllJobsPaged(Pageable pageable) {

@@ -10,6 +10,9 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 
     List<Job> findAll();
 
+    // 팔로우한 기업의 공고 보기
+    List<Job> findByCompanyIn(List<Company> companies);
+
     List<Job> findByEnddateAfterAndStartdateBeforeAndStatusNot(LocalDate enddate, LocalDate startdate, JobStatus status);
 
     List<Job> findByEnddateBeforeAndStatusNot(LocalDate enddate, JobStatus status);

@@ -12,6 +12,7 @@ import spring.Pro_P_F.repository.JobRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
@@ -19,6 +20,19 @@ public class JobService {
     private final CompanyMemRepository companyMemRepository; // 기업(Company) 리포지토리 추가
 
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
+
+    @Autowired
+    private FollowService followService;
+
+    // 팔로우 한 기업 공고 리스트 보기
+    public List<Job> getJobForFollowCompanies(Member member){
+        List<Company> followCompanies = followService.getFollowedCompanies(member)
+                .stream()
+                .map(Follow::getCompany)
+                .collect(Collectors.toList());
+
+        return jobRepository.findByCompanyIn(followCompanies);
+    }
 
     public void updateJobStatus() {
         LocalDate currentDate = LocalDate.now();

@@ -91,13 +91,14 @@ public class MemberController {
     @GetMapping("/main")
     public String mainHome(HttpSession session, Model model) {
         String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
         model.addAttribute("m_id", mId);
         System.out.println("이걸 지났다네~~" + mId);
 
         List<Posting> new_posting = postingService.new_posting();
         model.addAttribute("new_posting", new_posting);
 
-        List<Job> jobListings = jobService.getTop4();
+        List<Job> jobListings = jobService.getJobForFollowCompanies(member);
         model.addAttribute("jobs", jobListings);
 
         return "home/index";

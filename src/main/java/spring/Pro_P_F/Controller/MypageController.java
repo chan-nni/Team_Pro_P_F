@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import spring.Pro_P_F.domain.Follow;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
 import spring.Pro_P_F.domain.Series;
+import spring.Pro_P_F.service.FollowService;
 import spring.Pro_P_F.service.MemberService;
 import spring.Pro_P_F.service.PostingService;
 import spring.Pro_P_F.service.SeriesService;
@@ -29,6 +31,9 @@ public class MypageController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private FollowService followService;
+
     @GetMapping("/pofo")
     public String port(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
         int pageSize = 3; // 페이지당 아이템 수
@@ -40,10 +45,15 @@ public class MypageController {
         Page<Posting> postingPage = postingService.findPostingsByMIdPaged(member, PageRequest.of(page, pageSize));
         model.addAttribute("postings", postingPage);
 
+        // 시리즈 리스트
         List<Series> series = seriesService.findByMId(mId);
         model.addAttribute("series", series);
 
         model.addAttribute("member", member);
+
+        // 팔로우 리스트 갯수 가져옴
+        List<Follow> followList = followService.getFollowedCompanies(member);
+        model.addAttribute("followCount", followList.size());
 
         return "my/my_mypage";
     }
@@ -64,6 +74,19 @@ public class MypageController {
         return "redirect:/pofo";
     }
 
+
+    // 팔로우 리스트
+    @GetMapping("/followList")
+    public String getFollowedCompanies(Model model, HttpSession session) {
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
+
+        List<Follow> followedCompanies = followService.getFollowedCompanies(member);
+
+        model.addAttribute("followCompanies", followedCompanies);
+
+        return "my/followedCompanies";
+    }
 
 
 

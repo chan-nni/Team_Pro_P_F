@@ -103,11 +103,6 @@ public class MemberController {
         return "home/index";
     }
 
-    @GetMapping("/comch")
-    public String comch(Model model) {
-        return "company/company_channel";
-    }
-
     @GetMapping("/home_main")
     public String h_main(Model model) {
         return "home/index";

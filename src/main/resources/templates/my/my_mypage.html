@@ -39,6 +39,7 @@
       <div class="profile-user-settings">
 
         <h1 class="profile-user-name" th:text="${session.m_id}">username</h1>
+        <h1>팔로워 : </h1><a th:href="@{/followList}"><h1 class="profile-user-name" th:text="${followCount}"></h1></a>
 
       </div>
 

@@ -1,0 +1,20 @@
+<!-- followedCompanies.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Followed Companies</title>
+</head>
+<body>
+<h1>Companies You Are Following</h1>
+
+<ul>
+  <li th:each="followedCompany : ${followCompanies}">
+    <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}">
+      <span th:text="${followedCompany.company.company_name}"></span>
+    </a>
+  </li>
+</ul>
+</body>
+</html>

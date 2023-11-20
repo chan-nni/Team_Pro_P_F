@@ -36,8 +36,10 @@
                     <article class="entry entry-single">
 
                         <style>
-                            .entry-title {
-                                word-break: break-all;
+                            .entry-title, .entry-content {
+                                word-wrap: break-word; /* 긴 단어가 컨테이너 너비를 초과할 경우 단어를 끊어서 다음 줄로 넘기도록 함 */
+                                overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
+                                word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
                             }
                         </style>
                         <h2 class="entry-title" th:text="${posting.title}">

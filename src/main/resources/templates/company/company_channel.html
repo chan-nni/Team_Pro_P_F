@@ -24,6 +24,49 @@
 
         </div>
     </section><!-- End Blog Section -->
+
+    <!-- 검색바 -->
+    <style>
+        /* 검색바 컨테이너 스타일 */
+        .search {
+            position: relative; /* 버튼의 절대 위치를 위한 상대적 위치 지정 */
+            display: flex; /* Flexbox를 사용하여 요소들을 가로로 정렬 */
+            justify-content: center; /* 가로 방향 중앙 정렬 */
+            align-items: center; /* 세로 방향 중앙 정렬 */
+            width: fit-content; /* 검색바 너비를 내용에 맞춤 */
+            margin: auto; /* 상하좌우 자동 마진으로 중앙 정렬 */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 검색 입력 필드 스타일 */
+        .search input[type="text"] {
+            padding: 10px;
+            padding-right: 30px; /* 돋보기 아이콘을 위한 충분한 오른쪽 패딩 추가 */
+            border: 1px solid #ccc; /* 경계선 스타일 */
+            border-radius: 8px; /* 입력 필드의 모서리를 둥글게 */
+            width: 100%; /* 입력 필드의 너비를 전체로 설정 */
+        }
+
+        /* 돋보기 아이콘 스타일 */
+        .search img {
+            position : absolute;
+            width: 17px;
+            top: 10px;
+            right: 12px;
+            margin: 0;
+        }
+    </style>
+
+    <div class="search">
+        <form method="get">
+            <input type="text" name="keyword" placeholder="검색어 입력">
+            <button type="submit">
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+            </button>
+        </form>
+    </div>
+
     <!-- 기업 목록을 나타내는 HTML 코드 -->
     <div class="box-container" style="margin-top: 50px;">
         <div class="box" th:each="company: ${companies}">

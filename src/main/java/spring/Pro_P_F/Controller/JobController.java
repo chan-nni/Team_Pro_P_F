@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.domain.*;
@@ -42,7 +43,7 @@ public class JobController {
 
     // 공고 등록
     @PostMapping("/em_add")
-    public String employ_add2(Job job1, HttpSession session, Model model) {
+    public String employ_add2(Job job1, HttpSession session, Model model, BindingResult bindingResult) {
         try {
             String cyId = (String) session.getAttribute("cy_id");
             System.out.println("db저장 cy_id = " + cyId);
@@ -76,8 +77,9 @@ public class JobController {
         } catch (Exception e) {
             // 예외 처리: 예외를 적절히 처리하고 에러 메시지를 로깅하거나 사용자에게 알림을 보낼 수 있음
             e.printStackTrace(); // 예외 정보를 콘솔에 출력
-            // 사용자에게 적절한 에러 페이지 또는 메시지를 반환하거나 리다이렉션할 수 있음
-            return "errorPage"; // 예시로 "errorPage"로 반환
+
+            model.addAttribute("error", "오류가 발생했습니다.");
+            return "company/employ_add";
         }
     }
 

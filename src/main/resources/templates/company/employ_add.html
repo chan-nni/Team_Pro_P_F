@@ -71,7 +71,7 @@
                   <h5>채용 인원</h5>
                 </div>
                 <div class="col-md-3">
-                  <input type="text" th:field="*{person}" name="num" class="form-control" id="num" required>
+                  <input type="number" th:field="*{person}" name="num" class="form-control" id="num" required>
                 </div>
                 <div class="col-md-2">
                   <h5>명</h5>
@@ -165,16 +165,12 @@
         </div>
 
       </div>
-      <!-- employ_add2.html 또는 해당하는 템플릿 파일 -->
-
-      <!-- ... -->
 
       <script th:if="${error}" th:inline="javascript">
         /*<![CDATA[*/
         alert([[${error}]]);  // 에러 메시지가 존재할 경우 경고창을 띄움
         /*]]>*/
       </script>
-
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->

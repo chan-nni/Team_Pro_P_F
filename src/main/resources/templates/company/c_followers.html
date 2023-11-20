@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Followers</title>
+</head>
+<body>
+<h2>Followers</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Follower ID</th>
+        <!-- 다른 필요한 정보들도 추가할 수 있음 -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="follower : ${followers}">
+        <td th:text="${follower.member.mid}"></td>
+        <!-- 다른 필요한 정보들도 추가할 수 있음 -->
+    </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li th:each="follower : ${followers}">
+        <a th:href="@{/c_pofo(id=${follower.member.mid})}">
+            <span th:text="${follower.member.mid}"></span>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

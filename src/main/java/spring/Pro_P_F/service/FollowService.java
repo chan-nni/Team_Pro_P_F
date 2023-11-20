@@ -33,4 +33,9 @@ public class FollowService {
     public List<Follow> getFollowedCompanies(Member member) {
         return followRepository.findByMember(member);
     }
+
+    // 특정 기업을 누가 팔로우 했는지
+    public List<Follow> getFollowersByCompany(Company company) {
+        return followRepository.findByCompany(company);
+    }
 }

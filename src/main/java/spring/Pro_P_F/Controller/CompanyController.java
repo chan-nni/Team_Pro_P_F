@@ -6,11 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import spring.Pro_P_F.domain.Community;
-import spring.Pro_P_F.domain.Company;
-import spring.Pro_P_F.domain.Job;
-import spring.Pro_P_F.domain.Member;
+import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.service.CompanyMemService;
+import spring.Pro_P_F.service.FollowService;
 import spring.Pro_P_F.service.JobService;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +22,9 @@ public class CompanyController {
 
     @Autowired
     private CompanyMemService companyMemService;
+
+    @Autowired
+    private FollowService followService;
 
     // 기업 마이페이지
     @GetMapping("/c_pofo")
@@ -39,9 +40,24 @@ public class CompanyController {
         List<Job> jobs = jobService.findByCompany(company);
         model.addAttribute("jobs", jobs);
 
+        // 팔로워 수
+        List<Follow> followers = followService.getFollowersByCompany(company);
+        model.addAttribute("followerCount", followers.size());
 
 
         return "company/company_mypage";
+    }
+
+    // 팔로워 리스트
+    @GetMapping("c_followList")
+    public String getFollowByCompany(Model model, HttpSession session) {
+        String cyId = (String) session.getAttribute("cy_id");
+        Company company = companyMemService.findMemByCyId(cyId);
+
+        List<Follow> followList = followService.getFollowersByCompany(company);
+        model.addAttribute("followers", followList);
+
+        return "company/c_followers";
     }
 
     // 기업 소개 작성 후

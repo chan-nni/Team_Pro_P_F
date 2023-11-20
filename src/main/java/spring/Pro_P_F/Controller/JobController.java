@@ -42,7 +42,7 @@ public class JobController {
 
     // 공고 등록
     @PostMapping("/em_add")
-    public String employ_add2(Job job1, HttpSession session) {
+    public String employ_add2(Job job1, HttpSession session, Model model) {
         try {
             String cyId = (String) session.getAttribute("cy_id");
             System.out.println("db저장 cy_id = " + cyId);
@@ -60,6 +60,15 @@ public class JobController {
             job.setWork(job1.getWork());
             job.setEmploy(job1.getEmploy());
             job.setCompany(company);
+
+            // 시작 날짜가 마감 날짜보다 늦으면 에러 메시지를 반환
+            LocalDate startDate = job.getStartdate().atStartOfDay().toLocalDate();
+            LocalDate endDate = job.getEnddate().atStartOfDay().toLocalDate();
+
+            if (startDate.isAfter(endDate)) {
+                model.addAttribute("error", "시작 날짜는 마감 날짜보다 늦을 수 없습니다.");
+                return "company/employ_add";
+            }
 
             jobService.saveJob(job);
 

@@ -32,4 +32,7 @@ public interface PostingRepository extends JpaRepository<Posting, Long> {
     // 마이페이지 페이징
     Page<Posting> findByMember(Member member, Pageable pageable);
 
+    // 검색 + 페이징
+    Page<Posting> findByTitleContainingIgnoreCase(String keyword, Pageable pageable);
+
 }

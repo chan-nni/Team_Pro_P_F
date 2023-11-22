@@ -62,7 +62,7 @@
 
     <div class="search">
       <form th:action="@{/p_search}" method="get">
-        <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
+        <input type="text" name="keyword" th:value="${param.keyword}" placeholder="검색어 입력">
         <button type="submit">
           <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
         </button>
@@ -110,7 +110,7 @@
       <div class="pagination">
         <ul>
           <li th:each="i : ${#numbers.sequence(0, postings.totalPages - 1)}">
-            <a th:href="@{/post(page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
+            <a th:href="@{/p_search(keyword=${param.keyword}, page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
           </li>
         </ul>
       </div>

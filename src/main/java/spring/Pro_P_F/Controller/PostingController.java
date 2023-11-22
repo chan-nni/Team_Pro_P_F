@@ -185,7 +185,7 @@ public class PostingController {
     // 수정
     @PostMapping("posting_edit")
     public String updatePosting(@RequestParam("id") Long id, Posting posting) {
-       List<Posting> searchPosting = postingService.findByid(id);
+        List<Posting> searchPosting = postingService.findByid(id);
 
         if (searchPosting != null && !searchPosting.isEmpty()) {
             Series series = seriesService.findByName(posting.getSeries().getName());
@@ -228,12 +228,25 @@ public class PostingController {
     @GetMapping("/series_posting")
     public String Series_Posting(@RequestParam("id") Long seriesId, Model model) {
         Series series = seriesService.findBySeq(seriesId);
-       List<Posting> seriesPostings = postingService.findBySeries(series);
+        List<Posting> seriesPostings = postingService.findBySeries(series);
 
-       model.addAttribute("seriesPostings", seriesPostings);
+        model.addAttribute("seriesPostings", seriesPostings);
         return "my/series";
     }
 
+    // 검색
+    @GetMapping("p_search")
+    public String searchPostings(@RequestParam String keyword, @RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 3;
+
+        Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
+
+        model.addAttribute("postings", postings);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", postings.getTotalPages());
+
+        return "my/postingSearch";
+    }
 }
 
 

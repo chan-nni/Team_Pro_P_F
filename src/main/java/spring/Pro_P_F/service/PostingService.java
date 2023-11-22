@@ -83,4 +83,9 @@ public class PostingService {
         return postingRepository.findByMember(member, pageable);
     }
 
+    // 검색 + 페이징
+    public Page<Posting> searchPostings(String keyword, Pageable pageable) {
+        return postingRepository.findByTitleContainingIgnoreCase(keyword, pageable);
+    }
+
 }

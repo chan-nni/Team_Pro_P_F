@@ -85,4 +85,12 @@ public class CompanyController {
         return "company/company_channel";
     }
 
+    // 기업 채널 검색
+    @GetMapping("/searchCompanies")
+    public String searchCompanies(@RequestParam String keyword, Model model) {
+        List<Company> companies = companyMemService.searchCompanies(keyword);
+        model.addAttribute("companies", companies);
+        model.addAttribute("keyword", keyword);
+        return "company/company_channel_search";
+    }
 }

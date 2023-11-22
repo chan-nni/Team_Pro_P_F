@@ -42,7 +42,7 @@ public class CompanyMemController {
 
         company.setCyId(form.getId());
         company.setCy_pwd(form.getPwd());
-        company.setCompany_name(form.getCompany_name());
+        company.setCompanyname(form.getCompanyname());
         company.setManager_name(form.getName());
         company.setManager_phone(form.getPhone());
         company.setManager_email(form.getEmail());

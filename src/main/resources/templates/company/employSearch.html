@@ -91,7 +91,7 @@
                   <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
                 </td>
                 <td th:text="${job.employ.getDisplayName()}">경력 </td>
-                <td th:text="${job.company.company_name}">카카오</td>
+                <td th:text="${job.company.companyname}">카카오</td>
                 <td th:text="${job.area.getDisplayName()}">서울</td>
                 <td th:text="${job.startdate}"></td>
                 <td th:text="${job.enddate}">~ 4/30</td>

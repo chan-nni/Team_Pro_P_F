@@ -12,4 +12,6 @@ public interface CompanyMemRepository extends JpaRepository<Company, Long> {
 
     List<Company> findAll();
 
+    // 기업 채널 검색
+    List<Company> findByCompanynameContainingIgnoreCase(String keyword);
 }

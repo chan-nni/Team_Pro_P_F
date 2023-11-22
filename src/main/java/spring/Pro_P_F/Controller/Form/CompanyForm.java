@@ -9,7 +9,7 @@ public class CompanyForm {
 
     private String id;
     private String pwd;
-    private String company_name;
+    private String companyname;
     private String name;
     private String email;
     private String phone;

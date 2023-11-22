@@ -17,7 +17,7 @@ public class Company {
 
     private String cyId;
     private String cy_pwd;
-    private String company_name;
+    private String companyname;
     private String manager_name;
     private String manager_email;
     private String manager_phone;

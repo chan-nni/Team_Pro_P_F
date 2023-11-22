@@ -37,7 +37,7 @@
 
       <div class="profile-user-settings">
         <h1 class="profile-user-name">기업 : </h1>
-        <h1 class="profile-user-name" th:text="${companies.company_name}">회사명</h1>
+        <h1 class="profile-user-name" th:text="${companies.companyname}">회사명</h1>
 
       </div>
 
@@ -188,7 +188,7 @@
                 <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
               </td>
               <td th:text="${job.employ.getDisplayName()}">경력 </td>
-              <td th:text="${job.company.company_name}">카카오</td>
+              <td th:text="${job.company.companyname}">카카오</td>
               <td th:text="${job.area.getDisplayName()}">서울</td>
               <td th:text="${job.startdate}"></td>
               <td th:text="${job.enddate}">~ 4/30</td>

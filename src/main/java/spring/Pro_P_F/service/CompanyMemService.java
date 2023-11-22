@@ -32,4 +32,9 @@ public class CompanyMemService {
         companyMemRepository.save(company);
     }
 
+    // 기업 채널 검색
+    public List<Company> searchCompanies(String keyword) {
+        return companyMemRepository.findByCompanynameContainingIgnoreCase(keyword);
+    }
+
 }

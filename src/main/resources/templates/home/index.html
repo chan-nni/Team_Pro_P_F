@@ -119,7 +119,7 @@
             <tr th:each="job : ${jobs}">
               <td th:text="${job.title}">IOS 개발자 구함둥</td>
               <td th:text="${job.employ.getDisplayName()}">경력 </td>
-              <td th:text="${job.company.company_name}">카카오</td>
+              <td th:text="${job.company.companyname}">카카오</td>
               <td th:text="${job.area.getDisplayName()}">서울</td>
               <td th:text="${job.startdate}"></td>
               <td th:text="${job.enddate}">~ 4/30</td>

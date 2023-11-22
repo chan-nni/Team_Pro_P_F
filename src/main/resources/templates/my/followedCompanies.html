@@ -12,7 +12,7 @@
 <ul>
   <li th:each="followedCompany : ${followCompanies}">
     <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}">
-      <span th:text="${followedCompany.company.company_name}"></span>
+      <span th:text="${followedCompany.company.companyname}"></span>
     </a>
   </li>
 </ul>

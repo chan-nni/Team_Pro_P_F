@@ -1,12 +1,13 @@
 package spring.Pro_P_F.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import spring.Pro_P_F.domain.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface JobRepository extends JpaRepository<Job, Long> {
+public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificationExecutor<Job> {
 
     List<Job> findAll();
 

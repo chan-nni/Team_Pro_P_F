@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-md-12" data-aos="fade-up">
           <div class="service-box">
-            <form th:action="@{/category_search}" method="get">
+            <form th:action="@{/filter}" method="get">
               <div class="row">
                 <div class="col-md-3">
                   <label for="work">모집 직무</label>
@@ -56,6 +56,16 @@
                     <option value="">지역 선택</option>
                     <th:block th:each="category : ${areaTypes}">
                       <option th:value="${category}" th:text="${category.getDisplayName()}" th:selected="${area == category}"></option>
+                    </th:block>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="jobStatus">모집 상태</label>
+                  <select name="jobStatus" id="jobStatus" class="category">
+                    <option value="">상태 선택</option>
+                    <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
+                    <th:block th:each="status : ${jobStatuses}">
+                      <option th:value="${status}" th:text="${status.getDisplayName()}"></option>
                     </th:block>
                   </select>
                 </div>

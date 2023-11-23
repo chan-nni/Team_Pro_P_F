@@ -4,11 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.repository.CompanyMemRepository;
 import spring.Pro_P_F.repository.JobRepository;
+import spring.Pro_P_F.repository.JobSpecifications;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -130,6 +133,11 @@ public class JobService {
 
     public List<Job> getJobsByEmployAndArea(EmployType employ, AreaType area) {
         return jobRepository.findByEmployAndArea(employ, area);
+    }
+
+    public Page<Job> findPagedJobsByFilter(WorkType work, EmployType employ, AreaType area, String keyword, JobStatus jobStatus, int page, int size) {
+        Specification<Job> spec = JobSpecifications.filterBy(work, employ, area, keyword, jobStatus);
+        return jobRepository.findAll(spec, PageRequest.of(page, size));
     }
 
 }

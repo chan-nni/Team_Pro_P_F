@@ -102,81 +102,84 @@ public class JobController {
         AreaType[] areaTypes = AreaType.values();
         model.addAttribute("areaTypes", areaTypes);
 
+        JobStatus[] jobStatuses = JobStatus.values();
+        model.addAttribute("jobStatuses", jobStatuses);
+
         return "company/employ";
     }
 
-    // 공고 검색기능
-    @GetMapping("/category_search")
-    public String search(
-            @RequestParam(value = "work", required = false) WorkType work,
-            @RequestParam(value = "employ", required = false) EmployType employ,
-            @RequestParam(value = "area", required = false) AreaType area,
-            @RequestParam(value = "keyword", required = false) String keyword,
-            Model model) {
-
-        System.out.println("검색어: " + keyword);
-        System.out.println("지역: " + area);
-        System.out.println("형태: " + employ);
-        System.out.println("일: " + work);
-
-        // 열거형(enum) 값을 가져와서 모델에 추가
-        WorkType[] workCategories = WorkType.values();
-        model.addAttribute("workCategories", workCategories);
-        EmployType[] employCategories = EmployType.values();
-        model.addAttribute("employCategories", employCategories);
-        AreaType[] areaTypes = AreaType.values();
-        model.addAttribute("areaTypes", areaTypes);
-
-        List<Job> filteredJobs = new ArrayList<>();
-
-        // "all" 값을 null로 변환하여 처리
-        if ("".equals(work)) {
-            work = null;
-        }
-
-        if ("".equals(employ)) {
-            employ = null;
-        }
-
-        if ("".equals(area)) {
-            area = null;
-        }
-
-        // 모든 검색 조건을 고려하여 필터링
-        if (work != null && employ != null && area != null) {
-            filteredJobs = jobService.getJobsByWorkAndEmployAndArea(work, employ, area);
-        } else if (work != null && employ != null) {
-            filteredJobs = jobService.getJobsByWorkAndEmploy(work, employ);
-        } else if (work != null && area != null) {
-            filteredJobs = jobService.getJobsByWorkAndArea(work, area);
-        } else if (employ != null && area != null) {
-            filteredJobs = jobService.getJobsByEmployAndArea(employ, area);
-        } else if (work != null) {
-            filteredJobs = jobService.getJobsByWork(work);
-        } else if (employ != null) {
-            filteredJobs = jobService.getJobsByEmploy(employ);
-            System.out.println("지나긴 해?");
-        } else if (area != null) {
-            filteredJobs = jobService.getJobsByArea(area);
-        } else {
-            filteredJobs = jobService.findAllComm();
-            System.out.println("이걸 지나냐?");
-        }
-
-        if (keyword != null && !keyword.isEmpty()) {
-            List<Job> keywordFilteredJobs = jobService.searchJobsByKeyword(keyword);
-            filteredJobs.retainAll(keywordFilteredJobs);  // 병합한 후 중복된 항목만 남김
-        }
-
-        model.addAttribute("work", work);
-        model.addAttribute("employ", employ);
-        model.addAttribute("area", area);
-        model.addAttribute("keyword", keyword);
-
-
-        model.addAttribute("jobs", filteredJobs);
-        return "company/employSearch";
-    }
+//    // 공고 검색기능
+//    @GetMapping("/category_search")
+//    public String search(
+//            @RequestParam(value = "work", required = false) WorkType work,
+//            @RequestParam(value = "employ", required = false) EmployType employ,
+//            @RequestParam(value = "area", required = false) AreaType area,
+//            @RequestParam(value = "keyword", required = false) String keyword,
+//            Model model) {
+//
+//        System.out.println("검색어: " + keyword);
+//        System.out.println("지역: " + area);
+//        System.out.println("형태: " + employ);
+//        System.out.println("일: " + work);
+//
+//        // 열거형(enum) 값을 가져와서 모델에 추가
+//        WorkType[] workCategories = WorkType.values();
+//        model.addAttribute("workCategories", workCategories);
+//        EmployType[] employCategories = EmployType.values();
+//        model.addAttribute("employCategories", employCategories);
+//        AreaType[] areaTypes = AreaType.values();
+//        model.addAttribute("areaTypes", areaTypes);
+//
+//        List<Job> filteredJobs = new ArrayList<>();
+//
+//        // "all" 값을 null로 변환하여 처리
+//        if ("".equals(work)) {
+//            work = null;
+//        }
+//
+//        if ("".equals(employ)) {
+//            employ = null;
+//        }
+//
+//        if ("".equals(area)) {
+//            area = null;
+//        }
+//
+//        // 모든 검색 조건을 고려하여 필터링
+//        if (work != null && employ != null && area != null) {
+//            filteredJobs = jobService.getJobsByWorkAndEmployAndArea(work, employ, area);
+//        } else if (work != null && employ != null) {
+//            filteredJobs = jobService.getJobsByWorkAndEmploy(work, employ);
+//        } else if (work != null && area != null) {
+//            filteredJobs = jobService.getJobsByWorkAndArea(work, area);
+//        } else if (employ != null && area != null) {
+//            filteredJobs = jobService.getJobsByEmployAndArea(employ, area);
+//        } else if (work != null) {
+//            filteredJobs = jobService.getJobsByWork(work);
+//        } else if (employ != null) {
+//            filteredJobs = jobService.getJobsByEmploy(employ);
+//            System.out.println("지나긴 해?");
+//        } else if (area != null) {
+//            filteredJobs = jobService.getJobsByArea(area);
+//        } else {
+//            filteredJobs = jobService.findAllComm();
+//            System.out.println("이걸 지나냐?");
+//        }
+//
+//        if (keyword != null && !keyword.isEmpty()) {
+//            List<Job> keywordFilteredJobs = jobService.searchJobsByKeyword(keyword);
+//            filteredJobs.retainAll(keywordFilteredJobs);  // 병합한 후 중복된 항목만 남김
+//        }
+//
+//        model.addAttribute("work", work);
+//        model.addAttribute("employ", employ);
+//        model.addAttribute("area", area);
+//        model.addAttribute("keyword", keyword);
+//
+//
+//        model.addAttribute("jobs", filteredJobs);
+//        return "company/employSearch";
+//    }
 
 
     // 공고 상세보기
@@ -242,6 +245,33 @@ public class JobController {
         jobService.deleteJobBySeq(id);
 
         return "redirect:/c_pofo";
+    }
+
+    // 공고 검색
+    @GetMapping("/filter")
+    public String filterJobs(@RequestParam(name = "work", required = false) WorkType work,
+                             @RequestParam(name = "employ", required = false) EmployType employ,
+                             @RequestParam(name = "area", required = false) AreaType area,
+                             @RequestParam(name = "keyword", required = false) String keyword,
+                             @RequestParam(name = "jobStatus", required = false) JobStatus jobStatus,
+                             @RequestParam(defaultValue = "0") int page,
+                             @RequestParam(defaultValue = "2") int size,
+                             Model model) {
+        Page<Job> jobs = jobService.findPagedJobsByFilter(work, employ, area, keyword, jobStatus, page, size);
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("jobStatuses", JobStatus.values());
+        model.addAttribute("areaTypes", AreaType.values());
+        model.addAttribute("employCategories", EmployType.values());
+        model.addAttribute("workCategories", WorkType.values());
+
+        model.addAttribute("work",work);
+        model.addAttribute("employ", employ);
+        model.addAttribute("area",area);
+        model.addAttribute("jobStatus", jobStatus);
+        model.addAttribute("keyword", keyword);
+        return "company/employSearch";
     }
 
 }

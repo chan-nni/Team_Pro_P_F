@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-md-12" data-aos="fade-up">
           <div class="service-box">
-            <form th:action="@{/category_search}" method="get">
+            <form th:action="@{/filter}" method="get">
               <div class="row">
                 <div class="col-md-3">
                   <label for="work">모집 직무</label>
@@ -59,6 +59,16 @@
                     </th:block>
                   </select>
                 </div>
+                <div class="col-md-3">
+                  <label for="jobStatus">모집 상태</label>
+                  <select name="jobStatus" id="jobStatus" class="category">
+                    <option value="">상태 선택</option>
+                    <!-- 열거형(enum) 값을 반복하며 옵션을 생성합니다 -->
+                    <th:block th:each="status : ${jobStatuses}">
+                      <option th:value="${status}" th:text="${status.getDisplayName()}"></option>
+                    </th:block>
+                  </select>
+                </div>
                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
                   <div class="search123 category">
                     <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
@@ -77,6 +87,7 @@
       <table class="ui celled  table">
         <thead>
         <tr>
+          <th>모집 상태</th>
           <th>공고명</th>
           <th>채용형태</th>
           <th>기업명</th>
@@ -86,41 +97,35 @@
         </tr>
         </thead>
         <tbody>
-          <tr th:each="job : ${jobs}">
-                <td>
-                  <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
-                </td>
-                <td th:text="${job.employ.getDisplayName()}">경력 </td>
-                <td th:text="${job.company.companyname}">카카오</td>
-                <td th:text="${job.area.getDisplayName()}">서울</td>
-                <td th:text="${job.startdate}"></td>
-                <td th:text="${job.enddate}">~ 4/30</td>
+        <tr th:each="job : ${jobs}">
+          <td th:text="${job.status.getDisplayName()}">모집 상태</td>
+          <td>
+            <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
+          </td>
+          <td th:text="${job.employ.getDisplayName()}">경력 </td>
+          <td th:text="${job.company.companyname}">카카오</td>
+          <td th:text="${job.area.getDisplayName()}">서울</td>
+          <td th:text="${job.startdate}"></td>
+          <td th:text="${job.enddate}">~ 4/30</td>
 
-          </tr>
+        </tr>
         </tbody>
       </table>
+      <div th:if="${jobs.totalPages > 1}">
+        <div class="pagination">
+          <ul>
+            <li th:each="i : ${#numbers.sequence(0, jobs.totalPages - 1)}">
+              <a th:href="@{/filter(work=${work}, employ=${employ}, area=${area}, keyword=${keyword}, jobStatus=${jobStatus}, page=${i})}" th:text="${i}" th:class="${currentPage == i} ? 'active'"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <!-- ======= Footer ======= -->
 <div th:replace="fragments/footer :: footerFragment"></div>
-
-<!--<script>-->
-<!--  // 각 카테고리 선택 시 자동으로 검색 요청을 보냅니다.-->
-<!--  document.querySelector('.category').forEach(function(select) {-->
-<!--    select.addEventListener('change', function() {-->
-<!--      var workValue = document.querySelector('select[name="work"]').value;-->
-<!--      var employValue = document.querySelector('select[name="job"]').value;-->
-<!--      var areaValue = document.querySelector('select[name="land"]').value;-->
-
-<!--      // 선택한 값들을 URL에 추가하여 검색 요청을 보냅니다.-->
-<!--      var searchUrl = '/category_search?work=' + workValue + '&employ=' + employValue + '&area=' + areaValue;-->
-<!--      window.location.href = searchUrl;-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->
 </body>
 
 </html>
-

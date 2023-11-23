@@ -30,68 +30,70 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 mx-auto">
-          <form action="join" method="post" role="form" class="php-email-form">
-            <div class="row">
+          <div th:each="member : ${members}">
+            <form th:action="@{/m_edit}" method="post" role="form" class="php-email-form">
+              <div class="row">
 
-              <!-- 아이디 -->
-              <div class="col-lg-12 mb-4">
-                <h5>아이디 수정</h5>
-              </div>
-              <div class="col-md-6 form-group mt-12">
-                <input type="text" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
-              </div>
+                <!-- 아이디 -->
+                <div class="col-lg-12 mb-4">
+                  <h5>아이디 수정</h5>
+                </div>
+                <div class="col-md-6 form-group mt-12">
+                  <input type="text" th:value="*{member.mid}" name="mid" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+                </div>
 
-              <!-- 닉네임 -->
-              <div class="col-lg-12 mb-4">
-                <hr class="section-divider">
-                <h5>닉네임 수정</h5>
-              </div>
-              <div class="col-md-6 form-group mt-12">
-                <input type="text" class="form-control" id="nickname" placeholder="닉네임 입력" required>
-              </div>
+                <!-- 닉네임 -->
+                <div class="col-lg-12 mb-4">
+                  <hr class="section-divider">
+                  <h5>닉네임 수정</h5>
+                </div>
+                <div class="col-md-6 form-group mt-12">
+                  <input type="text" th:value="*{member.m_name}" name="m_name" class="form-control" id="nickname" placeholder="닉네임 입력" required>
+                </div>
 
-              <!-- 비밀번호 -->
-              <div class="col-lg-12 mb-4">
-                <hr class="section-divider">
-                <h5>비밀번호 수정</h5>
-              </div>
-              <div class="form-group mt-12">
-                <input type="password" class="form-control" placeholder="비밀번호 입력" required>
-              </div>
+                <!-- 비밀번호 -->
+                <div class="col-lg-12 mb-4">
+                  <hr class="section-divider">
+                  <h5>비밀번호 수정</h5>
+                </div>
+                <div class="form-group mt-12">
+                  <input type="password" th:value="*{member.m_pwd}" name="m_pwd" class="form-control" placeholder="비밀번호 입력" required>
+                </div>
 
-              <!-- email -->
-              <div class="col-lg-12 mb-4">
-                <hr class="section-divider">
-                <h5>이메일 수정</h5>
-              </div>
-              <div class="form-group mt-12">
-                <input type="email" class="form-control" placeholder="이메일 입력" required>
-              </div>
+                <!-- email -->
+                <div class="col-lg-12 mb-4">
+                  <hr class="section-divider">
+                  <h5>이메일 수정</h5>
+                </div>
+                <div class="form-group mt-12">
+                  <input type="email" th:value="*{member.m_email}" name="m_email" class="form-control" placeholder="이메일 입력" required>
+                </div>
 
-              <!-- phone -->
-              <div class="col-lg-12 mb-4">
-                <hr class="section-divider">
-                <h5>휴대폰 수정</h5>
-              </div>
-              <div class="form-group mt-12">
-                <input type="tel" class="form-control" placeholder="핸드폰 번호 입력" required>
-              </div>
-              <!-- GitHub 주소 -->
-              <div class="col-lg-12 mb-4">
-                <hr class="section-divider">
-                <h5>GitHub 주소 추가</h5>
-              </div>
-              <div class="form-group mt-12">
-                <input type="text" class="form-control" placeholder="GitHub 주소 입력">
-              </div>
-              <div class="my-3"></div>
-              <div class="text-center">
-                <div class="text-center mt-4">
-                  <button type="submit">회원 정보 수정</button>
+                <!-- phone -->
+                <div class="col-lg-12 mb-4">
+                  <hr class="section-divider">
+                  <h5>휴대폰 수정</h5>
+                </div>
+                <div class="form-group mt-12">
+                  <input type="tel" th:value="*{member.m_phone}" name="m_phone" class="form-control" placeholder="핸드폰 번호 입력" required>
+                </div>
+                <!-- GitHub 주소 -->
+                <div class="col-lg-12 mb-4">
+                  <hr class="section-divider">
+                  <h5>GitHub 주소 추가</h5>
+                </div>
+                <div class="form-group mt-12">
+                  <input type="text" th:value="*{member.m_git}" name="m_git" class="form-control" placeholder="GitHub 주소 입력">
+                </div>
+                <div class="my-3"></div>
+                <div class="text-center">
+                  <div class="text-center mt-4">
+                    <button type="submit">회원 정보 수정</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

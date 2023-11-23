@@ -88,6 +88,36 @@ public class MypageController {
         return "my/followedCompanies";
     }
 
+    // 개인정보 수정페이지로 이동
+    @GetMapping("/m_edit")
+    public String memberEdit(Model model, HttpSession session) {
+        String mId = (String) session.getAttribute("m_id");
+        List<Member> members = memberService.findByMember(mId);
+        model.addAttribute("members", members);
 
+        return "my/member_edit";
+    }
 
+    // 개인정보 수정
+    @PostMapping("m_edit")
+    public String updateMember(HttpSession session, Member member) {
+        String mId = (String) session.getAttribute("m_id");
+        Member editMember = memberService.findOne(mId);
+        System.out.println("id = " + mId + "2번?");
+        if (editMember != null) {
+            editMember.setM_name(member.getM_name());
+            editMember.setM_pwd(member.getM_pwd());
+            editMember.setM_email(member.getM_email());
+            editMember.setM_phone(member.getM_phone());
+            editMember.setM_git(member.getM_git());
+
+            System.out.println("지나갑니다");
+
+            memberService.save(editMember);
+
+            return "redirect:/pofo";
+        } else {
+            return "redirect:/m_edit";
+        }
+    }
 }

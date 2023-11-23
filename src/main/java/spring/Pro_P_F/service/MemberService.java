@@ -26,6 +26,10 @@ public class MemberService {
         return memberRepository.findByMid(memberId);
     }
 
+    public List<Member> findByMember(String memberId) {
+        return memberRepository.findAllByMid(memberId);
+    }
+
     public boolean login(String memberid, String password) {
         Member member = memberRepository.findByMid(memberid);
         if (member != null && member.getM_pwd().equals(password)) {

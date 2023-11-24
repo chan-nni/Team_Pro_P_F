@@ -42,12 +42,12 @@
             margin-bottom: 10px;
         }
 
-        ul {
+        .custom-ul {
             list-style: none; /* 기본 목록 기호를 제거합니다 */
             padding: 0;
         }
 
-        li {
+        .custom-li {
             display: flex; /* 리스트 항목을 행으로 표시 */
             align-items: center; /* 내용을 수직 가운데로 정렬 */
             justify-content: center; /* 가로로 가운데 정렬합니다 */
@@ -55,7 +55,7 @@
             /*border-top: 1px solid #007BFF; !* 각 목록 항목에 상단 선 추가 *!*/
         }
 
-        a {
+        .custom-link {
             text-decoration: none; /* 링크의 밑줄을 제거합니다 */
             color: #007BFF; /* 링크 색상을 설정합니다 */
             cursor: pointer;
@@ -142,10 +142,12 @@
     <div class="col-md-12">
         <div class="grid-container">
             <h3 class="grid-title">시리즈 목록</h3>
-            <ul th:each="series : ${seriesList}">
-                <li>
+            <ul th:each="series : ${seriesList}" class="custom-ul">
+                <li class="custom-li">
                     <span th:text="${series.name}"></span>
-                    <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.seq} + '\');'">수정</a>
+                    <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.seq} + '\');'" class="custom-link">
+                        수정
+                    </a>
                 </li>
             </ul>
         </div>

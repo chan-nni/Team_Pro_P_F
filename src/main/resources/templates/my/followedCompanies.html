@@ -32,12 +32,12 @@
       margin-bottom: 10px;
     }
 
-    ul {
+    .custom-ul {
       list-style: none; /* 기본 목록 기호를 제거합니다 */
       padding: 0;
     }
 
-    li {
+    .custom-li {
       display: flex; /* 리스트 항목을 행으로 표시 */
       align-items: center; /* 내용을 수직 가운데로 정렬 */
       justify-content: center; /* 가로로 가운데 정렬합니다 */
@@ -45,7 +45,7 @@
       /*border-top: 1px solid #007BFF; !* 각 목록 항목에 상단 선 추가 *!*/
     }
 
-    a {
+    .custom-link {
       text-decoration: none; /* 링크의 밑줄을 제거합니다 */
       color: #007BFF; /* 링크 색상을 설정합니다 */
       cursor: pointer;
@@ -100,13 +100,12 @@
   <!-- End Our Portfolio Section -->
 
   <!-- 팔로잉 리스트 컨테이너 -->
-  <!--미완임-->
     <div class="col-md-12">
       <div class="grid-container">
-        <h3 class="grid-title">팔로우 리스트</h3>
-        <ul>
-          <li th:each="followedCompany : ${followCompanies}" class="list-group-item">
-            <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}">
+        <h3 class="grid-title">팔로잉 리스트</h3>
+        <ul class="custom-ul">
+          <li th:each="followedCompany : ${followCompanies}" class="custom-li">
+            <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}" class="custom-link">
               <span th:text="${followedCompany.company.companyname}"></span>
             </a>
           </li>

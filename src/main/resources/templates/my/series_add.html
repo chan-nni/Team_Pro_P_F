@@ -28,7 +28,7 @@
         .grid-container {
             display: grid;
             grid-template-columns: 1fr; /* 1개의 열을 가짐 */
-            border: 2px solid #007BFF; /* 테두리 색을 찐회색으로 변경 */
+            border: 2px solid #68A4C4; /* 테두리 색을 찐회색으로 변경 */
             background-color: #ffffff; /* 배경색을 흰색으로 변경 */
             padding: 20px; /* 내부 여밀기를 늘림 */
             width: 20%; /* 너비를 절반으로 줄임 */
@@ -56,14 +56,30 @@
         }
 
         .custom-link {
-            text-decoration: none; /* 링크의 밑줄을 제거합니다 */
-            color: #007BFF; /* 링크 색상을 설정합니다 */
-            cursor: pointer;
-            margin-left: 10px; /* 수정 버튼과 시리즈 이름 사이에 여밀기 추가 */
+            text-decoration: none; /* 밑줄 제거 */
+            color: #68A4C4; /* 링크 색상 */
+            cursor: pointer; /* 커서 스타일 */
+            margin-left: 10px; /* 여백 추가 */
+            padding: 5px 10px; /* 패딩 추가 - 상하 5px, 좌우 10px */
+            background-color: #f0f0f0; /* 배경색 */
+            border: 1px solid #d0d0d0; /* 테두리 */
+            border-radius: 4px; /* 모서리 둥글게 */
+            transition: all 0.3s ease; /* 부드러운 전환 효과 */
+            line-height: 20px; /* 라인 높이 설정 */
+            display: inline-block; /* 인라인 블록 요소로 설정 */
+            vertical-align: middle; /* 수직 가운데 정렬 */
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .custom-link:hover {
+            background-color: #e0e0e0; /* 마우스 호버 시 배경색 변경 */
+            color: #0056b3; /* 마우스 호버 시 색상 변경 */
+            border-color: #c0c0c0; /* 마우스 호버 시 테두리 색상 변경 */
         }
 
         button {
-            background-color: #007BFF; /* 버튼의 배경색을 설정합니다 */
+            background-color: #68A4C4; /* 버튼의 배경색을 설정합니다 */
             color: white; /* 버튼 텍스트 색상을 설정합니다 */
             border: none;
             padding: 10px 20px; /* 필요에 따라 여밀기를 조정합니다 */
@@ -81,6 +97,7 @@
         span {
             display: block;
             font-size: 18px;
+            color: #1E4356;
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -106,7 +123,7 @@
         }
 
         #editForm button, #addForm button {
-            background-color: #007BFF;
+            background-color: #68A4C4;
             color: white;
             border: none;
             padding: 10px 20px;

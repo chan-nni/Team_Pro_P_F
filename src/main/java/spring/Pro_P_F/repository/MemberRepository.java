@@ -1,11 +1,9 @@
 package spring.Pro_P_F.repository;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import spring.Pro_P_F.domain.Member;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository

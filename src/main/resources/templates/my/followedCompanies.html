@@ -54,6 +54,14 @@
       margin-right: 10px; /* 오른쪽 여백 추가 */
     }
 
+    .company-name {
+      margin-right: 5px; /* 버튼과의 간격 */
+    }
+
+    .button-container {
+      /* 버튼을 담는 컨테이너 */
+    }
+
     .custom-link {
       text-decoration: none; /* 링크의 밑줄을 제거합니다 */
       color: #007BFF; /* 링크 색상을 설정합니다 */
@@ -145,10 +153,14 @@
           <div class="company-details"> <!-- 수정된 클래스 추가 -->
             <!-- 아이콘은 • 으로 변경, 리스트 아이템의 시작 부분에 위치 -->
             <span class="company-icon">&bull;</span> <!-- 리스트 형식의 아이콘으로 변경 -->
-            <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}" class="custom-link">
-              <span th:text="${followedCompany.company.companyname}"></span> <!-- 기업명 -->
+            <div class="company-name">
+              <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}" class="custom-link">
+                <span th:text="${followedCompany.company.companyname}"></span> <!-- 기업명 -->
+              </a>
+            </div>
+            <div class="button-container">
               <button class="custom-btn">팔로잉 취소</button>
-            </a>
+            </div>
           </div>
         </li>
       </ul>

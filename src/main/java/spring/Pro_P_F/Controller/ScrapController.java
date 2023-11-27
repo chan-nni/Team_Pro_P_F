@@ -1,11 +1,16 @@
 package spring.Pro_P_F.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import spring.Pro_P_F.domain.Job;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Scrap;
@@ -29,21 +34,43 @@ public class ScrapController {
 
     // 스크랩 페이지 이동
     @GetMapping("/scrap")
-    public String Scrap(HttpSession session, Model model) {
+    public String getScraps(@RequestParam(value = "page", defaultValue = "0") int page,
+                            HttpSession session, Model model,
+                            RedirectAttributes redirectAttributes,
+                            @ModelAttribute("error") String error) {
+        model.addAttribute("error", error);
+
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);
 
         if (member != null) {
-            List<Scrap> scraps = scrapService.findByMember(member);
-            model.addAttribute("scraps", scraps);
+            try {
+                int totalPages = scrapService.getTotalPages(member, 3);
+
+                if (page < 0 || page >= totalPages) {
+                    throw new IllegalArgumentException();
+                }
+
+                Pageable pageable = PageRequest.of(page, 3);
+                Page<Scrap> scraps = scrapService.getScrapsByMember(member, pageable);
+
+                model.addAttribute("scraps", scraps.getContent());
+                model.addAttribute("currentPage", scraps.getNumber());
+                model.addAttribute("totalPages", totalPages);
+            } catch (IllegalArgumentException e) {
+                // 잘못된 페이지 번호에 대한 예외 처리
+                redirectAttributes.addFlashAttribute("error", "더 이상 페이지가 존재하지 않습니다.");
+                return "redirect:/scrap?page=0";
+            }
         }
 
         return "my/scrap";
     }
 
+
     // 스크랩 하기
     @GetMapping("/scrapJob")
-    public String scrapJob(@RequestParam("id") Long jobId, HttpSession session, Model model) {
+    public String scrapJob(@RequestParam("id") Long jobId, HttpSession session, RedirectAttributes redirectAttributes) {
         // user Id
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);
@@ -64,30 +91,12 @@ public class ScrapController {
 
                 scrapService.save(scrap);
 
-                return "redirect:/scrap";
+                redirectAttributes.addFlashAttribute("message", "스크랩 되었습니다.");
+
+            } else{
+                redirectAttributes.addFlashAttribute("message", "이미 스크랩 된 공고 입니다");
             }
         }
-        return "redirect:/noScrapJob?id=" + jobId;
-    }
-
-    @GetMapping("noScrapJob")
-    public String noScrap(@RequestParam("id") Long jobId, Model model, HttpSession session){
-        // user Id
-        String mId = (String) session.getAttribute("m_id");
-        Member member = memberService.findOne(mId);
-
-        List<Job> jobs = jobService.findBySeq(jobId);
-        model.addAttribute("jobs", jobs);
-        Job job = jobs.get(0);
-
-        boolean isAlreadyScrapped = scrapService.existsByMemberAndJob(member, job);
-
-        if(!isAlreadyScrapped){
-            model.addAttribute("message", "스크랩 되었습니다.");
-        } else {
-            model.addAttribute("message", "이미 스크랩 된 공고 입니다.");
-        }
-
-        return "company/employ_detail";
+        return "redirect:/job_de?id=" + jobId;
     }
 }

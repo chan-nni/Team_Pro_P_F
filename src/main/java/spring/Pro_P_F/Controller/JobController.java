@@ -110,10 +110,11 @@ public class JobController {
 
     // 공고 상세보기
     @GetMapping("job_de")
-    public String job_Detail(@RequestParam("id") Long jobId, Model model) {
+    public String job_Detail(@RequestParam("id") Long jobId, Model model,@ModelAttribute("message") String message) {
         List<Job> jobs = jobService.findBySeq(jobId);
         model.addAttribute("jobs", jobs);
 
+        model.addAttribute("message", message);
         return "company/employ_detail";
     }
 

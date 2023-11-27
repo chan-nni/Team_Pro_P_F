@@ -57,6 +57,25 @@
       </table>
 
     </div>
+
+    <div class="pagination" th:if="${totalPages > 1}">
+      <ul>
+        <li th:class="${currentPage == 0} ? 'disabled' : ''">
+          <a th:href="@{${'/scrap?page=' + (currentPage - 1)}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}" th:class="${currentPage == pageNum} ? 'active' : ''">
+          <a th:href="@{${'/scrap?page=' + pageNum}}" th:text="${pageNum + 1}"></a>
+        </li>
+        <li th:class="${currentPage == totalPages - 1} ? 'disabled' : ''">
+          <a th:href="@{${'/scrap?page=' + (currentPage + 1)}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
   </section>
 </main>
 
@@ -66,5 +85,9 @@
 
 
 </body>
+<script th:if="${error != null and error ne ''}" th:inline="javascript">
+  alert([[${error}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
+</script>
 
+</section>
 </html>

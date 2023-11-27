@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .pastel-red-button {
+      background-color: #ff5a5a !important; /* 파스텔 빨간색 */
+    }
+
+    .pastel-red-button:hover {
+      background-color: #ff8888 !important; /* 밝은 파스텔 빨간색 */
+    }
+  </style>
+</head>
 
 <body>
 
@@ -16,10 +26,10 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>회원 정보 수정</h2>
+        <h2>기업회원 정보 수정</h2>
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li>Member Information Edit</li>
+          <li>CompanyMember Information Edit</li>
         </ol>
       </div>
 
@@ -35,7 +45,7 @@
 
               <!-- 기업명 -->
               <div class="col-lg-12 mb-4">
-                <h5>기업명 수정</h5>
+                <h5>기업명</h5>
               </div>
               <div class="col-md-6 form-group mt-12">
                 <input type="text" class="form-control" id="company" placeholder="기업명 입력" required>
@@ -43,7 +53,7 @@
               <!-- 아이디 -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>아이디 수정</h5>
+                <h5>아이디</h5>
               </div>
               <div class="col-md-6 form-group mt-12">
                 <input type="text" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
@@ -58,7 +68,7 @@
               <!-- 비밀번호 -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>비밀번호 수정</h5>
+                <h5>비밀번호</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="password" class="form-control" placeholder="비밀번호 입력" required>
@@ -71,7 +81,7 @@
               <!-- email -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>담당자 이메일 수정</h5>
+                <h5>담당자 이메일</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="email" class="form-control" placeholder="이메일 입력" required>
@@ -80,7 +90,7 @@
               <!-- phone -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>담당자 휴대폰 수정</h5>
+                <h5>담당자 휴대폰</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="tel" class="form-control" placeholder="핸드폰 번호 입력" required>
@@ -88,7 +98,7 @@
               <!-- 기업 연락처 -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>기업 연락처 수정</h5>
+                <h5>기업 연락처</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="tel" class="form-control" placeholder="연락처 입력" required>
@@ -96,15 +106,24 @@
               <!-- 회사 링크 -->
               <div class="col-lg-12 mb-4">
                 <hr class="section-divider">
-                <h5>회사 링크 추가</h5>
+                <h5>회사 링크</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="text" class="form-control" placeholder="회사 링크 입력">
               </div>
+              <div class="col-lg-12 mb-4">
+                <hr class="section-divider">
+                <h5>회원 탈퇴</h5>
+              </div>
+              <div class="form-group mt-12">
+                <button type="submit" class="pastel-red-button">탈퇴하기</button>
+                <hr class="section-divider">
+              </div>
               <div class="my-3"></div>
               <div class="text-center">
                 <div class="text-center mt-4">
-                  <button type="submit">회원 정보 수정</button>
+                  <button type="submit">취소</button>
+                  <button type="submit">저장</button>
                 </div>
               </div>
             </div>

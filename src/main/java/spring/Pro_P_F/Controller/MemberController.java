@@ -3,9 +3,8 @@ package spring.Pro_P_F.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import spring.Pro_P_F.Controller.Form.CommunityForm;
 import spring.Pro_P_F.Controller.Form.MemberForm;
 import spring.Pro_P_F.Controller.Form.PostForm;
@@ -19,7 +18,9 @@ import spring.Pro_P_F.service.PostingService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -40,19 +41,37 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String memberForm(MemberForm form) {
+    public String memberForm(MemberForm form, Model model) {
+        if (memberService.isPhoneNumberDuplicate(form.getMphone())) {
+            model.addAttribute("message", "이미 사용 중인 전화번호 입니다.");
+            return "home/join"; // 중복된 경우 회원가입 폼으로 다시 이동
+        }
+
         Member member = new Member();
 
         member.setMid(form.getMid());
         member.setM_pwd(form.getM_pwd());
         member.setM_name(form.getM_name());
-        member.setM_phone(form.getM_phone());
+        member.setMphone(form.getMphone());
         member.setM_email(form.getM_email());
         member.setM_git(form.getM_git());
 
         memberService.join(member);
         return "home/login";
     }
+
+    // id 중복확인
+    @GetMapping("/checkId")
+    @ResponseBody
+    public Map<String, Boolean> checkId(@RequestParam String mid) {
+        boolean isDuplicate = memberService.existsByMember(mid);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("duplicate", isDuplicate);
+
+        return response;
+    }
+
 
     // 처음 로딩 화면
     @GetMapping("/")

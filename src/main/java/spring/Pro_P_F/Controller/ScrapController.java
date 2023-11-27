@@ -33,7 +33,7 @@ public class ScrapController {
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);
 
-        if(member != null){
+        if (member != null) {
             List<Scrap> scraps = scrapService.findByMember(member);
             model.addAttribute("scraps", scraps);
         }
@@ -43,23 +43,51 @@ public class ScrapController {
 
     // 스크랩 하기
     @GetMapping("/scrapJob")
-    public String scrapJob(@RequestParam("id") Long jobId, HttpSession session) {
+    public String scrapJob(@RequestParam("id") Long jobId, HttpSession session, Model model) {
         // user Id
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);
 
         // job Id
         List<Job> jobs = jobService.findBySeq(jobId);
+
+        if (member != null && jobs.size() > 0) {
+            Job job = jobs.get(0);
+
+            // 스크랩 중복 확인
+            boolean isAlreadyScrapped = scrapService.existsByMemberAndJob(member, job);
+
+            if (!isAlreadyScrapped) {
+                Scrap scrap = new Scrap();
+                scrap.setMember(member);
+                scrap.setJob(job);
+
+                scrapService.save(scrap);
+
+                return "redirect:/scrap";
+            }
+        }
+        return "redirect:/noScrapJob?id=" + jobId;
+    }
+
+    @GetMapping("noScrapJob")
+    public String noScrap(@RequestParam("id") Long jobId, Model model, HttpSession session){
+        // user Id
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
+
+        List<Job> jobs = jobService.findBySeq(jobId);
+        model.addAttribute("jobs", jobs);
         Job job = jobs.get(0);
 
-        if (member != null && job != null) {
-            Scrap scrap = new Scrap();
-            scrap.setMember(member);
-            scrap.setJob(job);
+        boolean isAlreadyScrapped = scrapService.existsByMemberAndJob(member, job);
 
-            scrapService.save(scrap);
+        if(!isAlreadyScrapped){
+            model.addAttribute("message", "스크랩 되었습니다.");
+        } else {
+            model.addAttribute("message", "이미 스크랩 된 공고 입니다.");
         }
 
-        return "redirect:/scrap";
+        return "company/employ_detail";
     }
 }

@@ -97,5 +97,9 @@
 <div th:replace="fragments/footer :: footerFragment"></div>
 
 </body>
-
+<script th:if="${message}" th:inline="javascript">
+  /*<![CDATA[*/
+  alert([[${message}]]);  // 에러 메시지가 존재할 경우 경고창을 띄움
+  /*]]>*/
+</script>
 </html>

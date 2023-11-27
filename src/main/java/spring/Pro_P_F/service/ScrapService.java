@@ -1,6 +1,7 @@
 package spring.Pro_P_F.service;
 
 import org.springframework.stereotype.Service;
+import spring.Pro_P_F.domain.Job;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Scrap;
 import spring.Pro_P_F.repository.ScrapRepository;
@@ -26,4 +27,8 @@ public class ScrapService {
         return scrapRepository.findByMember(member);
     }
 
+    // 스크랩 중복 확인
+    public boolean existsByMemberAndJob(Member member, Job job) {
+        return scrapRepository.existsByMemberAndJob(member, job);
+    }
 }

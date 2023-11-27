@@ -18,7 +18,7 @@ public class Member {
     private String m_name;
 
     @Column(unique = true)
-    private String m_phone;
+    private String mphone;
 
     private String m_email;
 

@@ -41,4 +41,15 @@ public class MemberService {
     public void save(Member member) {
         memberRepository.save(member);
     }
+
+    // id 중복확인
+    public boolean existsByMember(String memberId) {
+        return memberRepository.existsByMid(memberId);
+    }
+
+    // 번호 중복확인
+    public boolean isPhoneNumberDuplicate(String phoneNumber) {
+        // 데이터베이스에서 전화번호 중복 확인
+        return memberRepository.existsByMphone(phoneNumber);
+    }
 }

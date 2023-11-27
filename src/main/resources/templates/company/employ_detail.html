@@ -97,5 +97,7 @@
 <div th:replace="fragments/footer :: footerFragment"></div>
 
 </body>
-
+<script th:if="${message != null and message ne ''}" th:inline="javascript">
+  alert([[${message}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
+</script>
 </html>

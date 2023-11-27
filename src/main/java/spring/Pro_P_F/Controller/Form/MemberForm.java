@@ -17,7 +17,7 @@ public class MemberForm {
 
     private String m_name;
 
-    private String m_phone;
+    private String mphone;
 
     private String m_email;
 

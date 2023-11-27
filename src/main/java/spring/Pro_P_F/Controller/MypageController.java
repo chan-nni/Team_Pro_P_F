@@ -108,7 +108,7 @@ public class MypageController {
             editMember.setM_name(member.getM_name());
             editMember.setM_pwd(member.getM_pwd());
             editMember.setM_email(member.getM_email());
-            editMember.setM_phone(member.getM_phone());
+            editMember.setMphone(member.getMphone());
             editMember.setM_git(member.getM_git());
 
             System.out.println("지나갑니다");

@@ -26,13 +26,12 @@
               <a th:href="@{/scrap}" th:if="${session.m_id != null}"><i class="bi bi-bookmarks-fill"></i></a>
               <i class="bi bi-person-circle" id="dropdown-toggle"></i>
             </div>
-            <div class="user-dropdown-content">
-
+            <div class="user-dropdown-content" id="user-dropdown-content">
               <a th:if="${session.m_id != null}" th:href="@{/pofo}">마이페이지</a>
               <a th:if="${session.cy_id != null}" th:href="@{/c_pofo}">마이페이지</a>
               <a href="logout">로그아웃</a>
-
             </div>
+
           </div>
         </li>
       </th:block>

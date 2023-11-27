@@ -52,6 +52,12 @@
           <td th:text="${scrap.job.area.getDisplayName()}">서울</td>
           <td th:text="${scrap.job.startdate}">~ 4/30</td>
           <td th:text="${scrap.job.enddate}">~ 4/30</td>
+          <td>
+            <form th:action="@{/scrapCancel}" th:object="${scrap}" method="post">
+              <input type="hidden" name="seq" th:value="${scrap.seq}" />
+              <button type="submit">스크랩 취소</button>
+            </form>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -85,8 +91,8 @@
 
 
 </body>
-<script th:if="${error != null and error ne ''}" th:inline="javascript">
-  alert([[${error}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
+<script th:if="${message != null and message ne ''}" th:inline="javascript">
+  alert([[${message}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
 </script>
 
 </section>

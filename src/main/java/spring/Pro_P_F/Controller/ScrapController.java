@@ -59,7 +59,7 @@ public class ScrapController {
                 model.addAttribute("totalPages", totalPages);
             } catch (IllegalArgumentException e) {
                 // 잘못된 페이지 번호에 대한 예외 처리
-                redirectAttributes.addFlashAttribute("error", "더 이상 페이지가 존재하지 않습니다.");
+                redirectAttributes.addFlashAttribute("message", "더 이상 페이지가 존재하지 않습니다.");
                 return "redirect:/scrap?page=0";
             }
         }
@@ -99,4 +99,27 @@ public class ScrapController {
         }
         return "redirect:/job_de?id=" + jobId;
     }
+
+    // 스크랩 취소
+    @PostMapping("/scrapCancel")
+    public String scrapCancel(@RequestParam("seq") Long scrapSeq, RedirectAttributes redirectAttributes) {
+        // 스크랩 취소 로직 구현
+        try {
+            Scrap scrap = scrapService.findBySeq(scrapSeq);
+
+            if (scrap != null) {
+                scrapService.delete(scrap);
+                redirectAttributes.addFlashAttribute("message", "스크랩이 취소되었습니다.");
+            } else {
+                redirectAttributes.addFlashAttribute("message", "해당 스크랩을 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+            // 적절한 예외 처리 로직 추가
+            redirectAttributes.addFlashAttribute("message", "스크랩 취소 중 오류가 발생했습니다.");
+        }
+
+        return "redirect:/scrap";
+    }
+
+
 }

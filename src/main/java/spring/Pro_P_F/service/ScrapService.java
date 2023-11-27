@@ -48,4 +48,12 @@ public class ScrapService {
 
         return (int) Math.ceil((double) totalItems / pageSize);
     }
+
+    public Scrap findBySeq(Long seq) {
+        return scrapRepository.findById(seq).orElse(null);
+    }
+
+    public void delete(Scrap scrap) {
+        scrapRepository.delete(scrap);
+    }
 }

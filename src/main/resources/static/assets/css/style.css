@@ -2883,7 +2883,7 @@ label {
 
 .search123.category {
   margin-top: 10px; /* 아래로 이동 */
-  margin-left: 20px; /* 오른쪽으로 이동 */
+  /*margin-left: 20px; !* 오른쪽으로 이동 *!*/
 }
 
 /* Select 요소 전체 스타일 */

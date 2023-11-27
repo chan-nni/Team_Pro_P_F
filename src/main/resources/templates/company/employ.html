@@ -31,7 +31,7 @@
           <div class="service-box">
             <form th:action="@{/filter}" method="get">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <label for="work">모집 직무</label>
                   <select name="work" id="work" class="category">
                     <option value="">직무 선택</option>
@@ -41,7 +41,7 @@
                     </th:block>
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <label for="employ">채용 형태</label>
                   <select name="employ" id="employ" class="category">
                     <option value="">채용 형태</option>
@@ -50,7 +50,7 @@
                     </th:block>
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <label for="area">근무 지역</label>
                   <select name="area" id="area" class="category">
                     <option value="">지역 선택</option>
@@ -59,7 +59,7 @@
                     </th:block>
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <label for="jobStatus">모집 상태</label>
                   <select name="jobStatus" id="jobStatus" class="category">
                     <option value="">상태 선택</option>
@@ -69,8 +69,8 @@
                     </th:block>
                   </select>
                 </div>
-                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                  <div class="search123 category">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="search123 category" style="width: 100%;">
                     <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
                     <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
                   </div>

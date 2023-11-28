@@ -60,11 +60,20 @@
                         </div>
 
                         <style>
+                            /* 커뮤니티 제목에 대한 자동 줄바꿈 적용 */
+                            .entry-title {
+                                white-space: normal;
+                                word-wrap: break-word;
+                            }
+
                             /*커뮤니티 내용 CSS*/
                             .entry-content {
                                 color: black;
                                 font-size: 18px;
+                                white-space: normal;
+                                word-wrap: break-word;
                             }
+
                             /* "좋아요" 버튼 스타일링 (배경 없음) */
                             .like-button {
                                 background-color: white;
@@ -183,6 +192,8 @@
                             /* 댓글 내용 스타일링 */
                             .comment-text {
                                 color: #000000; /* 댓글 내용 텍스트 색상을 검은색으로 설정 */
+                                white-space: normal;
+                                word-wrap: break-word;
                             }
                         </style>
 

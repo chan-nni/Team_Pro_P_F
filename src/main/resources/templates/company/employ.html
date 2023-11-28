@@ -1,7 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+
+    .btn-create {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #999;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-right: 20px;
+      transition: all 0.2s ease-in-out; /* 마우스 오버 효과를 위한 CSS */
+    }
+
+    .btn-create:hover {
+      background-color: #777;
+      color: #ddd;
+    }
+    .btn-create:active {
+      background-color: #7d7d7d;
+      color: #ccc;
+    }
+
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -85,6 +150,15 @@
   <section class="about" data-aos="fade-up">
     <div class="container">
       <table class="ui celled  table">
+        <colgroup>
+          <col style="width: 15%;"> <!-- 모집 상태 -->
+          <col style="width: 30%;"> <!-- 공고명 -->
+          <col style="width: 15%;"> <!-- 채용형태 -->
+          <col style="width: 15%;"> <!-- 기업명 -->
+          <col style="width: 15%;"> <!-- 근무지역 -->
+          <col style="width: 10%;"> <!-- 시작일 -->
+          <col style="width: 10%;"> <!-- 마감일 -->
+        </colgroup>
         <thead>
         <tr>
           <th>모집 상태</th>
@@ -110,6 +184,20 @@
 
           </tr>
         </tbody>
+        <style>
+          .table {
+            table-layout: fixed;
+            width: 100%; /* 원래의 테이블 너비로 설정 */
+          }
+          /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+          .table tbody td:nth-child(2) a {
+            display: block;
+            width: 100%; /* 너비를 30%로 제한 */
+            white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+            overflow: hidden; /* 넘칠 때 가림 */
+            text-overflow: ellipsis; /* 생략 부호로 표시 */
+          }
+        </style>
       </table>
       <div th:if="${jobs.totalPages > 1}">
         <div class="pagination">

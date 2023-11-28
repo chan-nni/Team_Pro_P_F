@@ -7,6 +7,18 @@
       background-color: #f7f7f7;
       padding: 20px;
     }
+
+    /* 제목에 대한 자동 줄바꿈 적용 */
+    .entry-title {
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    /* 내용에 대한 자동 줄바꿈 적용 */
+    .job-description h5 {
+      white-space: normal;
+      word-wrap: break-word;
+    }
   </style>
 </head>
 
@@ -39,7 +51,7 @@
           <form action="#" method="post" role="form" class="php-email-form">
             <div class="col-lg-12">
               <div class="col-md-12 mx-auto text-center">
-                <h3 th:text="${job.title}">제목</h3>
+                <h3 class="entry-title" th:text="${job.title}">제목</h3>
                 <hr class="section-divider">
               </div>
               <div class="job-info-grid">

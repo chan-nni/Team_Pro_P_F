@@ -2969,6 +2969,20 @@ select.category option {
   background-color: #8dbad2;
   color: white;
 }
+
+/*회원가입 중복확인 버튼*/
+.contact .php-email-form button.submit-style {
+  background: #68A4C4;
+  border: 0;
+  padding: 10px 24px;
+  margin-top: 3.3px; /* 입력 필드와 버튼의 높이 차이의 절반 */
+  color: #fff;
+  transition: 0.4s;
+}
+
+.contact .php-email-form button.submit-style:hover {
+  background: #8dbad2;
+}
 /*==================================================================================================================*/
 /* 신예희 ---------------------------------------------------------------------------------------------------------------*/
 .search123 {

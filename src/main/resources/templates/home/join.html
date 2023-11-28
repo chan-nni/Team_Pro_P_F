@@ -31,23 +31,23 @@
             <div class="row">
 
               <!-- 아이디 -->
-              <div class="col-lg-12 mb-4">
+              <div class="col-lg-12 mb-3">
                 <h5>아이디</h5>
               </div>
-              <div class="col-md-6 form-group mt-12">
-                <input type="text" th:field="*{mid}" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
-              </div>
-              <!-- 중복확인 -->
-              <div class="col-md-6">
-                <div class="col-md-6 form-group mt-12">
-                  <div class="text-center">
-                    <button type="button" onclick="checkDuplicate()">중복확인</button>
+              <div class="col-md-12 form-group mt-12">
+                <div class="row d-flex justify-content-between">
+                  <div class="col-md-9">
+                    <input type="text" th:field="*{mid}" name="id" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+                  </div>
+                  <!-- 중복확인 -->
+                  <div class="col-md-3">
+                    <button type="button" class="submit-style" onclick="checkDuplicate()">중복확인</button>
                   </div>
                 </div>
               </div>
 
               <!-- 닉네임 -->
-              <div class="col-lg-12 mb-4">
+              <div class="col-lg-12 mt-2 mb-3">
                 <hr class="section-divider">
                 <h5>닉네임</h5>
               </div>
@@ -56,39 +56,47 @@
               </div>
 
               <!-- 비밀번호 -->
-              <div class="form-group mt-12">
-                <label for="password">비밀번호</label>
+              <div class="col-lg-12 mt-2 mb-3">
+                <hr class="section-divider">
+                <h5>비밀번호</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
                 <input type="password" class="form-control" th:field="*{m_pwd}" placeholder="비밀번호 입력" id="password" required>
               </div>
 
-              <div class="form-group mt-3">
-                <label for="pwcheck">비밀번호 확인</label>
+              <!-- 비밀번호 확인-->
+              <div class="my-2"></div>
+              <div class="col-lg-12 mb-3">
+                <h5>비밀번호 확인</h5>
+              </div>
+              <div class="col-md-6 form-group mt-12">
                 <input type="password" class="form-control" id="pwcheck" placeholder="비밀번호 확인" required>
                 <span id="passwordMatchMessage"></span>
               </div>
 
               <!-- email -->
-              <div class="col-lg-12 mb-4">
+              <div class="col-lg-12 mt-2 mb-3">
                 <hr class="section-divider">
                 <h5>이메일</h5>
               </div>
               <div class="form-group mt-12">
                 <input type="email" id="email" class="form-control" th:field="*{m_email}" placeholder="이메일 입력" required>
-                <br>
               </div>
 
               <!-- phone -->
-              <div class="col-lg-12 mb-4">
+              <div class="col-lg-12 mt-2 mb-3">
                 <hr class="section-divider">
                 <h5>휴대폰</h5>
               </div>
               <div class="form-group mt-12">
-                <input type="text" class="form-control" th:field="*{mphone}" id="phoneNumber" required>
+                <input type="text" class="form-control" th:field="*{mphone}" id="phoneNumber" placeholder="휴대폰 입력" required>
               </div>
-              <div class="my-3"><input type="hidden" th:field="*{m_git}" th:value="X"></div>
+
+<!--              <div class="my-3"><input type="hidden" th:field="*{m_git}" th:value="X"></div>-->
+
               <div class="text-center">
                 <div class="text-center mt-4">
-                  <button type="button" onclick="submitForm()">회원가입</button>
+                  <button type="button" class="submit-style" onclick="submitForm()">회원가입</button>
                 </div>
               </div>
             </div>

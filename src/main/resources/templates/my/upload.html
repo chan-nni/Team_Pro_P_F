@@ -128,15 +128,23 @@
                     });
 
                     var form = document.querySelector('form');
-                    form.onsubmit = function() {
-                        var content = document.querySelector('#editor .ql-editor').innerHTML;
+                    form.onsubmit = function (event) {
+                        // 제목과 내용 체크
+                        var titleInput = document.querySelector('input[name="title"]');
+
+                        if (titleInput.value.trim() === '') {
+                            alert('제목을 입력하세요.');
+                            event.preventDefault(); // 폼 제출 막음
+                        }
+
+                        // 내용을 hidden input에 설정
                         document.querySelector('#postContent').value = content;
                     };
                 </script>
                 <br>
                 <div class="button-group">
                     <button type="submit" class="btn profile-edit-btn">등록하기</button>
-                    <button class="btn profile-edit-btn">취소하기</button>
+                    <a th:href="@{/pofo}">취소하기</a>
                 </div>
             </form>
         </div>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import spring.Pro_P_F.domain.*;
@@ -77,10 +78,11 @@ public class CompanyController {
 
     // 기업 채널 페이지
     @GetMapping("/company_ch")
-    public String company_ch(Model model) {
+    public String company_ch(Model model, @ModelAttribute("message") String message) {
         List<Company> companies = companyMemService.findAllComm();
 
         model.addAttribute("companies", companies);
+        model.addAttribute("message", message);
 
         return "company/company_channel";
     }

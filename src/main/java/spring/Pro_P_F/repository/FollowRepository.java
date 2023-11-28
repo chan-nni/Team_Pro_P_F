@@ -16,4 +16,7 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     // 누가 기업을 팔로우 했는지
     List<Follow> findByCompany(Company company);
+
+    // 팔로우 삭제
+    void deleteByMemberAndCompany(Member member, Company company);
 }

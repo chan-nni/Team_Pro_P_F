@@ -2,6 +2,7 @@ package spring.Pro_P_F.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring.Pro_P_F.domain.Company;
 import spring.Pro_P_F.domain.Follow;
 import spring.Pro_P_F.domain.Member;
@@ -37,5 +38,11 @@ public class FollowService {
     // 특정 기업을 누가 팔로우 했는지
     public List<Follow> getFollowersByCompany(Company company) {
         return followRepository.findByCompany(company);
+    }
+
+    // 팔로우 취소
+    @Transactional
+    public void cancelFollow(Member member, Company company) {
+        followRepository.deleteByMemberAndCompany(member, company);
     }
 }

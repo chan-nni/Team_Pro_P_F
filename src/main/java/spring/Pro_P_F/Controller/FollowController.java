@@ -47,4 +47,21 @@ public class FollowController {
 
         return "redirect:/company_ch"; // 팔로우 후 리다이렉트할 경로 설정
     }
+
+    @GetMapping("followCancel")
+    public String cancelFollow(@RequestParam("id") Long companyId, HttpSession session, RedirectAttributes redirectAttributes) {
+        // 현재 로그인한 사용자 정보 가져오기
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberRepository.findByMid(mId);
+
+        // 팔로우할 기업 회원 정보 가져오기
+        Company company = companyMemRepository.findById(companyId).orElse(null);
+
+        if (member != null && company != null) {
+            followService.cancelFollow(member, company);
+            redirectAttributes.addFlashAttribute("message", "팔로우를 취소했습니다.");
+        }
+
+        return "redirect:/followList";
+    }
 }

@@ -147,7 +147,7 @@
             <span class="company-icon">&bull;</span> <!-- 리스트 형식의 아이콘으로 변경 -->
             <a th:href="@{/com_profile(id=${followedCompany.company.cyId})}" class="custom-link">
               <span th:text="${followedCompany.company.companyname}"></span> <!-- 기업명 -->
-              <button class="custom-btn">팔로잉 취소</button>
+              <a th:href="@{/followCancel(id=${followedCompany.company.cy_seq})}" class="custom-btn">팔로잉 취소</a>
             </a>
           </div>
         </li>

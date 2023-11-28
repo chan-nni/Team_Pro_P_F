@@ -93,7 +93,7 @@
                     <div class="col-md-4 input-field">
                         <select id="category" name="series.name" th:value="${posting != null and posting.series != null and posting.series.name != null} ? *{posting.series.name} : ''">
                             <option value="">카테고리 선택</option>
-                            <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+                            <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}" th:selected="${posting.series == category}"></option>
                         </select>
                     </div>
                 </div>

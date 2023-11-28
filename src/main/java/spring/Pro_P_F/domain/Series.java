@@ -25,7 +25,4 @@ public class Series {
 
     @LastModifiedDate
     private LocalDate s_date;
-
-
-
 }

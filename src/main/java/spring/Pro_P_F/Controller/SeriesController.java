@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spring.Pro_P_F.domain.Series;
 import spring.Pro_P_F.service.SeriesService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,8 +20,10 @@ public class SeriesController {
 
     // 시리즈 목록
     @GetMapping("/series")
-    public String seriesList(Model model) {
-        List<Series> seriesList = seriesService.getAllSeries();
+    public String seriesList(Model model, HttpSession session) {
+        String mId = (String) session.getAttribute("m_id");
+
+        List<Series> seriesList = seriesService.findByMId(mId);
         model.addAttribute("seriesList", seriesList);
         return "my/series_add";
     }

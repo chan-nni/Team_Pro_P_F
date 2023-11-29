@@ -1,7 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>

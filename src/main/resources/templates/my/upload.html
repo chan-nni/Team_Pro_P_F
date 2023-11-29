@@ -129,7 +129,7 @@
 
                     var form = document.querySelector('form');
                     form.onsubmit = function (event) {
-                        // 제목과 내용 체크
+                        // 제목 체크
                         var titleInput = document.querySelector('input[name="title"]');
 
                         if (titleInput.value.trim() === '') {
@@ -138,6 +138,7 @@
                         }
 
                         // 내용을 hidden input에 설정
+                        var content = quill.root.innerHTML;
                         document.querySelector('#postContent').value = content;
                     };
                 </script>

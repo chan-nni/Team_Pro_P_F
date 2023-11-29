@@ -1,7 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    /* 제목 스타일 */
+    .text-center h2 {
+      font-family: 'Noto Sans KR', sans-serif; /* 가독성 좋은 폰트 사용 */
+      color: #27496d; /* 진한 색상으로 가독성 향상 */
+      font-weight: 700; /* 글꼴 두께를 두껍게 설정 */
+      margin-bottom: 1rem; /* 제목 아래 여백 추가 */
+      padding-bottom: 2rem; /* 제목과 내용 사이의 패딩 */
+      border-bottom: 2px solid #27496d; /* 제목 밑줄 */
+    }
+
+    /* 컨테이너 스타일 */
+    .style-container {
+      background-color: #ffffff; /* 배경색은 밝은 흰색 */
+      padding: 2rem 1rem 1rem 1rem; /* 상, 우, 하, 좌 */
+      border-radius: 10px; /* 모서리 둥글게 처리 */
+      box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.1), /* 상단 그림자 */
+      0 8px 20px rgba(0, 0, 0, 0.1); /* 하단 그림자 */
+      /*margin-top: 1rem; !* 컨테이너 상단에 여백 추가 *!*/
+      margin-bottom: 2rem; /* 컨테이너 하단에 여백 추가 */
+      max-width: 1200px; /* 컨테이너 최대 너비를 설정 */
+      width: 100%; /* 가용한 너비를 모두 사용 */
+      margin-left: auto; /* 가운데 정렬을 위해 왼쪽 마진을 auto로 설정 */
+      margin-right: auto; /* 가운데 정렬을 위해 오른쪽 마진을 auto로 설정 */
+    }
+
+    @media (max-width: 768px) {
+      .style-container {
+        padding: 1rem; /* 화면이 작을 때는 패딩을 줄임 */
+        max-width: 100%; /* 모바일 화면에서는 컨테이너 너비를 100%로 설정 */
+      }
+    }
+    /*테이블 CSS*/
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -54,7 +130,7 @@
 
   <!-- ======= Services Section ======= -->
   <section class="services">
-    <div class="container">
+    <div class="style-container">
       <script>
         window.addEventListener('load', function() {
           const titleElement = document.getElementById('postTitle');
@@ -98,15 +174,25 @@
 
   <!-- ======= Why Us Section ======= -->
   <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="400">
-    <div class="container">
+    <div class="style-container">
       <div class="text-center">
         <h2 class="animate__animated animate__fadeInDown">팔로우 한 기업의 공고</h2><br>
       </div>
       <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-md-12">
           <table class="ui celled table">
+            <colgroup>
+              <col style="width: 15%;"> <!-- 모집 상태 -->
+              <col style="width: 30%;"> <!-- 공고명 -->
+              <col style="width: 15%;"> <!-- 채용형태 -->
+              <col style="width: 15%;"> <!-- 기업명 -->
+              <col style="width: 15%;"> <!-- 근무지역 -->
+              <col style="width: 10%;"> <!-- 시작일 -->
+              <col style="width: 10%;"> <!-- 마감일 -->
+            </colgroup>
             <thead>
             <tr>
+              <th>모집 상태</th>
               <th>공고명</th>
               <th>채용형태</th>
               <th>기업명</th>
@@ -117,7 +203,10 @@
             </thead>
             <tbody>
             <tr th:each="job : ${jobs}">
-              <td th:text="${job.title}">IOS 개발자 구함둥</td>
+              <td th:text="${job.status.getDisplayName()}">모집 상태</td>
+              <td>
+                <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
+              </td>
               <td th:text="${job.employ.getDisplayName()}">경력 </td>
               <td th:text="${job.company.companyname}">카카오</td>
               <td th:text="${job.area.getDisplayName()}">서울</td>
@@ -125,6 +214,20 @@
               <td th:text="${job.enddate}">~ 4/30</td>
             </tr>
             </tbody>
+            <style>
+              .table {
+                table-layout: fixed;
+                width: 100%; /* 원래의 테이블 너비로 설정 */
+              }
+              /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+              .table tbody td:nth-child(2) a {
+                display: block;
+                width: 100%; /* 너비를 30%로 제한 */
+                white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                overflow: hidden; /* 넘칠 때 가림 */
+                text-overflow: ellipsis; /* 생략 부호로 표시 */
+              }
+            </style>
           </table>
         </div>
       </div>

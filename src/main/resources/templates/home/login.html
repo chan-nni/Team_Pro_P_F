@@ -49,7 +49,7 @@
                 <h5>비밀번호</h5>
               </div>
               <div class="col-md-12 form-group mt-12">
-                <input type="password" th:field="*{m_pwd}" class="form-control" id="pwd" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+                <input type="password" th:field="*{m_pwd}" class="form-control" id="pwd" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&*]+" title="영문자, 숫자 및 특수문자(!@#$%^&*)만 입력 가능합니다." required>
               </div>
 
               <!-- 로그인 버튼 -->

@@ -218,10 +218,25 @@ public class PostingController {
     }
 
     @GetMapping("/posting_search")
-    public String search(@RequestParam("keyword") String keyword, Model model) {
-        List<Posting> postings = postingService.findByKeyword(keyword);
+    public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page) {
+        int pageSize = 3;
+
+        Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
+
         model.addAttribute("postings", postings);
         return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
+    }
+
+    @GetMapping("/posting_other_search")
+    public String other_search(@RequestParam("keyword") String keyword, Model model,
+                               @RequestParam(defaultValue = "0") int page) {
+
+        int pageSize = 3;
+
+        Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
+
+        model.addAttribute("postings", postings);
+        return "my/mypage_other"; // 검색 결과를 표시할 Thymeleaf 템플릿
     }
 
     // 시리즈별 포스팅 목록

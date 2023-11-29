@@ -1,7 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -30,14 +74,14 @@
     .search123.category {
       margin-bottom: 53px; /* 원하는 간격으로 조절 */
     }
-    .table td {
-      text-decoration: none;
-      color: black;
-    }
+    /*.table td {*/
+    /*  text-decoration: none;*/
+    /*  color: black;*/
+    /*}*/
 
-    .table td:hover {
-      color: #00b3ff;
-    }
+    /*.table td:hover {*/
+    /*  color: #00b3ff;*/
+    /*}*/
   </style>
   <!-- 검색바 하단 간격 CSS 끝 -->
 
@@ -57,10 +101,18 @@
                 </div>
               </div>
               <table class="table text-center">
+                <colgroup>
+                  <col style="width: 10%;"> <!-- 번호 -->
+                  <col style="width: 30%;"> <!-- 제목 -->
+                  <col style="width: 20%;"> <!-- 아이디 -->
+                  <col style="width: 15%;"> <!-- 등록일 -->
+                  <col style="width: 15%;"> <!-- 좋아요 -->
+                </colgroup>
                 <thead>
                 <tr>
                   <th>번호</th>
                   <th>제목</th>
+                  <th>아이디</th>
                   <th>등록일</th>
                   <th>좋아요</th>
                 </tr>
@@ -71,10 +123,25 @@
                   <td>
                     <a th:href="@{/post_de(id=${seriesPosting.seq})}" th:text="${seriesPosting.title}"></a>
                   </td>
-                  <td th:text="${seriesPosting.date}">날짜</td>
+                  <td th:text="${seriesPosting.member.mid}">아이디</td>
+                  <td th:text="${seriesPosting.date}">등록일</td>
                   <td th:text="${seriesPosting.plike}">좋아요</td>
                 </tr>
                 </tbody>
+                <style>
+                  .table {
+                    table-layout: fixed;
+                    width: 100%; /* 원래의 테이블 너비로 설정 */
+                  }
+                  /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+                  .table tbody td:nth-child(2) a {
+                    display: block;
+                    width: 100%; /* 너비를 30%로 제한 */
+                    white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                    overflow: hidden; /* 넘칠 때 가림 */
+                    text-overflow: ellipsis; /* 생략 부호로 표시 */
+                  }
+                </style>
               </table>
 
             </div>

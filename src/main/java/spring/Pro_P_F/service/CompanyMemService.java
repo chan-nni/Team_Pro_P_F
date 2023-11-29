@@ -37,4 +37,9 @@ public class CompanyMemService {
         return companyMemRepository.findByCompanynameContainingIgnoreCase(keyword);
     }
 
+    // id 중복확인
+    public boolean existsByCompany(String companyId) {
+        return companyMemRepository.existsByCyId(companyId);
+    }
+
 }

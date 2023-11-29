@@ -3,10 +3,7 @@ package spring.Pro_P_F.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CompanyForm;
 import spring.Pro_P_F.domain.Company;
 import spring.Pro_P_F.domain.Job;
@@ -16,7 +13,9 @@ import spring.Pro_P_F.service.JobService;
 import spring.Pro_P_F.service.PostingService;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CompanyMemController {
@@ -84,6 +83,17 @@ public class CompanyMemController {
         }
     }
 
+    // id 중복확인
+    @GetMapping("/checkCId")
+    @ResponseBody
+    public Map<String, Boolean> checkId(@RequestParam String cid) {
+        boolean isDuplicate = companyMemService.existsByCompany(cid);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("duplicate", isDuplicate);
+
+        return response;
+    }
 
     // 기업 메인 페이지 이동
     @GetMapping("/c_main")

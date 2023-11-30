@@ -29,6 +29,8 @@ public class Job {
     private LocalDate enddate;
 
     private int person;
+
+    @Column(name = "j_content", columnDefinition = "TEXT")
     private String content;
 
     @Enumerated(EnumType.STRING)

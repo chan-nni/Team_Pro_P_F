@@ -65,8 +65,10 @@
     <div class="tab_content" id="all_content">
       <div class="col-lg-6">
         <div class="search123 category">
-          <input type="text" placeholder="아직 미완성">
-          <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></a>
+          <form th:action="@{/posting_other_search}" method="get">
+            <input type="text" name="keyword" placeholder="검색어 입력">
+            <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
+          </form>
         </div>
       </div>
       <!-- End sidebar search formn-->
@@ -123,8 +125,10 @@
       </section>
     </div>
 
-    <div class="tab_content" id="design_content">
-      <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>
+    <div class="tab_content" id="design_content" th:each="posting : ${postings}">
+      <div th:if="${posting.member.intro != null}">
+        <p th:text="${posting.member.intro}"></p>
+      </div>
     </div>
   </div>
 </main><!-- End #main -->

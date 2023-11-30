@@ -27,7 +27,7 @@ public class Community {
     @Column(name = "c_title")
     private String title;
 
-    @Column(name = "c_content")
+    @Column(name = "c_content", columnDefinition = "TEXT")
     private String content;
 
     private int c_like;

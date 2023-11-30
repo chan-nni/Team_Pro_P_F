@@ -60,8 +60,8 @@
                 <hr class="section-divider">
                 <h5>비밀번호</h5>
               </div>
-              <div class="col-md-6 form-group mt-12">
-                <input type="password" class="form-control" th:field="*{pwd}" placeholder="비밀번호 입력" id="password" required>
+              <div class="col-md-9 form-group mt-12">
+                <input type="password" class="form-control" th:field="*{pwd}" placeholder="영문자, 숫자 및 특수문자(!@#$%^&*)만 입력 가능합니다." id="password" required>
               </div>
 
               <!-- 비밀번호 확인-->
@@ -69,13 +69,18 @@
               <div class="col-lg-12 mb-3">
                 <h5>비밀번호 확인</h5>
               </div>
-              <div class="col-md-6 form-group mt-12">
+              <div class="col-md-9 form-group mt-12">
                 <input type="password" class="form-control" id="pwcheck" placeholder="비밀번호 확인" required>
                 <span id="passwordMatchMessage"></span>
               </div>
 
-              <div class="col-md-6 form-group mt-12">
-                <input type="text" th:field="*{name}" class="form-control" id="nickname" placeholder="담당자이름 입력" required>
+              <!-- 담당자 이름 입력-->
+              <div class="my-2"></div>
+              <div class="col-lg-12 mb-3">
+                <h5>담당자 이름</h5>
+              </div>
+              <div class="col-md-9 form-group mt-12">
+                <input type="text" th:field="*{name}" class="form-control" id="nickname" placeholder="담당자 이름 입력" required>
               </div>
 
               <!-- email -->

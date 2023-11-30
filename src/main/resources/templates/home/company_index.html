@@ -3,6 +3,41 @@
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-bk5H1mP+Bu6XbH4jqvIl9/6d5VtIlMok9n7J6ro+Hl6zQOY/laF7v1fDDUKwL6osGznz56lJPhNwkCK2ug5D8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* 제목 스타일 */
+    .text-center h2 {
+      font-family: 'Noto Sans KR', sans-serif; /* 가독성 좋은 폰트 사용 */
+      color: #27496d; /* 진한 색상으로 가독성 향상 */
+      font-weight: 700; /* 글꼴 두께를 두껍게 설정 */
+      margin-bottom: 1rem; /* 제목 아래 여백 추가 */
+      padding-bottom: 2rem; /* 제목과 내용 사이의 패딩 */
+      border-bottom: 2px solid #27496d; /* 제목 밑줄 */
+    }
+
+    /* 컨테이너 스타일 */
+    .style-container {
+      background-color: #ffffff; /* 배경색은 밝은 흰색 */
+      padding: 2rem 1rem 1rem 1rem; /* 상, 우, 하, 좌 */
+      border-radius: 10px; /* 모서리 둥글게 처리 */
+      box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.1), /* 상단 그림자 */
+      0 8px 20px rgba(0, 0, 0, 0.1); /* 하단 그림자 */
+      /*margin-top: 1rem; !* 컨테이너 상단에 여백 추가 *!*/
+      margin-bottom: 2rem; /* 컨테이너 하단에 여백 추가 */
+      max-width: 1200px; /* 컨테이너 최대 너비를 설정 */
+      width: 100%; /* 가용한 너비를 모두 사용 */
+      margin-left: auto; /* 가운데 정렬을 위해 왼쪽 마진을 auto로 설정 */
+      margin-right: auto; /* 가운데 정렬을 위해 오른쪽 마진을 auto로 설정 */
+    }
+
+    @media (max-width: 768px) {
+      .style-container {
+        padding: 1rem; /* 화면이 작을 때는 패딩을 줄임 */
+        max-width: 100%; /* 모바일 화면에서는 컨테이너 너비를 100%로 설정 */
+      }
+    }
+
+  </style>
 </head>
 
 <body>
@@ -49,7 +84,7 @@
 
   <!-- ======= Services Section ======= -->
   <section class="services">
-    <div class="container">
+    <div class="style-container">
       <script>
         window.addEventListener('load', function() {
           const titleElement = document.getElementById('postTitle');

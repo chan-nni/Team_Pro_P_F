@@ -1,7 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+    <style>
+        /*포스팅 내용 CSS 미완*/
+        .entry-content {
+            color: black;
+            font-size: 18px;
+            line-height: 1.5; /* 텍스트의 줄 간격 조절 */
+        }
+
+        /*포스팅 제목 CSS*/
+        .entry-title {
+            line-height: 1.4; /* 텍스트의 줄 간격 조절 */
+        }
+
+        /* "좋아요" 버튼 스타일링 (배경 없음) */
+        .like-button {
+            background-color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        /* "좋아요" 아이콘 스타일링 */
+        .like-button i {
+            color: #68A4C4; /* 아이콘 색상 설정 */
+            font-size: 18px; /* 아이콘 크기 설정 (선택적) */
+            margin-right: 5px; /* 아이콘과 텍스트 사이 여백 설정 */
+        }
+
+        /* "좋아요" 버튼에 호버 효과 스타일링 (선택적) */
+        .like-button:hover {
+            color: #8dbad2;
+        }
+
+        /* "좋아요" 버튼 밑에 텍스트 스타일링 (선택적) */
+        .like-button span {
+            color: #68A4C4; /* 텍스트 색상 설정 */
+            font-weight: bold; /* 텍스트를 굵게 표시 */
+        }
+
+        .change-button {
+            display: inline-block;
+            padding: 8.1px 14.7px;
+            border: 2px solid #68A4C4;
+            text-decoration: none;
+            background: #68A4C4;
+            color: #fff !important; /* 텍스트 색상을 강제로 하얀색으로 설정 */
+            border-radius: 0;
+            cursor: pointer;
+            transition: background-color 0.4s;
+            margin-right: 10px; /* 수정하기 버튼의 오른쪽 간격 설정 */
+        }
+
+        .change-button:hover {
+            background: #8dbad2;
+            /*color: white;*/
+            border-color: #8dbad2; /* hover 시 테두리 색상 변경 */
+        }
+
+    </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -74,59 +134,6 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <style>
-                            /*포스팅 내용 CSS*/
-                            .entry-content {
-                                color: black;
-                                font-size: 18px;
-                            }
-                            /* "좋아요" 버튼 스타일링 (배경 없음) */
-                            .like-button {
-                                background-color: white;
-                                border: none;
-                                padding: 5px;
-                                cursor: pointer;
-                            }
-
-                            /* "좋아요" 아이콘 스타일링 */
-                            .like-button i {
-                                color: #68A4C4; /* 아이콘 색상 설정 */
-                                font-size: 18px; /* 아이콘 크기 설정 (선택적) */
-                                margin-right: 5px; /* 아이콘과 텍스트 사이 여백 설정 */
-                            }
-
-                            /* "좋아요" 버튼에 호버 효과 스타일링 (선택적) */
-                            .like-button:hover {
-                                color: #8dbad2;
-                            }
-
-                            /* "좋아요" 버튼 밑에 텍스트 스타일링 (선택적) */
-                            .like-button span {
-                                color: #68A4C4; /* 텍스트 색상 설정 */
-                                font-weight: bold; /* 텍스트를 굵게 표시 */
-                            }
-
-                            .change-button {
-                                display: inline-block;
-                                padding: 8.1px 14.7px;
-                                border: 2px solid #68A4C4;
-                                text-decoration: none;
-                                background: #68A4C4;
-                                color: #fff !important; /* 텍스트 색상을 강제로 하얀색으로 설정 */
-                                border-radius: 0;
-                                cursor: pointer;
-                                transition: background-color 0.4s;
-                                margin-right: 10px; /* 수정하기 버튼의 오른쪽 간격 설정 */
-                            }
-
-                            .change-button:hover {
-                                background: #8dbad2;
-                                /*color: white;*/
-                                border-color: #8dbad2; /* hover 시 테두리 색상 변경 */
-                            }
-
-                        </style>
 
                         <form th:action="@{/like(postId=${posting.getSeq})}" method="post">
                             <hr class="section-divider">
@@ -203,6 +210,7 @@
                             /* 댓글 내용 스타일링 */
                             .comment-text {
                                 color: #000000; /* 댓글 내용 텍스트 색상을 검은색으로 설정 */
+                                line-height: 1.4; /* 텍스트의 줄 간격 조절 */
                             }
                         </style>
 

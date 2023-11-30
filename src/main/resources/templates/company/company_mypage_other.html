@@ -1,7 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -69,31 +114,56 @@
         <div class="container">
 
           <table class="ui celled  table">
+            <colgroup>
+              <col style="width: 15%;"> <!-- 모집 상태 -->
+              <col style="width: 25%;"> <!-- 공고명 -->
+              <col style="width: 15%;"> <!-- 채용형태 -->
+              <col style="width: 15%;"> <!-- 기업명 -->
+              <col style="width: 15%;"> <!-- 근무지역 -->
+              <col style="width: 15%;"> <!-- 시작일 -->
+              <col style="width: 15%;"> <!-- 마감일 -->
+            </colgroup>
             <thead>
             <tr>
+              <th>모집 상태</th>
               <th>공고명</th>
               <th>채용형태</th>
               <th>기업명</th>
               <th>근무지역</th>
+              <th>시작일</th>
               <th>마감일</th>
-              <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="job : ${jobs}">
+              <td th:text="${job.status.getDisplayName()}">모집 상태</td>
               <td>
                 <a th:href="@{/job_de(id=${job.seq})}" th:text="${job.title}" />
               </td>
-              <td th:text="${job.employ}">경력 </td>
+              <td th:text="${job.employ.getDisplayName()}">경력 </td>
               <td th:text="${job.company.companyname}">카카오</td>
-              <td th:text="${job.area}">서울</td>
+              <td th:text="${job.area.getDisplayName()}">서울</td>
               <td th:text="${job.startdate}"></td>
               <td th:text="${job.enddate}">~ 4/30</td>
-              <th>
-              </th>
+
             </tr>
             </tbody>
+            <style>
+              .table {
+                table-layout: fixed;
+                width: 100%; /* 원래의 테이블 너비로 설정 */
+              }
+              /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+              .table tbody td:nth-child(2) a {
+                display: block;
+                width: 100%; /* 너비를 30%로 제한 */
+                white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                overflow: hidden; /* 넘칠 때 가림 */
+                text-overflow: ellipsis; /* 생략 부호로 표시 */
+              }
+            </style>
           </table>
+          <!-- 페이징 처리 -->
           <section class="blog">
             <div class="blog-pagination">
               <ul class="justify-content-center">
@@ -103,15 +173,10 @@
               </ul>
             </div>
           </section>
-
-
         </div>
       </section>
-
     </div>
-
   </div>
-
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->

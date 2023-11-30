@@ -31,9 +31,10 @@
             border: 2px solid #68A4C4; /* 테두리 색을 찐회색으로 변경 */
             background-color: #ffffff; /* 배경색을 흰색으로 변경 */
             padding: 20px; /* 내부 여밀기를 늘림 */
-            width: 20%; /* 너비를 절반으로 줄임 */
+            width: 50%; /* 너비를 절반으로 줄임 */
             border-radius: 10px; /* 테두리를 둥글게 만듭니다 */
             margin: 0 auto 10px; /* 수평 가운데 정렬 */
+            margin-bottom: 40px; /* 하단 여백 추가 */
         }
 
         .grid-title {
@@ -50,12 +51,46 @@
         .custom-li {
             display: flex; /* 리스트 항목을 행으로 표시 */
             align-items: center; /* 내용을 수직 가운데로 정렬 */
-            justify-content: center; /* 가로로 가운데 정렬합니다 */
+            justify-content: space-between; /* 좌우로 가운데 정렬합니다 */
             margin: 10px 0; /* 목록 항목 간의 간격을 추가합니다 */
-            /*border-top: 1px solid #007BFF; !* 각 목록 항목에 상단 선 추가 *!*/
+            border-top: 1px solid silver; /* 각 목록 항목에 상단 선 추가 */
+            padding-top: 10px; /* 상단 간격 추가 */
+        }
+
+        .list-item-container {
+            display: flex; /* Use flexbox for the list item container */
+            align-items: center;
+            flex-grow: 1; /* Expand to fill available space */
+        }
+
+        .company-details {
+            display: flex; /* 아이콘과 이름을 나란히 배치 */
+            align-items: center; /* 수직 중앙 정렬 */
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            flex-grow: 1; /* 남은 공간을 채우기 위해 확장 */
+            margin-right: 10px; /* 오른쪽 여백 추가 */
+        }
+
+        .button-container {
+            margin-left: 10px;
         }
 
         .custom-link {
+            text-decoration: none; /* 링크의 밑줄을 제거합니다 */
+            color: #007BFF; /* 링크 색상을 설정합니다 */
+            cursor: pointer;
+            font-size: 18px !important;
+            /*color: #1E4356;*/
+            font-weight: bold;
+        }
+
+        .company-icon {
+            font-size: 24px; /* 아이콘 크기 조절 */
+            margin-right: 5px; /* 아이콘과 텍스트 사이 여밀기 추가 */
+            padding-bottom: 5px;
+        }
+
+        .custom-btn {
             text-decoration: none; /* 밑줄 제거 */
             color: #68A4C4; /* 링크 색상 */
             cursor: pointer; /* 커서 스타일 */
@@ -68,13 +103,13 @@
             line-height: 20px; /* 라인 높이 설정 */
             display: inline-block; /* 인라인 블록 요소로 설정 */
             vertical-align: middle; /* 수직 가운데 정렬 */
-            margin-bottom: 10px;
-            font-size: 18px;
+            /*margin-bottom: 10px;*/
+            font-size: 14px;
         }
 
-        .custom-link:hover {
+        .custom-btn:hover {
             background-color: #e0e0e0; /* 마우스 호버 시 배경색 변경 */
-            color: #0056b3; /* 마우스 호버 시 색상 변경 */
+            color: #8dbad2; /* 마우스 호버 시 색상 변경 */
             border-color: #c0c0c0; /* 마우스 호버 시 테두리 색상 변경 */
         }
 
@@ -91,15 +126,6 @@
             width: 100%;
             padding: 10px;
             margin: 5px 0;
-        }
-
-        /* 시리즈 이름 스타일링 */
-        span {
-            display: block;
-            font-size: 18px;
-            color: #1E4356;
-            font-weight: bold;
-            margin-bottom: 10px;
         }
 
         #editForm, #addForm {
@@ -165,12 +191,20 @@
     <div class="col-md-12">
         <div class="grid-container">
             <h3 class="grid-title">시리즈 목록</h3>
-            <ul th:each="series : ${seriesList}" class="custom-ul">
-                <li class="custom-li">
-                    <span th:text="${series.name}"></span>
-                    <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.seq} + '\');'" class="custom-link">
-                        수정
-                    </a>
+            <ul class="custom-ul">
+                <li th:each="series : ${seriesList}" class="custom-li">
+                    <div class="list-item-container">
+                        <!-- 아이콘은 • 으로 변경, 리스트 아이템의 시작 부분에 위치 -->
+                        <span class="company-icon">&bull;</span> <!-- 리스트 형식의 아이콘으로 변경 -->
+                        <div class="company-details"> <!-- 수정된 클래스 추가 -->
+                            <span th:text="${series.name}" class="custom-link"></span>
+                            <div class="button-container">
+                                <a href="#" th:onclick="'javascript:showEditForm(\'' + ${series.seq} + '\');'" class="custom-btn">
+                                    수정
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

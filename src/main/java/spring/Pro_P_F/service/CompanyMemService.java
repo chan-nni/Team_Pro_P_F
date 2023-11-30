@@ -42,4 +42,8 @@ public class CompanyMemService {
         return companyMemRepository.existsByCyId(companyId);
     }
 
+    // 기업 정보
+    public List<Company> findByCompany(String companyId) {
+        return companyMemRepository.findAllByCyId(companyId);
+    }
 }

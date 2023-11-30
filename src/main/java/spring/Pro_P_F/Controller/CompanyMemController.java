@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CompanyForm;
 import spring.Pro_P_F.domain.Company;
 import spring.Pro_P_F.domain.Job;
+import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
 import spring.Pro_P_F.service.CompanyMemService;
 import spring.Pro_P_F.service.JobService;
@@ -118,6 +119,46 @@ public class CompanyMemController {
         model.addAttribute("jobs", jobs);
 
         return "company/company_mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
+    }
+
+    @GetMapping("/yehee")
+    public String yehee() {
+        return "company/company_member_edit";
+    }
+
+    // 개인정보 수정페이지로 이동
+    @GetMapping("/c_edit")
+    public String memberEdit(Model model, HttpSession session) {
+        String cId = (String) session.getAttribute("cy_id");
+        System.out.println("cId = " + cId);
+
+        List<Company> companies = companyMemService.findByCompany(cId);
+        model.addAttribute("companies", companies);
+
+        System.out.println("companies = " + companies);
+        
+        return "company/company_member_edit";
+    }
+
+    // 개인정보 수정페이지로 이동
+    @PostMapping("/c_edit")
+    public String updateMember(Model model, HttpSession session, Company company) {
+        String cId = (String) session.getAttribute("cy_id");
+        Company editCompany = companyMemService.findMemByCyId(cId);
+
+        if (editCompany != null) {
+            editCompany.setCompanyname(company.getCompanyname());
+            editCompany.setCy_pwd(company.getCy_pwd());
+            editCompany.setManager_email(company.getManager_email());
+            editCompany.setManager_phone(company.getManager_phone());
+            editCompany.setLink(company.getLink());
+
+            companyMemService.save(editCompany);
+
+            return "redirect:/c_pofo";
+        } else {
+            return "redirect:/c_edit";
+        }
     }
 
 }

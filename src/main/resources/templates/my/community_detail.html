@@ -123,14 +123,20 @@
 
                         </style>
 
-                        <form action="#" th:action="@{/clike(id=${community.seq})}" method="post">
-                            <hr class="section-divider">
-                            <button type="submit" class="like-button">
-                                <i class="fas fa-thumbs-up"></i> <!--좋아요-->
-                                <span th:text="${community.c_like}"></span>
-                            </button>
-                            <hr class="section-divider">
-                        </form>
+                        <div th:if="${session.m_id != null}">
+                            <form th:action="@{/clike(id=${community.seq})}" method="post">
+                                <hr class="section-divider">
+                                <button type="submit" class="like-button">
+                                    <i class="fas fa-thumbs-up"></i> <!--좋아요-->
+                                    <span th:text="${community.c_like}"></span>
+                                </button>
+                                <hr class="section-divider">
+                            </form>
+                        </div>
+                        <div th:if="${session.cy_id != null}">
+                            <i class="fas fa-thumbs-up"></i> <!--좋아요-->
+                            <span th:text="${community.c_like}"></span>
+                        </div>
 
                         <div class="button-container">
                             <a th:href="@{/community_edit(id=${community.getSeq})}"
@@ -145,18 +151,20 @@
 
                         <div class="reply-form">
                             <h4>댓글</h4><br>
-                            <form action="/ccreate" method="post">
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <div class="comment-input-container">
-                                            <input type="hidden" name="communityId" th:value="${community.seq}">
-                                            <textarea name="content" class="form-control"
-                                                      placeholder="댓글 작성하기" maxlength="254"></textarea>
-                                            <button type="submit" class="btn btn-primary">등록</button>
+                            <div th:if="${session.m_id != null}">
+                                <form action="/ccreate" method="post">
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            <div class="comment-input-container">
+                                                <input type="hidden" name="communityId" th:value="${community.seq}">
+                                                <textarea name="content" class="form-control"
+                                                          placeholder="댓글 작성하기" maxlength="254"></textarea>
+                                                <button type="submit" class="btn btn-primary">등록</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
 
                             <ul>
                                 <hr class="section-divider">

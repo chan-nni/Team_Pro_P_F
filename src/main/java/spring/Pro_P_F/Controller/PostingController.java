@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import spring.Pro_P_F.Controller.Form.PostForm;
 import spring.Pro_P_F.domain.Member;
 import spring.Pro_P_F.domain.Posting;
@@ -244,10 +246,10 @@ public class PostingController {
     public String Series_Posting(@RequestParam("id") Long seriesId, Model model) {
         Series series = seriesService.findBySeq(seriesId);
         List<Posting> seriesPostings = postingService.findBySeries(series);
-
         model.addAttribute("seriesPostings", seriesPostings);
         return "my/series";
     }
+
 
     // 검색
     @GetMapping("p_search")
@@ -262,6 +264,16 @@ public class PostingController {
 
         return "my/postingSearch";
     }
+
+    // 시리즈 목록에서 포스팅 검색
+    @GetMapping("/sp_search")
+    public String searchSPostings(@RequestParam("keyword") String keyword, Model model) {
+        List<Posting> seriesPostings = postingService.findByKeyword(keyword);
+        model.addAttribute("seriesPostings", seriesPostings);
+        model.addAttribute("keyword", keyword);
+        return "my/series";
+    }
+
 }
 
 

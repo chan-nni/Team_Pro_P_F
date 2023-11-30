@@ -153,6 +153,7 @@ public class JobController {
             existingJob.setContent(job.getContent());
             existingJob.setWork(job.getWork());
             existingJob.setArea(job.getArea());
+            existingJob.setEmploy(job.getEmploy());
 
             jobService.saveJob(existingJob);
 

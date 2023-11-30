@@ -25,5 +25,5 @@ public class Member {
     @Column(name = "m_intro")
     private String intro;
 
-    private String m_git;
+    private String mgit;
 }

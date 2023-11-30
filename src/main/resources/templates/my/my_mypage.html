@@ -96,7 +96,7 @@
         <h1 class="profile-user-name" th:text="${session.m_id}">username</h1><br><br><br>
         <h2>
           팔로잉: <a th:href="@{/followList}"><span th:text="${followCount}"></span></a>
-          <a href="/" class="github-icon"><i class="fab fa-github"></i></a>
+          <a th:href="${mgit}" class="github-icon"><i class="fab fa-github"></i></a>
         </h2>
 
       </div>

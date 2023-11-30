@@ -40,6 +40,9 @@ public class MypageController {
 
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);
+        String mgit = member.getMgit();
+        model.addAttribute("mgit", mgit);
+        System.out.println("mgit = " + mgit);
 
         // 특정 페이지의 포스팅 리스트 가져오기
         Page<Posting> postingPage = postingService.findPostingsByMIdPaged(member, PageRequest.of(page, pageSize));
@@ -104,12 +107,13 @@ public class MypageController {
         String mId = (String) session.getAttribute("m_id");
         Member editMember = memberService.findOne(mId);
         System.out.println("id = " + mId + "2번?");
+
         if (editMember != null) {
             editMember.setM_name(member.getM_name());
             editMember.setM_pwd(member.getM_pwd());
             editMember.setM_email(member.getM_email());
             editMember.setMphone(member.getMphone());
-            editMember.setM_git(member.getM_git());
+            editMember.setMgit(member.getMgit());
 
             System.out.println("지나갑니다");
 

@@ -54,7 +54,7 @@ public class MemberController {
         member.setM_name(form.getM_name());
         member.setMphone(form.getMphone());
         member.setM_email(form.getM_email());
-        member.setM_git(form.getM_git());
+        member.setMgit(form.getMgit());
 
         memberService.join(member);
         return "home/login";

@@ -21,6 +21,6 @@ public class MemberForm {
 
     private String m_email;
 
-    private String m_git;
+    private String mgit;
 
 }

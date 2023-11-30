@@ -114,6 +114,9 @@ public class JobController {
         List<Job> jobs = jobService.findBySeq(jobId);
         model.addAttribute("jobs", jobs);
 
+        String companylink = jobs.get(0).getCompany().getLink();
+        model.addAttribute("companylink", companylink);
+
         model.addAttribute("message", message);
         return "company/employ_detail";
     }

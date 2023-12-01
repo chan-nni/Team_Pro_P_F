@@ -52,7 +52,7 @@
                   <h5>아이디</h5>
                 </div>
                 <div class="col-md-6 form-group mt-12">
-                  <input type="text" th:value="*{member.mid}" name="mid" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+                  <h5 th:text="*{member.mid}"></h5>
                 </div>
 
                 <!-- 닉네임 -->

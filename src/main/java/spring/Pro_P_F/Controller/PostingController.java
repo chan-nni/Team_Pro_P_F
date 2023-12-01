@@ -14,14 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import spring.Pro_P_F.Controller.Form.PostForm;
-import spring.Pro_P_F.domain.Member;
-import spring.Pro_P_F.domain.Posting;
-import spring.Pro_P_F.domain.PostingLike;
-import spring.Pro_P_F.domain.Series;
-import spring.Pro_P_F.service.MemberService;
-import spring.Pro_P_F.service.PostingLikeService;
-import spring.Pro_P_F.service.PostingService;
-import spring.Pro_P_F.service.SeriesService;
+import spring.Pro_P_F.domain.*;
+import spring.Pro_P_F.service.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -41,6 +35,9 @@ public class PostingController {
 
     @Autowired
     private PostingLikeService postingLikeService;
+
+    @Autowired
+    private FollowService followService;
 
     // 포스팅 등록 페이지 로드
     @GetMapping("/upload")
@@ -151,20 +148,29 @@ public class PostingController {
 
     // 클릭한 포스팅 아이디 마이페이지 로드
     @GetMapping("/profile")
-    public String userProfile(@RequestParam("memberId") String memberId, Model model) {
-        // 여기에서 사용자의 프로필 정보를 가져와서 모델에 추가하는 로직을 구현합니다.
-        // 예를 들어, 사용자 정보를 데이터베이스에서 조회하고 모델에 추가합니다.
+    public String userProfile(@RequestParam("memberId") String memberId, Model model,
+                              @RequestParam(defaultValue = "0") int page) {
+        int pageSize = 3;
+
         model.addAttribute("memberId", memberId);
-        System.out.println("이걸 지났다네~~" + memberId);
 
         Member member = memberService.findOne(memberId);
+        String mgit = member.getMgit();
+        model.addAttribute("mgit", mgit);
+
         model.addAttribute("member", member);
 
-        List<Posting> postings = postingService.findBym_id(memberId);
-        model.addAttribute("postings", postings);
+        // 특정 페이지의 포스팅 리스트 가져오기
+        Page<Posting> postingPage = postingService.findPostingsByMIdPaged(member, PageRequest.of(page, pageSize));
+        model.addAttribute("postings", postingPage);
 
+        // 시리징
         List<Series> series = seriesService.findByMId(memberId);
         model.addAttribute("series", series);
+
+        // 팔로우 리스트 갯수 가져옴
+        List<Follow> followList = followService.getFollowedCompanies(member);
+        model.addAttribute("followCount", followList.size());
 
         return "my/mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }
@@ -228,6 +234,37 @@ public class PostingController {
         model.addAttribute("postings", postings);
         return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
     }
+
+    @GetMapping("/posting_search_other")
+    public String searchOtherPostings(@RequestParam("memberId") String memberId,
+                                      @RequestParam("keyword") String keyword,
+                                      Model model,
+                                      @RequestParam(defaultValue = "0") int page) {
+        int pageSize = 3;
+
+        model.addAttribute("memberId", memberId);
+
+        Member member = memberService.findOne(memberId);
+        String mgit = member.getMgit();
+        model.addAttribute("mgit", mgit);
+
+        model.addAttribute("member", member);
+
+        // 특정 페이지의 포스팅 리스트 가져오기
+        Page<Posting> postingPage = postingService.searchPostingsByKeywordAndMIdPaged(keyword, member, PageRequest.of(page, pageSize));
+        model.addAttribute("postings", postingPage);
+
+        // 시리즈
+        List<Series> series = seriesService.findByMId(memberId);
+        model.addAttribute("series", series);
+
+        // 팔로우 리스트 갯수 가져옴
+        List<Follow> followList = followService.getFollowedCompanies(member);
+        model.addAttribute("followCount", followList.size());
+
+        return "my/mypage_other";
+    }
+
 
     @GetMapping("/posting_other_search")
     public String other_search(@RequestParam("keyword") String keyword, Model model,

@@ -1,7 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    .table {
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .table th,
+    .table td {
+      /*border: none;*/
+      padding: 8px;
+    }
+
+    .table th {
+      background-color: #f2f2f2 !important;
+    }
+
+    .table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .table a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .table a:hover {
+      color: #00b3ff;
+    }
+
+    /* 테이블의 상단(헤더의 상단)에 테두리를 추가 */
+    .table thead {
+      border-top: 2px solid silver; /* 상단 테두리 설정 */
+    }
+
+    /* 테이블의 마지막 행(<tr>) 하단에 테두리를 추가 */
+    .table tbody tr:last-child {
+      border-bottom: 2px solid silver; /* 하단 테두리 설정 */
+    }
+
+    /*깃허브 아이콘 CSS*/
+    .github-icon {
+      margin-left: 30px; /* 왼쪽 여백 */
+      color: black;
+    }
+
+    /*깃허브 아이콘 CSS*/
+    .github-icon:hover {
+      color: black;
+    }
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -9,21 +64,21 @@
 
 <main id="main">
 
-<!-- ======= Our Portfolio Section ======= -->
-<section class="breadcrumbs">
-  <div class="container">
+  <!-- ======= Our Portfolio Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
 
-    <div class="d-flex justify-content-between align-items-center">
-      <h2>My Page</h2>
-      <ol>
-        <li><a href="index.html">Home</a></li>
-        <li>My Page</li>
-      </ol>
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>My Page</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>My Page</li>
+        </ol>
+      </div>
+
     </div>
-
-  </div>
-</section>
-<!-- End Our Portfolio Section -->
+  </section>
+  <!-- End Our Portfolio Section -->
 
   <!--마이페이지 글작성-->
   <div class="container">
@@ -38,16 +93,11 @@
 
       <div class="profile-user-settings">
 
-        <h1 class="profile-user-name" th:text="${memberId}">username</h1>
-
-      </div>
-
-      <div class="profile-stats">
-
-        <ul>
-          <li><i class="bi bi-github"></i></li>
-          <li><i class="bi bi-envelope"></i></li>
-        </ul>
+        <h1 class="profile-user-name" th:text="${memberId}">username</h1><br><br><br>
+        <h2>
+          팔로잉: <a th:href="@{/followList}"><span th:text="${followCount}"></span></a>
+          <a th:href="${mgit}" class="github-icon"><i class="fab fa-github"></i></a>
+        </h2>
 
       </div>
 
@@ -58,78 +108,192 @@
   <div class="tabs">
     <input id="all" type="radio" name="tab_item" checked>
     <label class="tab_item" for="all">글</label>
+
     <input id="programming" type="radio" name="tab_item">
     <label class="tab_item" for="programming">시리즈</label>
+
     <input id="design" type="radio" name="tab_item">
     <label class="tab_item" for="design">소개</label>
+
     <div class="tab_content" id="all_content">
       <div class="col-lg-6">
         <div class="search123 category">
-          <form th:action="@{/posting_other_search}" method="get">
+          <form th:action="@{/posting_search_other}" method="get">
             <input type="text" name="keyword" placeholder="검색어 입력">
+            <input type="hidden" name="memberId" th:value="${memberId}" placeholder="검색어 입력">
             <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
           </form>
         </div>
       </div>
-      <!-- End sidebar search formn-->
+      <!-- End sidebar search form-->
       <!-- ======= Blog Section ======= -->
       <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
 
           <div class="row">
 
-            <div class="col-lg-12 entries">
-
-              <article class="entry" th:each="posting : ${postings}">
-
-                <h2 class="entry-title">
-                  <a th:href="@{/post_de(id=${posting.getSeq})}" th:text="${posting.title}">title</a>
-                </h2>
-
-                <div class="entry-meta">
-                  <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${memberId}"></i></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-clock" th:text="${posting.date}"></i></li>
-                  </ul>
+            <div class="col-md-auto-12 entries">
+              <section class="article-list table-common con">
+                <div class="table-responsive">
+                  <table class="table text-center">
+                    <colgroup>
+                      <col style="width: 10%;"> <!-- 번호 -->
+                      <col style="width: 30%;"> <!-- 제목 -->
+                      <col style="width: 20%;"> <!-- 아이디 -->
+                      <col style="width: 15%;"> <!-- 등록일 -->
+                      <col style="width: 15%;"> <!-- 좋아요 -->
+                    </colgroup>
+                    <thead>
+                    <tr>
+                      <th>번호</th>
+                      <th>제목</th>
+                      <th>아이디</th>
+                      <th>등록일</th>
+                      <th>좋아요</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "posting, status : ${postings}">
+                      <td th:text="${status.index + 1}">1</td>
+                      <td>
+                        <a th:href="@{/post_de(id=${posting.getSeq})}" th:text="${posting.title}"></a>
+                      </td>
+                      <td th:text="${posting.member.mid}">아이디</td>
+                      <td th:text="${posting.date}">등록일</td>
+                      <td th:text="${posting.plike}">좋아요</td>
+                    </tr>
+                    </tbody>
+                    <style>
+                      .table {
+                        table-layout: fixed;
+                        width: 100%; /* 원래의 테이블 너비로 설정 */
+                      }
+                      /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
+                      .table tbody td:nth-child(2) a {
+                        display: block;
+                        width: 100%; /* 너비를 30%로 제한 */
+                        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                        overflow: hidden; /* 넘칠 때 가림 */
+                        text-overflow: ellipsis; /* 생략 부호로 표시 */
+                      }
+                    </style>
+                  </table>
                 </div>
-
-                <div class="entry-content" th:utext="${posting.content}">
-                  <p>
-                    content
-                  </p>
-                  <div class="read-more">
-                    <a href="blog-single.html">Read More</a>
-                  </div>
-                </div>
-
-              </article><!-- End blog entry -->
+              </section>
             </div>
           </div>
         </div>
       </section>
+      <div th:if="${postings.totalPages > 1}">
+        <ul class="pagination">
+          <li th:each="i : ${#numbers.sequence(0, postings.totalPages - 1)}">
+            <a th:href="@{'/pofo?page=' + ${i}}" th:text="${i}">1</a>
+          </li>
+        </ul>
+      </div>
 
     </div>
 
     <div class="tab_content" id="programming_content">
       <section class="services">
         <div class="Scard-container">
+          <script>
+            window.addEventListener('load', function() {
+              const titleElement = document.getElementById('postTitle');
+              const maxHeight = 6 * parseFloat(getComputedStyle(titleElement).lineHeight); // 6줄까지의 높이 계산 (line-height * 6)
+
+              if (titleElement.clientHeight > maxHeight) {
+                // 텍스트가 높이를 넘어가면 처리
+                let text = titleElement.textContent;
+                while (titleElement.clientHeight > maxHeight) {
+                  text = text.slice(0, -1); // 한 글자씩 줄여가며 높이를 확인
+                  titleElement.textContent = text + '...';
+                }
+              }
+            });
+          </script>
           <div class="card" th:each="series1 : ${series}">
-            <a th:href="@{/series_posting(id=${series1.getSeq()})}"><img src="assets/img/about.jpg" alt="Image 1"></a>
-            <p class="card-text" th:text="${series1.name}">제목 1</p>
+            <div class="card-container">
+              <a th:href="@{/series_posting(id=${series1.getSeq()})}"><p class="card-title" id="postTitle" th:text="${series1.name}">제목 1</p></a>
+            </div>
+            <br>
             <div class="card-details">
-              <span class="card-id" th:text="${series1.member.mid}">아이디 1</span>
-              <span class="card-likes"><i class="fa fa-heart"></i> 10</span>
+              <i class="bi bi-person"><span class="card-id" th:text="${series1.member.mid}"></span></i>
+              <i class="bi bi-clock card-size"th:text="${series1.s_date}"></i>
             </div>
           </div>
         </div>
       </section>
     </div>
 
-    <div class="tab_content" id="design_content" th:each="posting : ${postings}">
-      <div th:if="${posting.member.intro != null}">
-        <p th:text="${posting.member.intro}"></p>
-      </div>
+    <style>
+      /* 추가한 CSS 스타일 */
+      .btn.intro-btn {
+        background-color: #68A4C4; /* 하늘색 계열로 변경 */
+        color: white;
+        padding: 8px 16px; /* 크기를 줄임 */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block; /* 가운데 정렬을 위해 블록 레벨로 설정 */
+        margin: 20px auto; /* 가운데 정렬 및 하단 여백 추가 */
+      }
+
+      .btn.intro-btn:hover {
+        background-color: #8dbad2; /* 호버 시 색 변경 */
+      }
+
+      /* 나머지 스타일은 이전과 동일 */
+      #introForm, #editedDataForm {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      #introForm label, #editIntroForm label {
+        font-weight: bold;
+      }
+
+      #introDataForm input,
+      #editedDataForm input,
+      #introDataForm textarea,
+      #editedDataForm textarea{
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .intro-save {
+        background-color: #68A4C4;
+        color: white;
+        padding: 10px 20px; /*버튼 크기*/
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .intro-save:hover {
+        background-color: #8dbad2;
+      }
+
+      textarea#description,
+      textarea#editedDescription{
+        border: 1px solid #ccc; /* 좌우상단 선 스타일 */
+        /*padding: 10px; !* 내용과 선 사이 여백 *!*/
+        border-radius: 10px; /* 선을 둥글게 만드는 스타일 */
+      }
+    </style>
+
+    <div class="tab_content" id="design_content" th:each="member : ${member}">
+      <h3 th:if="${member.intro != null}" th:text="${member.intro}">안녕</h3>
     </div>
+
+
+
   </div>
 </main><!-- End #main -->
 

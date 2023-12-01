@@ -88,4 +88,8 @@ public class PostingService {
         return postingRepository.findByTitleContainingIgnoreCase(keyword, pageable);
     }
 
+    public Page<Posting> searchPostingsByKeywordAndMIdPaged(String keyword, Member member, Pageable pageable) {
+        return postingRepository.findByTitleContainingAndMember(keyword, member, pageable);
+    }
+
 }

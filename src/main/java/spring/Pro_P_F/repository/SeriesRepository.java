@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import spring.Pro_P_F.domain.Series;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SeriesRepository extends JpaRepository<Series, Long> {
     // 추가적인 쿼리 메서드 정의 가능
@@ -15,6 +16,8 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
     Series findBySeq(Long id);
 
     List<Series> findByMember_Mid(String mId);
+
+    Optional<Series> findAllByName(String seriesName);
 
 }
 

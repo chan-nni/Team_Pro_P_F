@@ -68,4 +68,10 @@ public class SeriesService {
         return seriesRepository.findByMember_Mid(mId);
     }
 
+    // 중복 이름 확인
+    public boolean isSeriesNameUnique(String seriesName) {
+        Optional<Series> existingSeries = seriesRepository.findAllByName(seriesName);
+        return existingSeries.isEmpty();
+    }
+
 }

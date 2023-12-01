@@ -17,7 +17,10 @@
                 <h2>기업채널</h2>
 
                 <ol>
-                    <li><a href="../home/index.html">Home</a></li>
+                    <li>
+                        <a th:if="${session.m_id != null}" th:href="@{/main}">Home</a>
+                        <a th:if="${session.cy_id != null}" th:href="@{/c_main}">Home</a>
+                    </li>
                     <li>Company Channel</li>
                 </ol>
             </div>

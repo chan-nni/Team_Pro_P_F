@@ -28,7 +28,10 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>회원 정보 수정</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li>
+            <a th:if="${session.m_id != null}" th:href="@{/main}">Home</a>
+            <a th:if="${session.cy_id != null}" th:href="@{/c_main}">Home</a>
+          </li>
           <li>Member Information Edit</li>
         </ol>
       </div>

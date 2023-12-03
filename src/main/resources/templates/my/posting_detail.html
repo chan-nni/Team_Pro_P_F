@@ -34,6 +34,30 @@
             font-weight: bold; /* 텍스트를 굵게 표시 */
         }
 
+        .entry-footer {
+            display: flex;
+            align-items: center;
+            /*justify-content: center;*/
+            line-height: 1.5 !important; /* 텍스트의 줄 간격 조절 */
+        }
+
+        .cats {
+            list-style: none; /* 목록 앞의 기본 마커 제거 */
+            margin-left: 5px; /* 아이콘과 텍스트 사이 여백 설정 */
+        }
+
+        .cats a, .cats span {
+            font-size: 18px; /* 글씨 크기 조정 */
+            color: #1e4356; /* 글씨 색상 조정 */
+            font-weight: bold; /* 글씨 두께 조정 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+        }
+
+        .bi-folder {
+            /* 아이콘 크기를 글씨 크기에 맞게 조정 */
+            font-size: 18px;
+        }
+
         .change-button {
             display: inline-block;
             padding: 8.1px 14.7px;
@@ -92,13 +116,13 @@
                     <article class="entry entry-single">
 
                         <style>
-                            .entry-title, .entry-content, .comment-text {
+                            .entry-title, .entry-content, .comment-text, .entry-footer {
                                 word-wrap: break-word; /* 긴 단어가 컨테이너 너비를 초과할 경우 단어를 끊어서 다음 줄로 넘기도록 함 */
                                 overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
                                 word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
                             }
 
-                            /*포스팅 내용 CSS 미완*/
+                            /*포스팅 내용 CSS*/
                             .entry-content {
                                 color: black;
                                 font-size: 18px;

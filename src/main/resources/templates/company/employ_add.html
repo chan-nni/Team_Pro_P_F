@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    /* 전체 row를 가로축 중앙 정렬하기 위한 스타일 */
+    .row {
+      display: flex;
+      /*justify-content: center;*/
+      align-items: center;
+    }
+
+    /* h5 태그 스타일 */
+    h5 {
+      margin: 0; /* 기본 마진 제거 */
+      padding-right: 10px; /* 오른쪽 패딩으로 라벨과 셀렉트 박스 사이 간격 조정 */
+      /* 필요한 경우 추가 스타일 */
+    }
+
+    .form-control-1 {
+      height: 40px;
+      width: 300px !important;
+    }
+
+    /* job_sel 클래스를 가진 select 태그 스타일 */
+    .job_sel {
+      border: 1px solid #ccc; /* 테두리 스타일 */
+      padding: 8px; /* 내부 여백 */
+      /*margin-left: 10px; !* 라벨과의 간격 조정 *!*/
+      /* 필요한 경우 추가 스타일 */
+    }
+
+    /* select 태그 내부의 option 스타일 */
+    .job_sel option {
+      padding: 8px; /* option 내부 여백 */
+      /* 필요한 경우 추가 스타일 */
+    }
+  </style>
+
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -39,7 +75,7 @@
 
               <div class="row job_sub">
                 <div class="col-md-1 form-group job_name">
-                  <h4>제목</h4>
+                  <h5>제목</h5>
                 </div>
                 <div class="col-md-10 form-group">
                   <input type="text" th:field="*{title}" maxlength="100" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -74,7 +110,7 @@
                   <h5>채용 인원</h5>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" th:field="*{person}" name="num" class="form-control" id="num" required>
+                  <input type="number" th:field="*{person}" name="num" class="form-control-1" id="num" required>
                 </div>
                 <div class="col-md-2">
                   <h5>명</h5>

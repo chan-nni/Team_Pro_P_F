@@ -117,8 +117,11 @@
               <hr class="section-divider">
             </div>
             <div class="card-details">
-              <i class="bi bi-person"><span class="card-id" th:text="${posting.member.mid}">아이디 1</span></i>
-              <i class="fa fa-heart"><span class="card-likes" th:text="${posting.plike}"> 좋아요</span></i>
+              <i class="bi bi-person"></i>
+              <span class="card-id" th:text="${posting.member.mid}">아이디 1</span>
+              <div class="card-likes-container">
+                <i class="fa fa-heart"></i><span class="card-likes" th:text="${posting.plike}"> 좋아요</span>
+              </div>
             </div>
           </div>
         </div>

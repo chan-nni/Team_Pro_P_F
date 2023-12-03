@@ -2733,6 +2733,12 @@ a {
   /*margin-left: auto; !* 자동 여백을 사용하여 오른쪽으로 밀어낸다 *!*/
 }
 
+.card-clock {
+  color: #333;
+  margin-left: 5px; /* 아이콘과의 간격 */
+  /*margin-left: auto; !* 자동 여백을 사용하여 오른쪽으로 밀어낸다 *!*/
+}
+
 .card-middle .card-size {
   font-size: 11px !important;
 }

@@ -230,8 +230,12 @@
             </div>
             <br>
             <div class="card-details">
-              <i class="bi bi-person"><span class="card-id" th:text="${series1.member.mid}"></span></i>
-              <i class="bi bi-clock card-size"th:text="${series1.s_date}"></i>
+              <i class="bi bi-person"></i>
+              <span class="card-id" th:text="${series1.member.mid}"></span>
+              <div class="card-likes-container">
+                <i class="bi bi-clock"></i>
+                <span class="card-clock" th:text="${series1.s_date}"></span>
+              </div>
             </div>
           </div>
         </div>

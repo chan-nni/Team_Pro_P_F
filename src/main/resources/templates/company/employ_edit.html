@@ -1,7 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+    /* 전체 row를 가로축 중앙 정렬하기 위한 스타일 */
+    .row {
+      display: flex;
+      /*justify-content: center;*/
+      align-items: center;
+      margin-bottom: 10px; /* 여백 추가 */
+    }
+
+    /* h5 태그 스타일 */
+    h5 {
+      margin: 0; /* 기본 마진 제거 */
+      padding-right: 10px; /* 오른쪽 패딩으로 라벨과 셀렉트 박스 사이 간격 조정 */
+      /* 필요한 경우 추가 스타일 */
+    }
+
+    .form-control-1 {
+      height: 40px;
+      width: 300px !important;
+    }
+
+    .job_sun {
+      width: 100%; /* 구분선 전체 너비 */
+      height: 1px; /* 구분선 높이 */
+      background-color: #ddd; /* 구분선 색상 */
+      margin: 20px 0; /* 위아래 여백 */
+    }
+
+    /* job_sel 클래스를 가진 select 태그 스타일 */
+    .job_sel {
+      border: 1px solid #ccc; /* 테두리 스타일 */
+      padding: 8px; /* 내부 여백 */
+      /*margin-left: 10px; !* 라벨과의 간격 조정 *!*/
+      /* 필요한 경우 추가 스타일 */
+    }
+
+    /* select 태그 내부의 option 스타일 */
+    .job_sel option {
+      padding: 8px; /* option 내부 여백 */
+      /* 필요한 경우 추가 스타일 */
+    }
+
+    /* 모집 기간 ~ 기호 스타일 */
+    .job_w {
+      flex-grow: 0; /* 기본 크기 유지 */
+      padding-right: 120px !important; /* 우측에만 패딩을 줌 */
+      text-align: center;
+    }
+  </style>
+
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -44,7 +95,7 @@
                 <h4>제목</h4>
               </div>
               <div class="col-md-10 form-group">
-                <input type="text" th:value="*{job.title}" class="form-control" name="title" id="title" placeholder="Your Name" required>
+                <input type="text" th:value="*{job.title}" class="form-control" name="title" id="title" placeholder="제목" required>
               </div>
             </div><br>
 
@@ -53,7 +104,7 @@
                 <h5>모집직무</h5>
               </div>
               <div class="col-md-5">
-                <select name="work" id="work" class="category">
+                <select name="work" id="work" class="job_sel">
                   <option value="">직무 선택</option>
                   <th:block th:each="category : ${workCategories}">
                     <option th:value="${category}" th:text="${category.getDisplayName()}" name="work" th:selected="${job.work == category}"></option>
@@ -64,7 +115,7 @@
                 <h5>채용형태</h5>
               </div>
               <div class="col-md-5">
-                <select name="employ" id="employ" class="category">
+                <select name="employ" id="employ" class="job_sel">
                   <option value="">채용 형태</option>
                   <th:block th:each="category : ${employCategories}">
                     <option th:value="${category}" th:text="${category.getDisplayName()}" name="employ" th:selected="${job.employ == category}"></option>
@@ -78,7 +129,7 @@
                 <h5>채용 인원</h5>
               </div>
               <div class="col-md-3">
-                <input type="text" th:value="*{job.person}" name="person" class="form-control" id="num" required>
+                <input type="text" th:value="*{job.person}" name="person" class="form-control-1" id="num" required>
               </div>
               <div class="col-md-2">
                 <h5>명</h5>
@@ -87,7 +138,7 @@
                 <h5>근무지역</h5>
               </div>
               <div class="col-md-5">
-                <select name="area" id="area" class="category">
+                <select name="area" id="area" class="job_sel">
                   <option value="">지역 선택</option>
                   <th:block th:each="category : ${areaTypes}">
                     <option th:value="${category}" th:text="${category.getDisplayName()}" name="area" th:selected="${job.area == category}"></option>
@@ -101,13 +152,13 @@
                 <h5>모집 기간</h5>
               </div>
               <div class="col-md-4">
-                <input type="date" th:value="*{job.startdate}" name="startdate" class="form-control" id="s_date" required>
+                <input type="date" th:value="*{job.startdate}" name="startdate" class="form-control-1" id="s_date" required>
               </div>
-              <div class="col-md-2 job_name">
+              <div class="col-md-2 job_w">
                 <h5>~</h5>
               </div>
               <div class="col-md-4">
-                <input type="date" th:value="*{job.enddate}" name="enddate" class="form-control" id="e_date" required>
+                <input type="date" th:value="*{job.enddate}" name="enddate" class="form-control-1" id="e_date" required>
               </div>
             </div><br>
 
@@ -116,7 +167,7 @@
                 <h5> 공고 내용</h5>
               </div>
               <div class="col-md-11">
-                <textarea class="form-control" th:text="*{job.content}" name="content" rows="5" required=""></textarea>
+                <textarea class="form-control" th:text="*{job.content}" name="content" rows="6" required=""></textarea>
               </div>
             </div><hr><br><br>
 

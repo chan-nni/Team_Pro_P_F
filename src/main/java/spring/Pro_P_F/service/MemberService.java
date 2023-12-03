@@ -52,4 +52,14 @@ public class MemberService {
         // 데이터베이스에서 전화번호 중복 확인
         return memberRepository.existsByMphone(phoneNumber);
     }
+
+
+    // 탈퇴하기
+    @Transactional
+    public void deleteMember(String memberId) {
+        Member member = memberRepository.findByMid(memberId);
+        if (member != null) {
+            memberRepository.delete(member);
+        }
+    }
 }

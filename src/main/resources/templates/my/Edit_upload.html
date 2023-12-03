@@ -37,11 +37,22 @@
 
     <article class="wrap">
         <style>
-            #editor {
-                height: 400px;
+
+            /* 카테고리 선택 드롭다운 스타일 */
+            #category {
+                border: 1px solid #ccc; /* 보더 선 추가 */
+                height: 40px; /* 높이 설정 */
+                border-radius: 4px; /* 경계선 둥글게 */
+                padding: 8px; /* 패딩 설정 */
+                background-color: white; /* 배경색 설정 */
+                color: black; /* 글자색 설정 */
+                font-size: 16px; /* 글자 크기 설정 */
             }
+
             .input-field {
                 display: flex;
+                /*align-items: center; !* 세로 방향 중앙 정렬 *!*/
+                justify-content: center; /* 가로 방향 중앙 정렬 */
                 flex-direction: column;
                 margin-bottom: 16px;
             }
@@ -81,7 +92,7 @@
 
             #editor {
                 /* 에디터 높이 설정 */
-                height: 200px;
+                height: 350px;
             }
 
             h1 {

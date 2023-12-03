@@ -111,7 +111,6 @@
         <h1 class="profile-user-name" th:text="${companies.companyname}">회사명</h1><br><br><br>
         <h2>
           팔로워: <a th:href="@{/c_followList}"><span th:text="${followerCount}"></span></a>
-          <a th:href="@{/c_edit}">정보 수정</a>
         </h2>
 
       </div>
@@ -119,6 +118,7 @@
       <div class="profile-stats">
 
         <li><a th:href="@{/em_add}" class="btn profile-edit-btn">공고등록</a></li>
+        <li><a th:href="@{/c_edit}" class="btn profile-edit-btn">정보 수정</a></li>
 
       </div>
 
@@ -191,6 +191,11 @@
         border: 1px solid #ccc; /* 좌우상단 선 스타일 */
         /*padding: 10px; !* 내용과 선 사이 여백 *!*/
         border-radius: 10px; /* 선을 둥글게 만드는 스타일 */
+      }
+
+      /* 소개 텍스트의 줄 간격 조절을 위한 추가 스타일 */
+      #all_content h3 {
+        line-height: 1.4; /* 줄 간격 조정 */
       }
     </style>
 

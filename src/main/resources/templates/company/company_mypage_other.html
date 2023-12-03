@@ -45,6 +45,11 @@
       border-bottom: 2px solid silver; /* 하단 테두리 설정 */
     }
 
+    /* 소개 텍스트의 줄 간격 조절을 위한 추가 스타일 */
+    #all_content h3 {
+      line-height: 1.4; /* 줄 간격 조정 */
+    }
+
   </style>
 </head>
 
@@ -84,7 +89,6 @@
       </div>
 
       <div class="profile-user-settings">
-        <h1 class="profile-user-name">회사명</h1>
         <h1 class="profile-user-name" th:text="${company.companyname}">회사명</h1>
 
       </div>
@@ -164,15 +168,7 @@
             </style>
           </table>
           <!-- 페이징 처리 -->
-          <section class="blog">
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
-          </section>
+
         </div>
       </section>
     </div>

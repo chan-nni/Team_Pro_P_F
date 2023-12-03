@@ -52,7 +52,7 @@
                   <h5>아이디</h5>
                 </div>
                 <div class="col-md-6 form-group mt-12">
-                  <input type="text" th:value="*{member.mid}" name="mid" class="form-control" id="id" placeholder="아이디 입력" pattern="[a-zA-Z0-9]+" title="영문자와 숫자만 입력 가능합니다." required>
+                  <h5 th:text="*{member.mid}"></h5>
                 </div>
 
                 <!-- 닉네임 -->
@@ -109,7 +109,9 @@
                 <div class="my-3"></div>
                 <div class="text-center">
                   <div class="text-center mt-4">
-                    <a th:href="@{/pofo}">취소하기</a>
+                    <button type="button" class="submit-style">
+                      <a th:href="@{/pofo}" style="color: white; text-decoration: none;">취소</a>
+                    </button>
                     <button type="submit">저장</button>
                   </div>
                 </div>

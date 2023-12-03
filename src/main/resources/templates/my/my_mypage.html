@@ -298,6 +298,11 @@
         /*padding: 10px; !* 내용과 선 사이 여백 *!*/
         border-radius: 10px; /* 선을 둥글게 만드는 스타일 */
       }
+
+      /* 소개 텍스트의 줄 간격 조절을 위한 추가 스타일 */
+      #design_content h3 {
+        line-height: 1.4; /* 줄 간격 조정 */
+      }
     </style>
 
     <div class="tab_content" id="design_content" th:each="member : ${member}">

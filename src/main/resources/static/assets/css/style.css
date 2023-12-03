@@ -2767,9 +2767,9 @@ a {
 }
 
 .company-image img {
-  max-width: 100%; /* 이미지 크기 조정 */
-  height: auto;
-  /*margin-bottom: 10px;*/
+  width: 100%; /* 이미지의 가로 길이를 100%로 고정 */
+  height: 150px; /* 높이를 150px로 설정 */
+  object-fit: cover; /* 이미지가 컨테이너에 맞도록 조절되지만, 비율이 왜곡될 수 있음 */
   display: block;
   margin: 0 auto;
 }

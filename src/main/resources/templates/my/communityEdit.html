@@ -1,7 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+  <style>
+
+    /* 중앙 정렬을 위한 Flexbox 스타일 */
+    .row {
+      display: flex;
+      align-items: center; /* 세로 방향 중앙 정렬 */
+      justify-content: center; /* 가로 방향 중앙 정렬 */
+    }
+
+    /* 폼 컨테이너 스타일 */
+    .form-container {
+      background-color: #f8f9fa; /* 밝은 회색 배경 */
+      padding: 20px; /* 내부 여백 */
+      border-radius: 10px; /* 모서리 둥글게 */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+      margin-bottom: 20px; /* 아래쪽 여백 */
+    }
+
+    /* 드롭다운 및 입력 필드 스타일 */
+    .job_sel, .form-control-title {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px;
+      height: 40px;
+      width: 100%;
+    }
+
+    /* 라벨 및 헤더 스타일 */
+    .job_name h4 {
+      margin: 0; /* 여백 제거 */
+      color: #495057; /* 어두운 회색 텍스트 */
+    }
+
+    /* 텍스트 필드 스타일 */
+    .form-group {
+      flex: 1; /* Flexbox 내부에서 남은 공간 차지 */
+    }
+
+    /* 텍스트 필드의 상위 div 스타일 */
+    .form-group > div {
+      padding: 10px; /* 내부 여백 */
+    }
+
+  </style>
+</head>
 
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -33,33 +78,35 @@
 
         <div class="row">
           <form th:action="@{/community_edit(id=${community.seq})}" method="post" th:each="community : ${communities}" role="form">
-            <div class="row">
-              <div class="col-md-1 form-group job_name">
-                <h4>게시판</h4>
-              </div>
-              <div class="col-md-10 form-group">
-                <select class="job_sel" th:value="${community.category}" name="category">
-                  <option value="free" th:selected="${community.category == 'free'}">자유 게시판</option>
-                  <option value="ready" th:selected="${community.category == 'ready'}">취업 게시판</option>
-                  <option value="college" th:selected="${community.category == 'college'}">대학 게시판</option>
-                </select>
+            <div class="form-container">
+              <div class="row justify-content-center">
+                <div class="col-md-1 form-group job_name">
+                  <h4>게시판</h4>
+                </div>
+                <div class="col-md-10 form-group">
+                  <select class="job_sel" th:value="${community.category}" name="category">
+                    <option value="free" th:selected="${community.category == 'free'}">자유 게시판</option>
+                    <option value="ready" th:selected="${community.category == 'ready'}">취업 게시판</option>
+                    <option value="college" th:selected="${community.category == 'college'}">대학 게시판</option>
+                  </select>
 
-              </div>
-            </div><br>
+                </div>
+              </div><br>
 
-            <div class="row job_sub">
-              <div class="col-md-1 form-group job_name">
-                <h4>제목</h4>
-              </div>
-              <div class="col-md-10 form-group">
-                <input type="text" th:value="*{community.title}" class="form-control" name="title" required>
+              <div class="row job_sub">
+                <div class="col-md-1 form-group job_name">
+                  <h4>제목</h4>
+                </div>
+                <div class="col-md-10 form-group">
+                  <input type="text" th:value="*{community.title}" class="form-control-title" name="제목" required>
+                </div>
               </div>
             </div><br>
 
             <div class="row">
               <div class="col-md-12">
                 <!-- 수정된 코드 -->
-                <textarea class="form-control" name="content" rows="5" th:text="${community.content}"></textarea>
+                <textarea class="form-control" name="content" rows="8" th:text="${community.content}"></textarea>
               </div>
             </div><hr><br>
 

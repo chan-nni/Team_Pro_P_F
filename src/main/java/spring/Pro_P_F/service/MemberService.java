@@ -53,7 +53,6 @@ public class MemberService {
         return memberRepository.existsByMphone(phoneNumber);
     }
 
-
     // 탈퇴하기
     @Transactional
     public void deleteMember(String memberId) {

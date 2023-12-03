@@ -52,7 +52,7 @@ public class CompanyMemController {
     }
 
     @GetMapping("/c_login")
-    public String company_login (Model model) {
+    public String company_login(Model model) {
         model.addAttribute("companyForm", new CompanyForm());
         return "company/company_login";
     }
@@ -136,7 +136,7 @@ public class CompanyMemController {
         model.addAttribute("companies", companies);
 
         System.out.println("companies = " + companies);
-        
+
         return "company/company_member_edit";
     }
 
@@ -161,5 +161,13 @@ public class CompanyMemController {
         }
     }
 
+    // 탈퇴하기
+    @GetMapping("c_delete")
+    public String deleteCompany(HttpSession session) {
+        String cId = (String) session.getAttribute("cy_id");
+        companyMemService.deleteCompany(cId);
+
+        return "redirect:/";
+    }
 }
 

@@ -2,6 +2,7 @@ package spring.Pro_P_F.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring.Pro_P_F.domain.Community;
 import spring.Pro_P_F.domain.Company;
 import spring.Pro_P_F.domain.Member;
@@ -30,6 +31,15 @@ public class CompanyMemService {
 
     public void save(Company company) {
         companyMemRepository.save(company);
+    }
+
+    //탈퇴하기
+    @Transactional
+    public void deleteCompany(String companyId) {
+        Company company = companyMemRepository.findByCyId(companyId);
+        if(company != null){
+            companyMemRepository.delete(company);
+        }
     }
 
     // 기업 채널 검색

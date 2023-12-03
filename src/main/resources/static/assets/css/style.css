@@ -2348,6 +2348,10 @@ section {
   font-weight: 300;
   color: black;
   margin: 0; /* 여백 초기화 */
+  line-height: 1.5;
+  word-wrap: break-word; /* 긴 단어가 컨테이너 너비를 초과할 경우 단어를 끊어서 다음 줄로 넘기도록 함 */
+  overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
+  word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
 }
 
 .profile-edit-btn {
@@ -2701,18 +2705,32 @@ a {
 }
 
 .card-details {
-  display: flex;
-  justify-content: space-between;
-  /*margin-top: 10px;*/
+  display: flex; /* Flexbox로 설정 */
+  justify-content: space-between; /* 양 끝으로 내용을 밀어낸다 */
+  align-items: center; /* 세로 방향 중앙 정렬 */
   font-size: 14px;
 }
 
 .card-id {
   color: #333;
+  margin-left: 5px; /* 아이콘과의 간격 */
+  margin-right: 10px; /* 아이콘과 좋아요 컨테이너 사이의 간격을 조정한다 */
+  white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  text-overflow: ellipsis; /* 생략 부호 표시 */
+  max-width: 140px; /* 최대 너비 설정 */
+}
+
+.card-likes-container {
+  margin-left: auto; /* 컨테이너를 오른쪽으로 밀어낸다 */
+  display: flex;
+  align-items: center; /* 아이콘과 텍스트를 수직 중앙 정렬한다 */
 }
 
 .card-likes {
   color: #777;
+  margin-left: 4px; /* 아이콘과의 간격 */
+  /*margin-left: auto; !* 자동 여백을 사용하여 오른쪽으로 밀어낸다 *!*/
 }
 
 .card-middle .card-size {

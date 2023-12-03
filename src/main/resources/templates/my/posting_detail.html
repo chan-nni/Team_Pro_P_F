@@ -3,13 +3,6 @@
 
 <head>
     <style>
-        /*포스팅 내용 CSS 미완*/
-        .entry-content {
-            color: black;
-            font-size: 18px;
-            line-height: 1.5; /* 텍스트의 줄 간격 조절 */
-        }
-
         /*포스팅 제목 CSS*/
         .entry-title {
             line-height: 1.4; /* 텍스트의 줄 간격 조절 */
@@ -104,7 +97,19 @@
                                 overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
                                 word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
                             }
+
+                            /*포스팅 내용 CSS 미완*/
+                            .entry-content {
+                                color: black;
+                                font-size: 18px;
+                                line-height: 1.5; /* 텍스트의 줄 간격 조절 */
+                            }
+
+                            .entry-content h1 { /* 모든 h1 태그에 대해 */
+                                color: black; /* 글자 색상을 검은색으로 설정 */
+                            }
                         </style>
+
                         <h2 class="entry-title" th:text="${posting.title}">
                             커뮤니티 제목
                         </h2>

@@ -102,12 +102,24 @@
                             .entry-content {
                                 color: black;
                                 font-size: 18px;
-                                line-height: 1.5; /* 텍스트의 줄 간격 조절 */
+                                line-height: 1.5 !important; /* 텍스트의 줄 간격 조절 */
                             }
 
                             .entry-content h1 { /* 모든 h1 태그에 대해 */
                                 color: black; /* 글자 색상을 검은색으로 설정 */
+                                line-height: 1.5;
                             }
+
+                            .entry-content h2 { /* 모든 h1 태그에 대해 */
+                                color: black; /* 글자 색상을 검은색으로 설정 */
+                                line-height: 1.5;
+                            }
+
+                            /* Quill 에디터 내부 텍스트의 줄 간격 설정 */
+                            .entry-content p {
+                                line-height: 1.5 !important;
+                            }
+
                         </style>
 
                         <h2 class="entry-title" th:text="${posting.title}">

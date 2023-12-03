@@ -22,7 +22,7 @@ public class Member {
 
     private String m_email;
 
-    @Column(name = "m_intro")
+    @Column(name = "m_intro", columnDefinition = "TEXT")
     private String intro;
 
     private String mgit;

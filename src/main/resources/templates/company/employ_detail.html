@@ -104,7 +104,7 @@
               </div>
               <hr class="section-divider">
               <div class="col-md-6 mx-auto text-center">
-                <a th:href="@{/scrapJob(id=${job.seq})}" class="simple-button">스크랩</a>
+                <a th:if="${session.m_id != null || session.cy_id == null}" th:href="@{/scrapJob(id=${job.seq})}" class="simple-button">스크랩</a>
               </div>
             </div>
           </form>

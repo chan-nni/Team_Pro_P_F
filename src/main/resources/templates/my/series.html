@@ -77,6 +77,11 @@
     .search123.category {
       margin-bottom: 53px; /* 원하는 간격으로 조절 */
     }
+
+    h5 {
+      white-space: nowrap;
+    }
+
     /*.table td {*/
     /*  text-decoration: none;*/
     /*  color: black;*/
@@ -111,7 +116,7 @@
 
                 <!-- seriesPostings가 비어있을 때 -->
                 <th:block th:unless="${seriesPostings != null and not #lists.isEmpty(seriesPostings) and seriesPostings.get(0) != null and seriesPostings.get(0).seq != null}">
-                  <p>시리즈에 포함되어 있는 포스팅이 없습니다.</p>
+                  <h5>시리즈에 포함되어 있는 포스팅이 없습니다.</h5>
                 </th:block>
 
               </div>

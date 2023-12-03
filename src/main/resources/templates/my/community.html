@@ -131,7 +131,7 @@
               <ul>
                 <li><a th:href="@{/com}">전체 게시판</a></li>
                 <li><a th:href="@{/com(category='free')}">자유 게시판</a></li>
-                <li><a th:href="@{/com(category='ready')}">취준 게시판</a></li>
+                <li><a th:href="@{/com(category='ready')}">취업 게시판</a></li>
                 <li><a th:href="@{/com(category='college')}">대학 게시판</a></li>
               </ul>
             </div><!-- End sidebar categories-->
@@ -188,6 +188,14 @@
                   /* 텍스트가 너비의 30%를 넘어가면 생략 부호로 표시 */
                   .table tbody td:nth-child(2) a {
                     display: block;
+                    width: 100%; /* 너비를 30%로 제한 */
+                    white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+                    overflow: hidden; /* 넘칠 때 가림 */
+                    text-overflow: ellipsis; /* 생략 부호로 표시 */
+                  }
+
+                  .table tbody td:nth-child(3) {
+                    /*display: block;*/
                     width: 100%; /* 너비를 30%로 제한 */
                     white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
                     overflow: hidden; /* 넘칠 때 가림 */

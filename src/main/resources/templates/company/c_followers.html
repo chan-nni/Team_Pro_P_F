@@ -65,7 +65,10 @@
             text-decoration: none; /* 링크의 밑줄을 제거합니다 */
             color: #007BFF; /* 링크 색상을 설정합니다 */
             cursor: pointer;
-            margin-left: 0px; /* 수정 버튼과 시리즈 이름 사이에 여밀기 추가 */
+            line-height: 1.5;
+            word-wrap: break-word; /* 긴 단어가 컨테이너 너비를 초과할 경우 단어를 끊어서 다음 줄로 넘기도록 함 */
+            overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
+            word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
         }
 
         .company-icon {

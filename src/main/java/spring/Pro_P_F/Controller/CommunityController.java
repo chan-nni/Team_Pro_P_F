@@ -81,7 +81,7 @@ public class CommunityController {
     public String getCommunityByCategory(@RequestParam(name = "category", required = false) String category,
                                          @RequestParam(defaultValue = "0") int page, Model model) {
 
-        Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
+        Pageable pageable = PageRequest.of(page, 9); // 페이지당 9개 아이템
 
         Page<Community> communities;
 

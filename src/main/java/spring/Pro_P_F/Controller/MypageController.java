@@ -36,7 +36,7 @@ public class MypageController {
 
     @GetMapping("/pofo")
     public String port(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
-        int pageSize = 3; // 페이지당 아이템 수
+        int pageSize = 9; // 페이지당 아이템 수
 
         String mId = (String) session.getAttribute("m_id");
         Member member = memberService.findOne(mId);

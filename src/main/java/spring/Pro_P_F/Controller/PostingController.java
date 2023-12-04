@@ -88,7 +88,7 @@ public class PostingController {
     // 최신 포스팅 목록
     @GetMapping("/post")
     public String list(@RequestParam(defaultValue = "0") int page, Model model) {
-        Pageable pageable = PageRequest.of(page, 4, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+        Pageable pageable = PageRequest.of(page, 9, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 
@@ -99,7 +99,7 @@ public class PostingController {
     // 인기순 포스팅 목록
     @GetMapping("/postLike")
     public String Likelist(@RequestParam(defaultValue = "0") int page, Model model) {
-        Pageable pageable = PageRequest.of(page, 3, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+        Pageable pageable = PageRequest.of(page, 9, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 
@@ -151,7 +151,7 @@ public class PostingController {
     @GetMapping("/profile")
     public String userProfile(@RequestParam("memberId") String memberId, Model model,
                               @RequestParam(defaultValue = "0") int page) {
-        int pageSize = 3;
+        int pageSize = 9;
 
         model.addAttribute("memberId", memberId);
 
@@ -229,7 +229,7 @@ public class PostingController {
 
     @GetMapping("/posting_search")
     public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page) {
-        int pageSize = 3;
+        int pageSize = 9;
 
         Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
 
@@ -242,7 +242,7 @@ public class PostingController {
                                       @RequestParam("keyword") String keyword,
                                       Model model,
                                       @RequestParam(defaultValue = "0") int page) {
-        int pageSize = 3;
+        int pageSize = 9;
 
         model.addAttribute("memberId", memberId);
 
@@ -272,7 +272,7 @@ public class PostingController {
     public String other_search(@RequestParam("keyword") String keyword, Model model,
                                @RequestParam(defaultValue = "0") int page) {
 
-        int pageSize = 3;
+        int pageSize = 9;
 
         Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
 
@@ -293,7 +293,7 @@ public class PostingController {
     // 검색
     @GetMapping("p_search")
     public String searchPostings(@RequestParam String keyword, @RequestParam(defaultValue = "0") int page, Model model) {
-        int pageSize = 3;
+        int pageSize = 9;
 
         Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
 

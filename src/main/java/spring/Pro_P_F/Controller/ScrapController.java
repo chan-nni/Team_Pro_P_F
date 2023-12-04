@@ -51,7 +51,7 @@ public class ScrapController {
                     throw new IllegalArgumentException();
                 }
 
-                Pageable pageable = PageRequest.of(page, 3);
+                Pageable pageable = PageRequest.of(page, 9);
                 Page<Scrap> scraps = scrapService.getScrapsByMember(member, pageable);
 
                 model.addAttribute("scraps", scraps.getContent());

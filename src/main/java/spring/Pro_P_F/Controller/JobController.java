@@ -87,7 +87,7 @@ public class JobController {
     public String yourPage(@RequestParam(defaultValue = "0") int page, Model model) {
         jobService.updateJobStatus();
 
-        Pageable pageable = PageRequest.of(page, 3); // 페이지당 9개 아이템
+        Pageable pageable = PageRequest.of(page, 9); // 페이지당 9개 아이템
 
         Page<Job> jobs = jobService.findAllJobsPaged(pageable);
         model.addAttribute("jobs", jobs);
@@ -186,7 +186,7 @@ public class JobController {
                              @RequestParam(name = "keyword", required = false) String keyword,
                              @RequestParam(name = "jobStatus", required = false) JobStatus jobStatus,
                              @RequestParam(defaultValue = "0") int page,
-                             @RequestParam(defaultValue = "2") int size,
+                             @RequestParam(defaultValue = "9") int size,
                              Model model) {
         Page<Job> jobs = jobService.findPagedJobsByFilter(work, employ, area, keyword, jobStatus, page, size);
         model.addAttribute("jobs", jobs);

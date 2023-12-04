@@ -50,6 +50,9 @@ public class JobController {
             Company company = companyMemService.findMemByCyId(cyId);
             System.out.println("실제 저장 값 cy_id = " + company);
 
+            String content = job1.getContent().replace("\n", "<br>");
+
+
             Job job = new Job();
 
             job.setTitle(job1.getTitle());
@@ -57,7 +60,7 @@ public class JobController {
             job.setEnddate(job1.getEnddate());
             job.setPerson(job1.getPerson());
             job.setArea(job1.getArea());
-            job.setContent(job1.getContent());
+            job.setContent(content);
             job.setWork(job1.getWork());
             job.setEmploy(job1.getEmploy());
             job.setCompany(company);

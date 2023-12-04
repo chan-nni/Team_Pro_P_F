@@ -59,6 +59,30 @@
             right: 12px;
             margin: 0;
         }
+
+        .company-title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* 2줄까지 표시 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 생략부호 표시 */
+            font-size: 20px;
+            font-weight: 700;
+            height: 60px;
+            text-align: center;
+            color: #1e4356;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word; /* 현대적인 브라우저에서 사용하는 속성으로, word-wrap과 같은 기능을 함 */
+            word-break: break-all; /* 단어 내에서도 줄바꿈이 발생할 수 있도록 함 (특히 아시아 언어나 연속된 문자열에 유용) */
+            max-width: 225px; /* 최대 너비를 설정하여 가로 길이를 초과하면 줄 바꿈 */
+            line-height: 1.2; /* 텍스트의 줄 간격 조절 */
+            max-height: 3em; /* 총 2줄(총 3em)까지 표시하고 나머지는 생략 부호로 표시 */
+            padding-top: 10px; /* 상단 여백 추가 */
+            padding-bottom: 10px; /* 하단 여백 추가 */
+            padding-left: 30px;
+        }
+
     </style>
 
     <div class="search">
@@ -76,9 +100,9 @@
             <a th:href="@{/com_profile(id=${company.cyId})}">
                 <div class="company-image">
                     <!-- 이미지 추가 -->
-                    <img src="/assets/img/blog/blog-recent-4.jpg" alt="기업 이미지">
+                    <img src="/assets/img/company.jpg" alt="기업 이미지">
                 </div>
-                <h2 th:text="${company.companyname}">기업1</h2>
+                <p class="company-title" th:text="${company.companyname}">기업1</p>
                 <div class="plus-button-container">
                     <div class="plus-button">
                         <a th:href="@{/follow(id=${company.cy_seq})}">

@@ -158,7 +158,7 @@
                         <!-- 아이콘은 • 으로 변경, 리스트 아이템의 시작 부분에 위치 -->
                         <span class="company-icon">&bull;</span> <!-- 리스트 형식의 아이콘으로 변경 -->
                         <div class="company-name">
-                            <a th:href="@{/c_pofo(id=${follower.member.mid})}" class="custom-link">
+                            <a th:href="@{/profile(memberId=${follower.member.mid})}" class="custom-link">
                                 <span th:text="${follower.member.mid}"></span> <!-- 기업명 -->
                             </a>
                         </div>

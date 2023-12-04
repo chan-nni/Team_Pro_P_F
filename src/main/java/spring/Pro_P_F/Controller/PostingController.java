@@ -41,10 +41,11 @@ public class PostingController {
 
     // 포스팅 등록 페이지 로드
     @GetMapping("/upload")
-    public String upload(Model model) {
+    public String upload(Model model, HttpSession session) {
         model.addAttribute("postForm", new PostForm());
+        String mId = (String) session.getAttribute("m_id");
 
-        List<Series> categories = seriesService.getAllSeries(); // 카테고리 목록을 DB에서 가져옴
+        List<Series> categories = seriesService.findByMId(mId); // 카테고리 목록을 DB에서 가져옴
         model.addAttribute("categories", categories); // Thymeleaf로 카테고리 목록 전달
 
 
@@ -177,11 +178,12 @@ public class PostingController {
 
     // 수정 페이지로 이동
     @GetMapping("posting_edit")
-    public String posting_Edit(@RequestParam("id") Long id, Model model) {
+    public String posting_Edit(@RequestParam("id") Long id, Model model, HttpSession session) {
         List<Posting> postings = postingService.findByid(id);
         model.addAttribute("postings", postings);
 
-        List<Series> categories = seriesService.getAllSeries(); // 카테고리 목록을 DB에서 가져옴
+        String mId = (String) session.getAttribute("m_id");
+        List<Series> categories = seriesService.findByMId(mId); // 카테고리 목록을 DB에서 가져옴
         model.addAttribute("categories", categories); // Thymeleaf로 카테고리 목록 전달
 
         String dbContent = postingService.getContentById(id);

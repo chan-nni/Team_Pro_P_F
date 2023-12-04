@@ -2768,6 +2768,7 @@ a {
   /*border: 1px solid #e0e0e0; !* 테두리 선 색상 *!*/
   background-color: #f0f0f0;
   border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 20px;
   position: relative;
   text-align: center;
@@ -2795,6 +2796,8 @@ a {
   object-fit: cover; /* 이미지가 컨테이너에 맞도록 조절되지만, 비율이 왜곡될 수 있음 */
   display: block;
   margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .box h2 {

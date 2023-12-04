@@ -88,7 +88,7 @@ public class PostingController {
     // 최신 포스팅 목록
     @GetMapping("/post")
     public String list(@RequestParam(defaultValue = "0") int page, Model model) {
-        Pageable pageable = PageRequest.of(page, 9, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+        Pageable pageable = PageRequest.of(page, 8, Sort.by("date").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 
@@ -99,7 +99,7 @@ public class PostingController {
     // 인기순 포스팅 목록
     @GetMapping("/postLike")
     public String Likelist(@RequestParam(defaultValue = "0") int page, Model model) {
-        Pageable pageable = PageRequest.of(page, 9, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
+        Pageable pageable = PageRequest.of(page, 8, Sort.by("plike").descending()); // "postingDate" 필드를 기준으로 내림차순 정렬
 
         Page<Posting> postings = postingService.findAllPostingsPaged(pageable);
 

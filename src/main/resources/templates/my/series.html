@@ -104,21 +104,6 @@
             <div class="table-responsive">
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
 
-                <!-- seriesPostings가 비어있지 않고, 첫 번째 요소가 null이 아니며, seq 속성이 null이 아닌 경우 -->
-                <th:block th:if="${seriesPostings != null and not #lists.isEmpty(seriesPostings) and seriesPostings.get(0) != null and seriesPostings.get(0).seq != null}">
-                  <form th:action="@{/sp_search(id=${seriesPostings.get(0).seq})}">
-                    <div class="search123 category">
-                      <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
-                      <button type="submit"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"></button>
-                    </div>
-                  </form>
-                </th:block>
-
-                <!-- seriesPostings가 비어있을 때 -->
-                <th:block th:unless="${seriesPostings != null and not #lists.isEmpty(seriesPostings) and seriesPostings.get(0) != null and seriesPostings.get(0).seq != null}">
-                  <h5>시리즈에 포함되어 있는 포스팅이 없습니다.</h5>
-                </th:block>
-
               </div>
               <table class="table text-center">
                 <colgroup>

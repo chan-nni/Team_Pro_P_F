@@ -152,11 +152,13 @@ public class JobController {
         if (editJob != null && !editJob.isEmpty()) {
             Job existingJob = editJob.get(0);
 
+            String content = job.getContent().replace("\n", "<br>");
+
             existingJob.setTitle(job.getTitle());
             existingJob.setStartdate(job.getStartdate());
             existingJob.setEnddate(job.getEnddate());
             existingJob.setPerson(job.getPerson());
-            existingJob.setContent(job.getContent());
+            existingJob.setContent(content);
             existingJob.setWork(job.getWork());
             existingJob.setArea(job.getArea());
             existingJob.setEmploy(job.getEmploy());

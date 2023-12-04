@@ -68,6 +68,7 @@
             text-overflow: ellipsis; /* 생략부호 표시 */
             font-size: 20px;
             font-weight: 700;
+            height: 60px;
             text-align: center;
             color: #1e4356;
             white-space: normal;
@@ -79,6 +80,7 @@
             max-height: 3em; /* 총 2줄(총 3em)까지 표시하고 나머지는 생략 부호로 표시 */
             padding-top: 10px; /* 상단 여백 추가 */
             padding-bottom: 10px; /* 하단 여백 추가 */
+            padding-left: 30px;
         }
 
     </style>
@@ -98,7 +100,7 @@
             <a th:href="@{/com_profile(id=${company.cyId})}">
                 <div class="company-image">
                     <!-- 이미지 추가 -->
-                    <img src="/assets/img/blog/blog-recent-4.jpg" alt="기업 이미지">
+                    <img src="/assets/img/company.jpg" alt="기업 이미지">
                 </div>
                 <p class="company-title" th:text="${company.companyname}">기업1</p>
                 <div class="plus-button-container">

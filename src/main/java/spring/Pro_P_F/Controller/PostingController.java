@@ -228,12 +228,27 @@ public class PostingController {
     }
 
     @GetMapping("/posting_search")
-    public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page) {
+    public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page, HttpSession session) {
         int pageSize = 9;
 
-        Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
+        String mId = (String) session.getAttribute("m_id");
+        Member member = memberService.findOne(mId);
 
+        Page<Posting> postings = postingService.searchPostings(keyword, PageRequest.of(page, pageSize));
         model.addAttribute("postings", postings);
+
+        // 시리즈 리스트
+        List<Series> series = seriesService.findByMId(mId);
+        model.addAttribute("series", series);
+
+        String mgit = member.getMgit();
+        model.addAttribute("mgit", mgit);
+
+        model.addAttribute("member", member);
+
+        // 팔로우 리스트 갯수 가져옴
+        List<Follow> followList = followService.getFollowedCompanies(member);
+        model.addAttribute("followCount", followList.size());
         return "my/my_mypage"; // 검색 결과를 표시할 Thymeleaf 템플릿
     }
 

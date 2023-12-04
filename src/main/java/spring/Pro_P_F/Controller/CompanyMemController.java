@@ -5,11 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.Pro_P_F.Controller.Form.CompanyForm;
-import spring.Pro_P_F.domain.Company;
-import spring.Pro_P_F.domain.Job;
-import spring.Pro_P_F.domain.Member;
-import spring.Pro_P_F.domain.Posting;
+import spring.Pro_P_F.domain.*;
 import spring.Pro_P_F.service.CompanyMemService;
+import spring.Pro_P_F.service.FollowService;
 import spring.Pro_P_F.service.JobService;
 import spring.Pro_P_F.service.PostingService;
 
@@ -29,6 +27,9 @@ public class CompanyMemController {
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private FollowService followService;
 
     @GetMapping("/c_join")
     public String join(Model model) {
@@ -117,6 +118,9 @@ public class CompanyMemController {
 
         List<Job> jobs = jobService.findByCompany(company);
         model.addAttribute("jobs", jobs);
+
+        List<Follow> followers = followService.getFollowersByCompany(company);
+        model.addAttribute("followerCount", followers.size());
 
         return "company/company_mypage_other"; // 사용자 프로필 페이지로 이동하는 뷰 이름을 반환합니다.
     }

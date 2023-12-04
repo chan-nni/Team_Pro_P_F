@@ -93,18 +93,11 @@
 
         <h1 class="profile-user-name" th:text="${company.companyname}">회사명</h1><br><br><br>
         <h2>
-          팔로워: <a th:href="@{/c_followList}"><span th:text="${followerCount}"></span></a>
+          팔로워: <span th:text="${followerCount}"></span>
         </h2>
 
       </div>
 
-      <div class="profile-stats">
-
-<!--        <ul>-->
-<!--          <h3>팔로워 :</h3>-->
-<!--        </ul>-->
-
-      </div>
     </div>
   </div>
   <!-- End of profile section -->
